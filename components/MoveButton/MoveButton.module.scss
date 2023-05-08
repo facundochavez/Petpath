@@ -1,0 +1,25 @@
+.move_button {
+    margin: 0 5px;
+    padding-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    user-select: none;
+    cursor: pointer;
+
+    img {
+        filter: grayscale(10) brightness(10);
+    }
+
+    &:hover {
+        background-color: var(--color-gray-hover);
+    }
+
+    &:active {
+        background-color: var(--color-gray-active);
+    }
+
+}

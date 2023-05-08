@@ -1,0 +1,51 @@
+:root {
+  --color-primary: #00BC6B;
+  --color-hover: #10d378;
+  --color-active: #00a563;
+  --filter-primary: brightness(0) saturate(100%) invert(46%) sepia(95%) saturate(2767%) hue-rotate(128deg) brightness(102%) contrast(103%);
+  --filter-hover: brightness(0) saturate(100%) invert(57%) sepia(96%) saturate(385%) hue-rotate(100deg) brightness(93%) contrast(99%);
+  --filter-active: brightness(0) saturate(100%) invert(42%) sepia(71%) saturate(6941%) hue-rotate(148deg) brightness(99%) contrast(103%);
+  --filter-white: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7494%) hue-rotate(215deg) brightness(101%) contrast(102%);
+  --color-background: #2B2B2B;
+  --color-gray-hover: #414141;
+  --color-gray-active: #555555;
+  --filter-background: brightness(0) saturate(100%) invert(8%) sepia(80%) saturate(8%) hue-rotate(22deg) brightness(100%) contrast(82%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Noto Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.swiper-slide-active {
+  z-index: 10 !important;
+}
+
+.ant-image {
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
+.ant-image-img {
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
+.ant-skeleton {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.ant-skeleton-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.ant-skeleton-button {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+}

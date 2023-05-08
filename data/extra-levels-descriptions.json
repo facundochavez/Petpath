@@ -1,0 +1,26 @@
+{
+    "stranger_friendly": {
+        "title": "Stranger friendly",
+        "description": "Reflects the breed's friendliness towards strangers. High means very friendly, low means more aloof or wary."
+    },
+    "child_friendly": {
+        "title": "Child friendly",
+        "description": "Indicates the breed's friendliness towards children. High means very friendly, low means more reserved."
+    },
+    "dog_friendly": {
+        "title": "Dog friendly",
+        "description": "Reflects the breed's friendliness towards other dogs. High means very friendly, low means more aloof or aggressive."
+    },
+    "grooming": {
+        "title": "Grooming",
+        "description": "Indicates the breed's grooming needs. High means requires frequent grooming, low means low maintenance."
+    },
+    "health_issues": {
+        "title": "Health issues",
+        "description": "Reflects the breed's susceptibility to health issues. High means prone to health problems, low means generally healthy."
+    },
+    "shedding_level": {
+        "title": "Shedding level",
+        "description": "Indicates the amount of shedding the breed experiences. High means lots of shedding, low means minimal shedding."
+    }
+}

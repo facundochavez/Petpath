@@ -1,0 +1,17 @@
+.level_buttons {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &__down_line {
+        width: 25px;
+        border: solid white;
+        border-width: 2px 0 0 2px;
+        border-radius: 15px 0 0 0;
+        position: absolute;
+        right: -35px;
+        transform: rotate(180deg);
+        opacity: inherit;
+    }
+}

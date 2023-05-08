@@ -1,0 +1,7 @@
+.extra_level_buttons {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 6px;
+    grid-auto-flow: column;
+    margin: 4px 0;
+}

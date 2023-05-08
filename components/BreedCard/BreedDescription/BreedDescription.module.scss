@@ -1,0 +1,16 @@
+.breed_description {
+    padding: 8px 10px;
+    border: solid 1px white;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: all 0.4s;
+}
+
+.skeleton_description {
+    display: flex;
+    width: 100%;
+    height: 18px;
+    background-color: var(--color-gray-hover);
+    border-radius: 3px;
+    margin: 5px 0;
+}

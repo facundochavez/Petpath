@@ -1,0 +1,26 @@
+{
+    "affection_level": {
+        "title": "Affection level",
+        "description": "Reflects how much the breed enjoys being close to humans. High means very affectionate, while low means more independent."
+    },
+    "adaptability": {
+        "title": "Adaptability",
+        "description": "Indicates how well the breed can adjust to changes in its environment. High means good with change, low means easily stressed."
+    },
+    "energy_level": {
+        "title": "Energy level",
+        "description": "Indicates the breed's activity level and exercise needs. High means lots of playtime, low means more relaxed."
+    },
+    "intelligence": {
+        "title": "Intelligence",
+        "description": "Reflects the breed's problem-solving ability. High means quick learner and curious, low means more laid-back."
+    },
+    "vocalisation": {
+        "title": "Vocalisation",
+        "description": "Refers to the sounds the breed makes. High means very vocal, low means generally quiet."
+    },
+    "social_needs": {
+        "title": "Social needs",
+        "description": "Reflects the breed's need for social interaction and attention. High means needs attention, low means more content alone."
+    }
+}

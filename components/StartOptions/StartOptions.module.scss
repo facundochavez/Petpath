@@ -1,0 +1,28 @@
+.start_options {
+    width: 100%;
+    max-width: 450px;
+
+    &__max_width_container {
+        width: 100%;
+        padding: 5% !important;
+        display: flex;
+        flex-direction: column;
+
+        &__title {
+            font-weight: 500;
+            font-size: 50px;
+            line-height: 55px;
+            margin: 10% 0;
+
+            span {
+                font-weight: 600;
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    }
+}

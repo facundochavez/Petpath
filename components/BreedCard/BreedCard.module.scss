@@ -1,0 +1,57 @@
+.breed_card {
+    width: 100%;
+    display: flex;
+    transform-origin: top;
+    transition: all 0.4s;
+
+    &__side_container {
+        position: relative;
+        min-width: 34px;
+        height: 0;
+
+        &__subcontainer {
+            position: absolute;
+            background-color: var(--color-background);
+            height: 255px;
+            left: 9px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: end;
+
+            &__up_line {
+                width: 25px;
+                border: solid white;
+                border-width: 2px 0 0 2px;
+                border-radius: 15px 0 0 0;
+                margin-left: 23px;
+            }
+
+            &__option {
+                margin: 7px;
+                background-color: var(--color-background);
+                height: 45px;
+                width: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: solid 2px var(--color-primary);
+                height: 35px;
+                width: 35px;
+                border-radius: 17.5px;
+                font-size: 30px;
+                padding-bottom: 4px;
+                color: var(--color-primary);
+
+            }
+        }
+    }
+
+    &__middle_container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 6px;
+        transition: all 0.4s;
+    }
+}

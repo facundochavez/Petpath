@@ -1,0 +1,40 @@
+.button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    border: solid 2px var(--color-primary);
+    border-radius: 5px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.05s;
+    font-size: 17px;
+    color: var(--color-background);
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--color-hover);
+        border-color: var(--color-hover);
+    }
+
+    &:active {
+        background-color: var(--color-active);
+        border-color: var(--color-active);
+    }
+}
+
+.button[typeData='secondary'] {
+    background-color: transparent;
+    color: var(--color-primary);
+
+    &:hover {
+        background-color: rgba($color: #FFFFFF, $alpha: 0.05);
+        color: var(--color-hover);
+    }
+
+    &:active {
+        background-color: transparent;
+        color: var(--color-active);
+    }
+}
