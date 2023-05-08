@@ -25,6 +25,7 @@ const BreedCard = ({
     setSelectedLevel(level);
   }
 
+  const a = [];
   ////COMPONENT
   return (
     <motion.div
