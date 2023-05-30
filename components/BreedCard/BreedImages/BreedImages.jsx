@@ -4,7 +4,7 @@ import { Image /*  as AntImage */ } from 'antd';
 import { Skeleton } from 'antd';
 import { useState, useRef, useEffect } from 'react';
 
-const BreedImages = ({ images }) => {
+const BreedImages = ({ images, ref1 }) => {
   const cardRef = useRef();
 
   useEffect(() => {
@@ -44,64 +44,65 @@ const BreedImages = ({ images }) => {
 
   ////COMPONENT
   return (
-    <div className={styles.breed_images} ref={cardRef}>
-      <Image.PreviewGroup preview={true}>
-        <div className={styles.breed_images__first_image}>
-          {!images ? (
-            <Skeleton.Image active />
-          ) : (
-            <Image
-              key={0}
-              src={images[0] ? images[0].url : 'images/icon-for-images.svg'}
-              alt='first-image-of-breed'
-              height='100%'
-              placeholder={<Skeleton.Image active/>}
-            />
-          )}
-        </div>
-        <div className={styles.breed_images__second_image}>
-          {!images ? (
-            <Skeleton.Image active />
-          ) : (
-            <Image
-              key={1}
-              src={images[1] ? images[1].url : 'images/icon-for-images.svg'}
-              alt='second-image-of-breed'
-              height='100%'
-              placeholder={<Skeleton.Image active/>}
-            />
-          )}
-        </div>
-        <div className={styles.breed_images__third_image}>
-          {!images ? (
-            <Skeleton.Image active />
-          ) : (
-            <Image
-              key={2}
-              src={images[2] ? images[2].url : 'images/icon-for-images.svg'}
-              alt='second-image-of-breed'
-              height='100%'
-              placeholder={<Skeleton.Image active/>}
-            />
-          )}
-        </div>
+    <div ref={ref1}>
+      <div className={styles.breed_images} ref={cardRef}>
+        <Image.PreviewGroup preview={true}>
+          <div className={styles.breed_images__first_image}>
+            {!images ? (
+              <Skeleton.Image active />
+            ) : (
+              <Image
+                key={0}
+                src={images[0] ? images[0].url : 'images/icon-for-images.svg'}
+                alt='first-image-of-breed'
+                height='100%'
+                placeholder={<Skeleton.Image active />}
+              />
+            )}
+          </div>
+          <div className={styles.breed_images__second_image}>
+            {!images ? (
+              <Skeleton.Image active />
+            ) : (
+              <Image
+                key={1}
+                src={images[1] ? images[1].url : 'images/icon-for-images.svg'}
+                alt='second-image-of-breed'
+                height='100%'
+                placeholder={<Skeleton.Image active />}
+              />
+            )}
+          </div>
+          <div className={styles.breed_images__third_image}>
+            {!images ? (
+              <Skeleton.Image active />
+            ) : (
+              <Image
+                key={2}
+                src={images[2] ? images[2].url : 'images/icon-for-images.svg'}
+                alt='second-image-of-breed'
+                height='100%'
+                placeholder={<Skeleton.Image active />}
+              />
+            )}
+          </div>
 
-        {/* MORE IMAGES */}
-        <div style={{display: 'none'}}>
-          {images &&
-            images[3] &&
-            images.slice(3).map((image, index) => {
-              return (
-                <Image
-                  key={index + 3}
-                  src={image.url}
-                  alt={`Image of breed number ${index + 3}`}
-                />
-              );
-            })}
-        </div>
-        
-      </Image.PreviewGroup>
+          {/* MORE IMAGES */}
+          <div style={{ display: 'none' }}>
+            {images &&
+              images[3] &&
+              images.slice(3).map((image, index) => {
+                return (
+                  <Image
+                    key={index + 3}
+                    src={image.url}
+                    alt={`Image of breed number ${index + 3}`}
+                  />
+                );
+              })}
+          </div>
+        </Image.PreviewGroup>
+      </div>
     </div>
   );
 };

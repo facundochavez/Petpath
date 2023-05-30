@@ -4,35 +4,33 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import levels_descriptions from '../../../../data/levels-descriptions';
+import levelsDescriptions from '../../../../data/levelsDescriptionsData';
 import { message } from 'antd';
 import { motion } from 'framer-motion';
 
 const LevelButton = ({
   levelIndex,
-  handleSelectedLevel,
   level,
   levelInfo,
   addNewBreed,
+  cardIndex,
+  ref3
 }) => {
   const options = [
     {
-      simbol: '+',
-      label: 'plus',
+      action: '+',
       ability: levelInfo && levelInfo.plus_ability,
       z_index: 0,
       initial_position: 32,
     },
     {
-      simbol: '=',
-      label: 'equal',
+      action: '=',
       ability: levelInfo && levelInfo.equal_ability,
       z_index: 10,
       initial_position: 0,
     },
     {
-      simbol: '-',
-      label: 'less',
+      action: '-',
       ability: levelInfo && levelInfo.less_ability,
       z_index: 0,
       initial_position: -32,
@@ -61,11 +59,12 @@ const LevelButton = ({
         <div
           className={styles.level_button}
           onClick={() => setShowOptions(!showOptions)}
+          ref={levelIndex === 2 ? ref3 : null}
         >
           <div className={styles.level_button__level_bar}>
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: `${levelInfo.score * 20}%` }}
+              animate={{ width: `${levelInfo.points * 20}%` }}
               transition={{ duration: 0.8 }}
               style={{
                 backgroundColor: showOptions && 'var(--color-primary)',
@@ -78,14 +77,14 @@ const LevelButton = ({
             style={{ borderColor: showOptions ? 'white' : null }}
           >
             <Tooltip
-              title={levels_descriptions[level].description}
+              title={levelsDescriptions[level].description}
               overlayInnerStyle={{ fontSize: '11px', color: 'black' }}
               overlayStyle={{ maxWidth: '230px', margin: '-20px 0 0 -20px' }}
               color='white'
             >
               <QuestionCircleOutlined />
             </Tooltip>
-            <p>{levels_descriptions[level].title}</p>
+            <p>{levelsDescriptions[level].title}</p>
             <motion.div
               className={styles.level_button__content__image}
               initial={{ opacity: 0 }}
@@ -95,12 +94,12 @@ const LevelButton = ({
               <Image
                 height={10}
                 width={10}
-                src={'/icons/fat-arrow.svg'}
+                src={'/icons/fat-arrow-icon.svg'}
                 alt='Arrow'
                 style={{
                   filter: showOptions
                     ? 'var(--filter-white)'
-                    : levelInfo.score === 5
+                    : levelInfo.points === 5
                     ? 'var(--filter-background)'
                     : null,
                 }}
@@ -129,13 +128,18 @@ const LevelButton = ({
                     onClick={
                       option.ability
                         ? () => {
-                            handleSelectedLevel({level: levelIndex + 1, simbol: option.simbol});
-                            addNewBreed();
+                            addNewBreed(
+                              {
+                                selected_index: cardIndex,
+                                selected_level: levelIndex + 1,
+                                selected_action: option.action,
+                              }
+                            );
                           }
                         : warning
                     }
                   >
-                    {option.simbol}
+                    {option.action}
                   </motion.div>
                 );
               })}

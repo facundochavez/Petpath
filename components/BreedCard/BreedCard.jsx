@@ -1,8 +1,5 @@
 import styles from './BreedCard.module.scss';
 import BreedImages from './BreedImages/BreedImages';
-import ExtraLevelButton from './ExtraLevelButtons/ExtraLevelButton/ExtraLevelButton';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import extra_levels_descriptions from '../../data/extra-levels-descriptions.json';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Skeleton } from 'antd';
@@ -17,15 +14,12 @@ const BreedCard = ({
   isPrev,
   breed,
   addNewBreed,
+  cardIndex,
+  ref1,
+  ref2,
+  ref3,
+  ref4,
 }) => {
-  const [selectedLevel, setSelectedLevel] = useState();
-  const [requestSimbol, setRequestSimbol] = useState();
-  function handleSelectedLevel({ level, simbol }) {
-    setRequestSimbol(simbol);
-    setSelectedLevel(level);
-  }
-
-  const a = [];
   ////COMPONENT
   return (
     <motion.div
@@ -39,8 +33,10 @@ const BreedCard = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: isFirst ? 0 : 0.65, duration: 0.1 }}
     >
+      {/* LEFT CONTAINER */}
       <div className={styles.breed_card__side_container} />
 
+      {/* MIDDLE CONTAINER */}
       <div
         className={styles.breed_card__middle_container}
         style={
@@ -53,23 +49,27 @@ const BreedCard = ({
             : null
         }
       >
-        <BreedImages images={breed.images} />
+        <BreedImages images={breed.images} ref1={ref1} />
         <LevelButtons
           levels={breed.levels}
-          selectedLevel={selectedLevel}
-          handleSelectedLevel={handleSelectedLevel}
+          selectedLevel={breed.selectedLevel}
           isActive={isActive}
           addNewBreed={addNewBreed}
+          cardIndex={cardIndex}
+          ref2={ref2}
+          ref3={ref3}
+          ref4={ref4}
         />
         <ExtraLevelButtons extraLevels={breed.extra_levels} />
         <BreedDescription description={breed.description} isActive={isActive} />
       </div>
 
+      {/* RIGTH CONTAINER */}
       <div
         className={styles.breed_card__side_container}
         style={{ opacity: isLast ? 0 : 1 }}
       >
-        {selectedLevel && (
+        {breed.selectedLevel && (
           <div className={styles.breed_card__side_container__subcontainer}>
             <motion.div
               className={
@@ -92,7 +92,7 @@ const BreedCard = ({
               animate={{ scale: 1 }}
               transition={{ delay: 0.4 }}
             >
-              {requestSimbol}
+              {breed.selectedAction}
             </motion.div>
           </div>
         )}

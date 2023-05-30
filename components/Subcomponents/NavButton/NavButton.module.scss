@@ -1,0 +1,17 @@
+.nav_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}

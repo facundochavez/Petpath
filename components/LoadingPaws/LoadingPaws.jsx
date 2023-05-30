@@ -18,9 +18,9 @@ const LoadingPaws = () => {
     <div className={styles.loading_paws}>
       {paws.map((paw, index) => {
         return (
-          <div className={styles.loading_paws__paw} style={{animationDelay: `${1 + index * 0.15}s`}}>
+          <div className={styles.loading_paws__paw} style={{animationDelay: `${1 + index * 0.15}s`}} key={index}>
             <Image
-              src={'icons/favicon.svg'}
+              src={'icons/paw-icon.svg'}
               alt='Paw icon'
               fill
               style={{

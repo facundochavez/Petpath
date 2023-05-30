@@ -44,9 +44,8 @@ export default async function getAllBreeds() {
 
 // OK, at first we'll give you a random breed...
 // These are the breed levels. Here you can learn a lot about the animal behavior and its traits.
-// Select this level to see options
-// Now you can make a request, let's try to find a breed width more Affection Level.
-// That's it! Now we have a breed width more Affection Level. We'll try to keep the others levels close enough.
+// By selecting any level, you can make a request to explore new breeds.
+// We'll give you a new breed with that request and try to keep the others levels close enough.
 // Here you can mark your favorite breeds and watch the path you've made. There is a suprise if you find all breeds...
 // You can register to save your path too!
 // Let's start now with a random breed! 

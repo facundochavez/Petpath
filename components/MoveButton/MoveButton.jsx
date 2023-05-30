@@ -13,7 +13,7 @@ const MoveButton = ({ type = 'next', onClick }) => {
       onClick={onClick}
       style={type == 'previous' ? { transform: 'rotate(180deg)' } : null}
     >
-      <Image height={15} width={15} src={'/icons/arrow.svg'} alt='Arrow' />
+      <Image height={15} width={15} src={'/icons/arrow-icon.svg'} alt='Arrow' />
     </motion.div>
   );
 };

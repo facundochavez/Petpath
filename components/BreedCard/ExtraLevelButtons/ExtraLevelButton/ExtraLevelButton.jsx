@@ -1,7 +1,7 @@
 import styles from './ExtraLevelButton.module.scss';
 import { Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import extra_levels_descriptions from '../../../../data/extra-levels-descriptions';
+import extraLevelsDescriptions from '../../../../data/extraLevelsDescriptionsData';
 import { Skeleton } from 'antd';
 import { motion } from 'framer-motion';
 
@@ -17,7 +17,7 @@ const ExtraLevelButton = ({ extraLevel, extraLevelInfo }) => {
         <div className={styles.extra_level_button}>
           <Tooltip
             
-            title={extra_levels_descriptions[extraLevel].description}
+            title={extraLevelsDescriptions[extraLevel].description}
             overlayInnerStyle={{ fontSize: '11px', color: 'black' }}
             overlayStyle={{ maxWidth: '230px', margin: '-20px 0 0 -20px' }}
             color='white'
@@ -27,10 +27,10 @@ const ExtraLevelButton = ({ extraLevel, extraLevelInfo }) => {
           <motion.div
             className={styles.extra_level_button__level_bar}
             initial={{width: 0}}
-            animate={{ width: `${extraLevelInfo.score * 20}%` }}
+            animate={{ width: `${extraLevelInfo.points * 20}%` }}
             transition={{ duration: 0.8 }}
           />
-          <p>{extra_levels_descriptions[extraLevel].title}</p>
+          <p>{extraLevelsDescriptions[extraLevel].title}</p>
         </div>
       )}
     </>

@@ -5,17 +5,21 @@ import { motion } from 'framer-motion';
 const LevelButtons = ({
   levels,
   selectedLevel,
-  handleSelectedLevel,
   isActive,
   addNewBreed,
+  cardIndex,
+  ref2,
+  ref3,
+  ref4,
 }) => {
   ////COMPONENT
   return (
     <div
       className={styles.level_buttons}
       style={!isActive ? { filter: 'grayscale() brightness(0.9)' } : null}
+      ref={ref2}
     >
-      {selectedLevel ? (
+      {selectedLevel && (
         <motion.div
           className={styles.level_buttons__down_line}
           initial={{ height: 0 }}
@@ -27,7 +31,7 @@ const LevelButtons = ({
             bottom: `${228 - 42 * (selectedLevel - 1)}px`,
           }}
         />
-      ) : null}
+      )}
       {Object.keys(levels).map((level, index) => {
         return (
           <LevelButton
@@ -35,8 +39,10 @@ const LevelButtons = ({
             levelIndex={index}
             level={levels[level] ? level : null}
             levelInfo={levels[level]}
-            handleSelectedLevel={handleSelectedLevel}
             addNewBreed={addNewBreed}
+            cardIndex={cardIndex}
+            ref3={ref3}
+            ref4={ref4}
           />
         );
       })}

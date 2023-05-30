@@ -2,7 +2,7 @@ import styles from './StartOptions.module.scss';
 import Button from 'components/Subcomponents/Buttons/Button';
 import { motion } from 'framer-motion';
 
-const StartOptions = ({ handleTour, addNewBreed }) => {
+const StartOptions = ({ startTour, addNewBreed }) => {
   const animationProps = {
     initial: { opacity: 0, y: 100 },
     animate: { opacity: 1, y: 0 },
@@ -24,7 +24,7 @@ const StartOptions = ({ handleTour, addNewBreed }) => {
           {...animationProps}
           transition={{ delay: 0.05 }}
         >
-          <Button type='secondary' onClick={handleTour}>
+          <Button type='secondary' onClick={startTour}>
             STAR TOUR
           </Button>
           <Button type='primary' onClick={addNewBreed}>
