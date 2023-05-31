@@ -1,8 +1,13 @@
 import styles from './StartOptions.module.scss';
-import Button from 'components/Subcomponents/Buttons/Button';
+import Button from 'components/Button/Button';
 import { motion } from 'framer-motion';
+import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useTourContext } from 'pages/context/tour.context';
 
-const StartOptions = ({ startTour, addNewBreed }) => {
+const StartOptions = () => {
+  const { addNewBreed } = useExploredBreedsContext();
+  const { startTour } = useTourContext();
+
   const animationProps = {
     initial: { opacity: 0, y: 100 },
     animate: { opacity: 1, y: 0 },
@@ -24,7 +29,12 @@ const StartOptions = ({ startTour, addNewBreed }) => {
           {...animationProps}
           transition={{ delay: 0.05 }}
         >
-          <Button type='secondary' onClick={startTour}>
+          <Button
+            type='secondary'
+            onClick={() => {
+              startTour();
+            }}
+          >
             STAR TOUR
           </Button>
           <Button type='primary' onClick={addNewBreed}>

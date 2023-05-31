@@ -2,9 +2,11 @@ import styles from './BreedImages.module.scss';
 /* import Image from 'next/image'; */
 import { Image /*  as AntImage */ } from 'antd';
 import { Skeleton } from 'antd';
+import { useTourContext } from 'pages/context/tour.context';
 import { useState, useRef, useEffect } from 'react';
 
-const BreedImages = ({ images, ref1 }) => {
+const BreedImages = ({ images }) => {
+  const { ref1 } = useTourContext();
   const cardRef = useRef();
 
   useEffect(() => {

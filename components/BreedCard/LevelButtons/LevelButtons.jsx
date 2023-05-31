@@ -1,17 +1,15 @@
 import styles from './LevelButtons.module.scss';
 import LevelButton from './LevelButton/LevelButton';
 import { motion } from 'framer-motion';
+import { useTourContext } from 'pages/context/tour.context';
 
 const LevelButtons = ({
   levels,
   selectedLevel,
   isActive,
-  addNewBreed,
   cardIndex,
-  ref2,
-  ref3,
-  ref4,
 }) => {
+  const { ref2 } = useTourContext();
   ////COMPONENT
   return (
     <div
@@ -39,10 +37,7 @@ const LevelButtons = ({
             levelIndex={index}
             level={levels[level] ? level : null}
             levelInfo={levels[level]}
-            addNewBreed={addNewBreed}
             cardIndex={cardIndex}
-            ref3={ref3}
-            ref4={ref4}
           />
         );
       })}

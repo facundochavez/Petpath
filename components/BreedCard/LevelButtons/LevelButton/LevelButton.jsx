@@ -4,19 +4,16 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import levelsDescriptions from '../../../../data/levelsDescriptionsData';
+import levelsDescriptions from '../../../../data/levels-descriptions.data';
 import { message } from 'antd';
 import { motion } from 'framer-motion';
+import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useTourContext } from 'pages/context/tour.context';
 
-const LevelButton = ({
-  levelIndex,
-  level,
-  levelInfo,
-  addNewBreed,
-  cardIndex,
-  ref3
-}) => {
-  const options = [
+const LevelButton = ({ levelIndex, level, levelInfo, cardIndex }) => {
+  const { ref3 } = useTourContext();
+  const { addNewBreed } = useExploredBreedsContext();
+  const actions = [
     {
       action: '+',
       ability: levelInfo && levelInfo.plus_ability,
@@ -44,9 +41,9 @@ const LevelButton = ({
       content: 'Oops! No options in that way...',
     });
   }
-  const [showOptions, setShowOptions] = useState(false);
+  const [showActions, setShowActions] = useState(false);
   const ref = useRef(null);
-  useOnClickOutside(ref, () => setShowOptions(false));
+  useOnClickOutside(ref, () => setShowActions(false));
 
   return (
     <>
@@ -58,7 +55,7 @@ const LevelButton = ({
       ) : (
         <div
           className={styles.level_button}
-          onClick={() => setShowOptions(!showOptions)}
+          onClick={() => setShowActions(!showActions)}
           ref={levelIndex === 2 ? ref3 : null}
         >
           <div className={styles.level_button__level_bar}>
@@ -67,14 +64,14 @@ const LevelButton = ({
               animate={{ width: `${levelInfo.points * 20}%` }}
               transition={{ duration: 0.8 }}
               style={{
-                backgroundColor: showOptions && 'var(--color-primary)',
+                backgroundColor: showActions && 'var(--color-primary)',
               }}
             ></motion.div>
           </div>
 
           <div
             className={styles.level_button__content}
-            style={{ borderColor: showOptions ? 'white' : null }}
+            style={{ borderColor: showActions ? 'white' : null }}
           >
             <Tooltip
               title={levelsDescriptions[level].description}
@@ -97,7 +94,7 @@ const LevelButton = ({
                 src={'/icons/fat-arrow-icon.svg'}
                 alt='Arrow'
                 style={{
-                  filter: showOptions
+                  filter: showActions
                     ? 'var(--filter-white)'
                     : levelInfo.points === 5
                     ? 'var(--filter-background)'
@@ -107,16 +104,16 @@ const LevelButton = ({
             </motion.div>
           </div>
 
-          {showOptions && (
+          {showActions && (
             <div
               className={styles.level_button__options}
               ref={ref}
               onClick={(e) => {
                 e.stopPropagation();
-                setShowOptions(!showOptions);
+                setShowActions(!showActions);
               }}
             >
-              {options.map((option, optionIndex) => {
+              {actions.map((option, optionIndex) => {
                 return (
                   <motion.div
                     key={optionIndex}
@@ -128,13 +125,11 @@ const LevelButton = ({
                     onClick={
                       option.ability
                         ? () => {
-                            addNewBreed(
-                              {
-                                selected_index: cardIndex,
-                                selected_level: levelIndex + 1,
-                                selected_action: option.action,
-                              }
-                            );
+                            addNewBreed({
+                              selected_index: cardIndex,
+                              selected_level: levelIndex + 1,
+                              selected_action: option.action,
+                            });
                           }
                         : warning
                     }

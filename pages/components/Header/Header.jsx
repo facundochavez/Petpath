@@ -1,8 +1,14 @@
-import NavButton from 'components/Subcomponents/NavButton/NavButton';
+import NavButton from 'components/NavButton/NavButton';
 import styles from './Header.module.scss';
 import Image from 'next/image';
+import { useTourContext } from 'pages/context/tour.context';
+import { Modal } from 'antd';
+import { useState } from 'react';
 
-const Header = ({ref4}) => {
+const Header = () => {
+  const { ref4 } = useTourContext();
+  const [pathModalOpen, setPathModalOpen] = useState(false)
+
   ////COMPONENT
   return (
     <div className={styles.header}>
@@ -15,7 +21,7 @@ const Header = ({ref4}) => {
             alt='PawMatch logo'
           />
           <nav ref={ref4}>
-            <NavButton>
+            <NavButton onClick={() => setPathModalOpen(true)}>
               <Image
                 src={'icons/path-icon.svg'}
                 width={50}
@@ -34,6 +40,14 @@ const Header = ({ref4}) => {
           </nav>
         </div>
       </div>
+      <Modal
+        title="My Path"
+        centered
+        open={pathModalOpen}
+        onOk={() => setPathModalOpen(false)}
+        onCancel={() => setPathModalOpen(false)}
+      >
+      </Modal>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import styles from './ExtraLevelButton.module.scss';
 import { Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import extraLevelsDescriptions from '../../../../data/extraLevelsDescriptionsData';
+import extraLevelsDescriptions from '../../../../data/extra-levels-descriptions.data';
 import { Skeleton } from 'antd';
 import { motion } from 'framer-motion';
 

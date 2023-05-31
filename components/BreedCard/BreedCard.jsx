@@ -6,20 +6,10 @@ import { Skeleton } from 'antd';
 import LevelButtons from './LevelButtons/LevelButtons';
 import ExtraLevelButtons from './ExtraLevelButtons/ExtraLevelButtons';
 import BreedDescription from './BreedDescription/BreedDescription';
+import { useTourContext } from 'pages/context/tour.context';
 
-const BreedCard = ({
-  isFirst,
-  isLast,
-  isActive,
-  isPrev,
-  breed,
-  addNewBreed,
-  cardIndex,
-  ref1,
-  ref2,
-  ref3,
-  ref4,
-}) => {
+const BreedCard = ({ isFirst, isLast, isActive, isPrev, breed, cardIndex }) => {
+
   ////COMPONENT
   return (
     <motion.div
@@ -49,16 +39,12 @@ const BreedCard = ({
             : null
         }
       >
-        <BreedImages images={breed.images} ref1={ref1} />
+        <BreedImages images={breed.images} />
         <LevelButtons
           levels={breed.levels}
           selectedLevel={breed.selectedLevel}
           isActive={isActive}
-          addNewBreed={addNewBreed}
           cardIndex={cardIndex}
-          ref2={ref2}
-          ref3={ref3}
-          ref4={ref4}
         />
         <ExtraLevelButtons extraLevels={breed.extra_levels} />
         <BreedDescription description={breed.description} isActive={isActive} />

@@ -23,16 +23,18 @@ def get_breed(request):
     selected_level = request.GET.get('selected_level')    
     selected_action = request.GET.get('selected_action')
 
+    print (f'--> Reset request is: {reset}')
+
     # FETCHING ALL BREEDS AT FIRST TIME
     if len(all_breeds) == 0:
         response = requests.get(f'{THE_CAT_API_ENDPOINT}/breeds', headers=HEADERS)
         data = response.json()
-        all_breeds.extend(data)
+        all_breeds = data
         available_breeds = all_breeds.copy()
         print ('--> ALL BREEDS FETCHED')
 
     # RESET FUNCTION
-    if reset:
+    if reset == 'true':
         available_breeds.clear()
         sended_breeds.clear()
         available_breeds = all_breeds.copy()
@@ -40,7 +42,7 @@ def get_breed(request):
         print ('--> RESETED BACKEND')
         print (f'All breeds length: {len(all_breeds)}')
         print (f'Available breeds length: {len(available_breeds)}')
-        return HttpResponse()
+        return HttpResponse(len(all_breeds))
 
     # LOOKING FOR MAX-SCORED BREED IF SELECTED INDEX IS DEFINED
     if selected_index != 'undefined':
@@ -71,10 +73,17 @@ def get_breed(request):
         breed = max(match_breeds, key=scoring)
         print ('--> MAX-SCORED BREED FINDED')
 
-    # LOOKING FOR RANDOM BREED IF SELECTED INDEX IS UNDEFINED
+    # LOOKING FOR RANDOM BREED WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL)
     else:
-        randomIndex = random.randint(0, len(available_breeds) - 1)
-        breed = available_breeds[randomIndex]
+        def low_scoring(breed):
+            score = 0
+            for level in LEVELS: 
+                score += breed.get(level)
+            return score
+        sorted_breeds = sorted(all_breeds, key=low_scoring)
+        lowest_scores = sorted_breeds[:10]
+        randomIndex = random.randint(0, len(lowest_scores) - 1)
+        breed = lowest_scores[randomIndex]
         print ('--> RANDOM BREED FINDED')
 
     sended_breeds.append(breed)
@@ -87,7 +96,7 @@ def get_breed(request):
     imagesData = imagesResponse.json()
     print ('--> IMAGES FETCHED')
 
-    # BREED TO RETURN
+    # BUILDING BREED TO RETURN
     new_breed = {
         'id': breed['id'],
         'name': breed['name'],

@@ -1,5 +1,5 @@
 {
-    "cat": {
+    "tourCat": {
         "id": "bsho",
         "name": "British Shorthair",
         "images": [
@@ -67,7 +67,7 @@
             }
         }
     },
-    "dog": {
+    "tourDog": {
         "id": "ebur",
         "name": "European Burmese",
         "images": [
