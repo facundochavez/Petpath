@@ -1,6 +1,6 @@
 import styles from './BreedImages.module.scss';
 /* import Image from 'next/image'; */
-import { Image /*  as AntImage */ } from 'antd';
+import { Image } from 'antd';
 import { Skeleton } from 'antd';
 import { useTourContext } from 'pages/context/tour.context';
 import { useState, useRef, useEffect } from 'react';

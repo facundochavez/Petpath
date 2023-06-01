@@ -1,0 +1,37 @@
+.path_card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95px;
+    width: 95px;
+    border: solid 1px white;
+
+    &__line {
+        width: 18px;
+        border: solid white;
+        border-width: 2px 0 0 2px;
+        position: absolute;
+        right: -10px;
+    }
+}
+
+@mixin container {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+
+    img {
+        object-fit: cover !important;
+    }
+}
+
+.empty_container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px white;
+    color: var(--color-primary);
+    font-size: 30px;
+}

@@ -59,3 +59,41 @@ body::-webkit-scrollbar {
   max-width: 100%;
   padding: 0 3%;
 }
+
+.ant-modal {
+  width: 700px !important;
+}
+
+.ant-modal-mask {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(30px);
+}
+
+.ant-modal-content {
+  background-color: var(--color-background) !important;
+  height: 95vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.ant-modal-title {
+  background-color: var(--color-background) !important;
+  color: white !important;
+  font-size: 25px !important;
+  font-weight: 500 !important;
+}
+
+.ant-modal-close {
+  width: unset !important;
+  height: unset !important;
+}
+
+.ant-modal-close:hover {
+  background-color: transparent !important;
+}
+
+.ant-modal-body {
+  display: flex !important;
+  justify-content: center !important;
+  max-height: 100% !important;
+}

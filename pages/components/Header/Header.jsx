@@ -4,10 +4,13 @@ import Image from 'next/image';
 import { useTourContext } from 'pages/context/tour.context';
 import { Modal } from 'antd';
 import { useState } from 'react';
+import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useSwiperContext } from 'pages/context/swiper.context';
+import PathModal from '../PathModal/PathModal';
 
 const Header = () => {
   const { ref4 } = useTourContext();
-  const [pathModalOpen, setPathModalOpen] = useState(false)
+  const [pathModalOpen, setPathModalOpen] = useState(false);
 
   ////COMPONENT
   return (
@@ -40,14 +43,11 @@ const Header = () => {
           </nav>
         </div>
       </div>
-      <Modal
-        title="My Path"
-        centered
+      <PathModal
         open={pathModalOpen}
         onOk={() => setPathModalOpen(false)}
         onCancel={() => setPathModalOpen(false)}
-      >
-      </Modal>
+      ></PathModal>
     </div>
   );
 };

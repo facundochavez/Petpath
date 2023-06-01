@@ -1,0 +1,24 @@
+.close_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    user-select: none;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+
+    img {
+        filter: grayscale(10) brightness(10);
+    }
+
+    &:hover {
+        background-color: var(--color-gray-hover);
+    }
+
+    &:active {
+        background-color: var(--color-gray-active);
+    }
+}
