@@ -23,29 +23,34 @@ def get_breed(request):
     selected_level = request.GET.get('selected_level')    
     selected_action = request.GET.get('selected_action')
 
-    print (f'--> Reset request is: {reset}')
-
     # FETCHING ALL BREEDS AT FIRST TIME
     if len(all_breeds) == 0:
         response = requests.get(f'{THE_CAT_API_ENDPOINT}/breeds', headers=HEADERS)
         data = response.json()
         all_breeds = data
         available_breeds = all_breeds.copy()
-        print ('--> ALL BREEDS FETCHED')
 
     # RESET FUNCTION
     if reset == 'true':
         available_breeds.clear()
-        sended_breeds.clear()
         available_breeds = all_breeds.copy()
         sended_breeds = []
-        print ('--> RESETED BACKEND')
-        print (f'All breeds length: {len(all_breeds)}')
-        print (f'Available breeds length: {len(available_breeds)}')
         return HttpResponse(len(all_breeds))
 
+    # LOOKING FOR RANDOM BREED WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL) 
+    if selected_index == 'undefined':
+        def low_scoring(breed):
+            score = 0
+            for level in LEVELS: 
+                score += breed.get(level)
+            return score
+        sorted_breeds = sorted(all_breeds, key=low_scoring)
+        lowest_scores = sorted_breeds[:15]
+        randomIndex = random.randint(0, len(lowest_scores) - 1)
+        breed = lowest_scores[randomIndex]
+
     # LOOKING FOR MAX-SCORED BREED IF SELECTED INDEX IS DEFINED
-    if selected_index != 'undefined':
+    else:
         selected_index = int(selected_index)
         selected_level = LEVELS[int(selected_level) - 1]
 
@@ -53,7 +58,6 @@ def get_breed(request):
         if selected_index + 1 < len(sended_breeds) :
             sended_breeds = sended_breeds[:selected_index + 1]
             available_breeds = [breed for breed in all_breeds if breed not in sended_breeds]
-            print ('--> SENDED BREEDS UPDATED')
 
         # GETTING BREEDS THAT MEET THE REQUERIMENT
         if selected_action == '=': 
@@ -73,23 +77,9 @@ def get_breed(request):
         breed = max(match_breeds, key=scoring)
         print ('--> MAX-SCORED BREED FINDED')
 
-    # LOOKING FOR RANDOM BREED WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL)
-    else:
-        def low_scoring(breed):
-            score = 0
-            for level in LEVELS: 
-                score += breed.get(level)
-            return score
-        sorted_breeds = sorted(all_breeds, key=low_scoring)
-        lowest_scores = sorted_breeds[:10]
-        randomIndex = random.randint(0, len(lowest_scores) - 1)
-        breed = lowest_scores[randomIndex]
-        print ('--> RANDOM BREED FINDED')
-
+    # UPDATING SENDED AND AVAILABLE BREEDS
     sended_breeds.append(breed)
     available_breeds.remove(breed)
-    print (f'Sended breeds length: {len(sended_breeds)}')
-    print (f'Available breeds length: {len(available_breeds)}')
 
     # FETCHING IMAGES
     imagesResponse = requests.get(f'{THE_CAT_API_ENDPOINT}/images/search?limit=10&breed_ids={breed["id"]}', headers=HEADERS)
@@ -109,7 +99,7 @@ def get_breed(request):
         'extra_levels': {}
     }
 
-    # ADDING LEVELS AND ACTION ABILITIES
+    # ADDING LEVELS AND ACTION ABILITIES TO BREED
     for level in LEVELS:
         new_breed['levels'][level] = {
             'points': breed[level],
@@ -121,8 +111,6 @@ def get_breed(request):
         new_breed['extra_levels'][extra_level] = {
             'points': breed[extra_level],
         }
-
-    print ('--> BREED RETURNED')
 
     return JsonResponse(new_breed)
 

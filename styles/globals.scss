@@ -61,12 +61,18 @@ body::-webkit-scrollbar {
 }
 
 .ant-modal {
-  width: 700px !important;
+  width: 850px !important;
 }
 
 .ant-modal-mask {
   background-color: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(30px);
+
+}
+
+.ant-modal-wrap::-webkit-scrollbar {
+  width: 0em;
+  height: 0em;
 }
 
 .ant-modal-content {
@@ -74,6 +80,7 @@ body::-webkit-scrollbar {
   height: 95vh !important;
   display: flex !important;
   flex-direction: column !important;
+  padding: 20px !important;
 }
 
 .ant-modal-title {

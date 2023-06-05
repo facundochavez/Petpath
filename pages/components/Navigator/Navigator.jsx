@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'framer-motion';
 import styles from './Navigator.module.scss';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
@@ -8,8 +7,7 @@ import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 
 const Navigator = () => {
-  const { exploredBreeds, showMoveButtons, tap, handleFav } =
-    useExploredBreedsContext();
+  const { exploredBreeds, showMoveButtons, tap, handleFav } = useExploredBreedsContext();
   const { swiper, activeSwiperIndex } = useSwiperContext();
 
   ////COMPONENT
@@ -17,27 +15,20 @@ const Navigator = () => {
     <section className={styles.navigator}>
       {/* PREVIOUS BUTTON */}
       <div className={styles.navigator__button_container}>
-        <AnimatePresence>
-          {showMoveButtons && activeSwiperIndex > 0 && (
-            <MoveButton type='previous' onClick={() => swiper.slidePrev()} />
-          )}
-        </AnimatePresence>
+        {showMoveButtons && activeSwiperIndex > 0 && (
+          <MoveButton type='previous' onClick={() => swiper.slidePrev()} />
+        )}
       </div>
 
       {/* TITLE CONTAINER */}
       <div className={styles.navigator__title_container}>
         {/* TITLE */}
-        <h2>
-          {(showMoveButtons && exploredBreeds[activeSwiperIndex].name) || (
-            <LoadingPaws />
-          )}
-        </h2>
+        <h2>{(showMoveButtons && exploredBreeds[activeSwiperIndex].name) || <LoadingPaws />}</h2>
         {/* HEARTH */}
         {showMoveButtons && exploredBreeds[activeSwiperIndex].name ? (
           <div
             className={styles.navigator__title_container__fav_button}
-            onClick={() => handleFav(activeSwiperIndex)}
-          >
+            onClick={() => handleFav(activeSwiperIndex)}>
             {!exploredBreeds[activeSwiperIndex].fav ? (
               <HeartOutlined />
             ) : (
@@ -47,8 +38,7 @@ const Navigator = () => {
                     style={{ position: 'absolute' }}
                     initial={{ opacity: 1, scale: 1 }}
                     animate={{ opacity: 0, scale: 1.7 }}
-                    transition={{ ease: 'easeOut' }}
-                  >
+                    transition={{ ease: 'easeOut' }}>
                     <HeartFilled style={{ color: 'var(--color-primary)' }} />
                   </motion.div>
                 ) : null}
@@ -60,11 +50,9 @@ const Navigator = () => {
       </div>
       {/* NEXT BUTTON */}
       <div className={styles.navigator__button_container}>
-        <AnimatePresence>
-          {showMoveButtons && activeSwiperIndex + 1 < exploredBreeds.length && (
-            <MoveButton type='next' onClick={() => swiper.slideNext()} />
-          )}
-        </AnimatePresence>
+        {showMoveButtons && activeSwiperIndex + 1 < exploredBreeds.length && (
+          <MoveButton type='next' onClick={() => swiper.slideNext()} />
+        )}
       </div>
     </section>
   );

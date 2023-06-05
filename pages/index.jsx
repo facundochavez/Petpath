@@ -10,20 +10,16 @@ import Carousel from './components/Carousel/Carousel';
 import Tour from './components/Tour/Tour';
 
 export default function Home() {
-  const { exploredBreeds, allBreedsLength, setAllBreedsLength } =
-    useExploredBreedsContext();
+  const { exploredBreeds, allBreedsLength, setAllBreedsLength } = useExploredBreedsContext();
 
   // RESET BACKEND
   useEffect(() => {
     async function firstFetch() {
-      const response = await fetch(
-        `http://localhost:8000/get_breed/?reset=${true}`
-      );
+      const response = await fetch(`http://localhost:8000/get_breed/?reset=${true}`);
       const data = await response.text();
       const length = parseInt(data);
       {
         allBreedsLength === 0 && setAllBreedsLength(length);
-        console.log('All breeds length is: ' + length);
       }
     }
     firstFetch();
@@ -34,11 +30,7 @@ export default function Home() {
     <>
       <Head>
         <title>Paw Explorer</title>
-        <link
-          rel='icon'
-          href='/images/paw-explorer-symbol.svg'
-          type='image/svg+xml'
-        />
+        <link rel='icon' href='/images/paw-explorer-symbol.svg' type='image/svg+xml' />
       </Head>
       <Header />
       <main className={styles.main}>

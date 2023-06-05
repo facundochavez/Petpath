@@ -79,9 +79,6 @@ export const ExploredBreedsProvider = ({ children }) => {
     }, 300);
   }
 
-  //// PATH-BREEDS
-  const pathBreeds = [...exploredBreeds, ...Array(allBreedsLength - exploredBreeds.length).fill({})]
-
   //// COMPONENT
   return (
     <ExploredBreedsContext.Provider
@@ -93,8 +90,7 @@ export const ExploredBreedsProvider = ({ children }) => {
         tap,
         handleFav,
         allBreedsLength,
-        setAllBreedsLength,
-        pathBreeds
+        setAllBreedsLength
       }}
     >
       {children}

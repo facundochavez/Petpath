@@ -3,35 +3,77 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 95px;
-    width: 95px;
-    border: solid 1px white;
 
     &__line {
-        width: 18px;
+        width: 20%;
         border: solid white;
         border-width: 2px 0 0 2px;
         position: absolute;
-        right: -10px;
+
+        &[directiondata='none'] {
+            display: none;
+        }
+
+        &[directiondata='rigth'] {
+            right: -10%;
+        }
+
+        &[directiondata='bottom'] {
+            transform: rotate(-90deg);
+            bottom: 0;
+        }
+
+        &[directiondata='left'] {
+            transform: rotate(-180deg);
+            left: -10%;
+        }
+    }
+
+    &__hearth {
+        position: absolute;
+        color: var(--color-primary);
+        font-size: 22px;
+        top: 11%;
+        right: 11%;
     }
 }
 
 @mixin container {
-    width: 70px;
-    height: 70px;
+    width: 65%;
+    aspect-ratio: 1;
     border-radius: 15px;
-
-    img {
-        object-fit: cover !important;
-    }
 }
 
-.empty_container {
+.empty_box {
     @include container;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 2px white;
+    outline: solid 2px white;
     color: var(--color-primary);
     font-size: 30px;
+}
+
+.photo_box {
+    @include container;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    outline: solid 2px white;
+    background-color: white;
+
+    
+    
+    &:active {
+        transform: scale(0.97);
+    }
+
+    img {
+        object-fit: cover !important;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: scale(1.07)
+        }
+    }
 }
