@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const PathCard = ({ breed, index, onCancel, width, lineDirection }) => {
+
   ////COMPONENT
   return (
     <div
@@ -19,15 +20,10 @@ const PathCard = ({ breed, index, onCancel, width, lineDirection }) => {
       ) : (
         <PhotoBox breed={breed} index={index} onCancel={onCancel} />
       )}
-      {/* {breed.images ? (
-        <PhotoBox breed={breed} index={index} onCancel={onCancel} />
-      ) : (
-        breed.boxType === 'question_box' && <QuestionBox />
-      )} */}
       <div className={styles.path_card__line} directiondata={lineDirection} />
       {breed.fav && (
         <>
-          <HeartFilled className={styles.path_card__hearth} />
+          <HeartFilled className={styles.path_card__hearth} style={{fontSize: width === 100 ? '18px': '22px'}}/>
         </>
       )}
     </div>

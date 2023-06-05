@@ -20,10 +20,22 @@ const PathModal = ({ open, onCancel }) => {
     ...Array(columns * rows - allBreedsLength).fill({ boxType: 'empty_box' })
   ];
 
+  const card = {
+    hidden: { opacity: 0, y: 50 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        easy: 'easyOut'
+      }
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (ref.current) {
-        const available_width = ref.current.offsetWidth + 30;
+        const available_width = ref.current.offsetWidth + 20;
         const newCardsWidth = window.innerWidth < 540 ? 100 : 165;
         setCardsWidth(newCardsWidth);
         const newColumns = Math.max(1, Math.floor(available_width / newCardsWidth));
@@ -51,7 +63,11 @@ const PathModal = ({ open, onCancel }) => {
       destroyOnClose={true}>
       <div ref={ref} className={styles.modal_body}>
         <motion.div
-          layout
+          transition={{
+            staggerChildren: 0.03
+          }}
+          initial='hidden'
+          animate='show'
           className={styles.modal_body__path_cards_container}
           style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
           {pathCards.map((breed, index) => {
@@ -60,6 +76,8 @@ const PathModal = ({ open, onCancel }) => {
             const lineDisplay = index + 1 < allBreedsLength;
             return (
               <motion.div
+                key={index}
+                variants={card}
                 style={{
                   order: `${
                     inOddRow
