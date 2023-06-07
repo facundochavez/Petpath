@@ -6,21 +6,22 @@ import CloseButton from 'components/CloseButton/CloseButton';
 import PathCard from 'components/PathCard/PathCard';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useModalsContext } from 'pages/context/modals.context';
 
-const PathModal = ({ open, onCancel }) => {
-  const [showCards, setShowCards] = useState(false);
-  const { exploredBreeds, allBreedsLength } = useExploredBreedsContext();
+const PathModal = () => {
+  const { pathModalOpen, setPathModalOpen } = useModalsContext();
+  const { exploredCats, allCatsLength } = useExploredBreedsContext();
   const ref = useRef();
   const [columns, setColumns] = useState(1);
-  const rows = Math.ceil(allBreedsLength / columns);
+  const rows = Math.ceil(allCatsLength / columns);
   const [cardsWidth, setCardsWidth] = useState(165);
   const pathCards = [
-    ...exploredBreeds,
-    ...Array(allBreedsLength - exploredBreeds.length).fill({ boxType: 'question_box' }),
-    ...Array(columns * rows - allBreedsLength).fill({ boxType: 'empty_box' })
+    ...exploredCats,
+    ...Array(allCatsLength - exploredCats.length).fill({ boxType: 'question_box' }),
+    ...Array(columns * rows - allCatsLength).fill({ boxType: 'empty_box' })
   ];
 
-  const card = {
+  const cardAnimation = {
     hidden: { opacity: 0, y: 50 },
     show: {
       opacity: 1,
@@ -35,7 +36,7 @@ const PathModal = ({ open, onCancel }) => {
   useEffect(() => {
     const handleResize = () => {
       if (ref.current) {
-        const available_width = ref.current.offsetWidth + 20;
+        const available_width = ref.current.offsetWidth;
         const newCardsWidth = window.innerWidth < 540 ? 100 : 165;
         setCardsWidth(newCardsWidth);
         const newColumns = Math.max(1, Math.floor(available_width / newCardsWidth));
@@ -49,15 +50,15 @@ const PathModal = ({ open, onCancel }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [open]);
+  }, [pathModalOpen]);
 
   ////COMPONENT
   return (
     <Modal
-      title={`My path (${exploredBreeds.length}/${pathCards.length})`}
+      title={`My path (${exploredCats.length}/${pathCards.length})`}
       centered
-      open={open}
-      onCancel={onCancel}
+      open={pathModalOpen}
+      onCancel={() => setPathModalOpen(false)}
       closeIcon={<CloseButton />}
       footer={null}
       destroyOnClose={true}>
@@ -73,11 +74,11 @@ const PathModal = ({ open, onCancel }) => {
           {pathCards.map((breed, index) => {
             const inOddRow = Math.ceil((index + 1) / columns) % 2 !== 0;
             const lastInRow = (index + 1) % columns === 0;
-            const lineDisplay = index + 1 < allBreedsLength;
+            const lineDisplay = index + 1 < allCatsLength;
             return (
               <motion.div
                 key={index}
-                variants={card}
+                variants={cardAnimation}
                 style={{
                   order: `${
                     inOddRow
@@ -89,7 +90,6 @@ const PathModal = ({ open, onCancel }) => {
                   key={index}
                   index={index}
                   breed={breed}
-                  onCancel={onCancel}
                   width={cardsWidth}
                   lineDirection={
                     !lineDisplay ? 'none' : lastInRow ? 'bottom' : inOddRow ? 'rigth' : 'left'

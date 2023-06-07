@@ -2,14 +2,28 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 20px 0;
+    padding: 10px 0;
     height: calc(100% - 60px);
-    overflow: scroll;
+    overflow: auto;
     mask-image: linear-gradient(to bottom, transparent 0, black 30px, black calc(100% - 30px), transparent 100%);
 
     &::-webkit-scrollbar {
-        width: 0em;
-        height: 0em;
+        width: 10px !important;
+        height: 0 !important;
+
+        &-thumb {
+            background-color: var(--color-gray-hover);
+            border-radius: 5px;
+
+            &:hover {
+                background-color: var(--color-gray-active);
+            }
+        }
+
+        &-button {
+            height: 15px;
+        }
+
     }
 
     &__path_cards_container {

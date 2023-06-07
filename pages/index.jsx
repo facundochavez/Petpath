@@ -8,9 +8,12 @@ import { useExploredBreedsContext } from './context/exploredBreeds.context';
 import Navigator from './components/Navigator/Navigator';
 import Carousel from './components/Carousel/Carousel';
 import Tour from './components/Tour/Tour';
+import PathModal from './components/PathModal/PathModal';
+import { useGlobalContext } from './context/global.context';
 
 export default function Home() {
-  const { exploredBreeds, allBreedsLength, setAllBreedsLength } = useExploredBreedsContext();
+  const { globalContext } = useGlobalContext();
+  const { allCatsLength, setAllCatsLength } = useExploredBreedsContext();
 
   // RESET BACKEND
   useEffect(() => {
@@ -19,7 +22,7 @@ export default function Home() {
       const data = await response.text();
       const length = parseInt(data);
       {
-        allBreedsLength === 0 && setAllBreedsLength(length);
+        allCatsLength === 0 && setAllCatsLength(length);
       }
     }
     firstFetch();
@@ -34,16 +37,19 @@ export default function Home() {
       </Head>
       <Header />
       <main className={styles.main}>
-        {exploredBreeds.length == 0 ? (
-          <StartOptions />
-        ) : (
-          <>
-            <Navigator />
-            <Carousel />
-          </>
-        )}
+        {
+          (globalContext === 'start' ? (
+            <StartOptions />
+          ) : (
+            <>
+              <Navigator />
+              <Carousel />
+            </>
+          ))
+        }
       </main>
       <Tour />
+      <PathModal />
     </>
   );
 }

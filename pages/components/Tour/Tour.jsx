@@ -1,11 +1,13 @@
 import { Tour as AntTour } from 'antd';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useGlobalContext } from 'pages/context/global.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
 import { useTourContext } from 'pages/context/tour.context';
 
 const Tour = () => {
-  const { setExploredBreeds } = useExploredBreedsContext();
+  const { setExploredCats } = useExploredBreedsContext();
   const { showTour, setShowTour, steps } = useTourContext();
+  const { setGlobalContext } = useGlobalContext();
 
   ////COMPONENT
   return (
@@ -13,10 +15,14 @@ const Tour = () => {
       open={showTour}
       onClose={() => {
         setShowTour(false);
-        setExploredBreeds([]);
+        setExploredCats([]);
+        setGlobalContext('start');
       }}
       steps={steps}
-      onFinish={() => setExploredBreeds([])}
+      onFinish={() => {
+        setExploredCats([]);
+        setGlobalContext('start');
+      }}
     />
   );
 };

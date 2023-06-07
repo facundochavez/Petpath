@@ -5,10 +5,14 @@ import MoveButton from 'components/MoveButton/MoveButton';
 import LoadingPaws from 'components/LoadingPaws/LoadingPaws';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
+import { useGlobalContext } from 'pages/context/global.context';
+import { useTourContext } from 'pages/context/tour.context';
 
 const Navigator = () => {
-  const { exploredBreeds, showMoveButtons, tap, handleFav } = useExploredBreedsContext();
+  const { globalContext } = useGlobalContext();
+  const { exploredCats, showMoveButtons, tap, handleFav } = useExploredBreedsContext();
   const { swiper, activeSwiperIndex } = useSwiperContext();
+  const { tourCat } = useTourContext();
 
   ////COMPONENT
   return (
@@ -23,13 +27,18 @@ const Navigator = () => {
       {/* TITLE CONTAINER */}
       <div className={styles.navigator__title_container}>
         {/* TITLE */}
-        <h2>{(showMoveButtons && exploredBreeds[activeSwiperIndex].name) || <LoadingPaws />}</h2>
+        <h2>
+          {globalContext !== 'tour'
+            ? (showMoveButtons && exploredCats[activeSwiperIndex].name) || <LoadingPaws />
+            : tourCat.name}
+        </h2>
+
         {/* HEARTH */}
-        {showMoveButtons && exploredBreeds[activeSwiperIndex].name ? (
+        {showMoveButtons && exploredCats[activeSwiperIndex].name ? (
           <div
             className={styles.navigator__title_container__fav_button}
             onClick={() => handleFav(activeSwiperIndex)}>
-            {!exploredBreeds[activeSwiperIndex].fav ? (
+            {!exploredCats[activeSwiperIndex].fav ? (
               <HeartOutlined />
             ) : (
               <div>
@@ -48,9 +57,10 @@ const Navigator = () => {
           </div>
         ) : null}
       </div>
+
       {/* NEXT BUTTON */}
       <div className={styles.navigator__button_container}>
-        {showMoveButtons && activeSwiperIndex + 1 < exploredBreeds.length && (
+        {showMoveButtons && activeSwiperIndex + 1 < exploredCats.length && (
           <MoveButton type='next' onClick={() => swiper.slideNext()} />
         )}
       </div>

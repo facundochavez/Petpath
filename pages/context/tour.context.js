@@ -49,7 +49,6 @@ export const TourProvider = ({ children }) => {
   ];
 
   function startTour() {
-    setExploredBreeds([tourCat]);
     setTimeout(() => {
       setShowTour(true);
     }, 500);
@@ -58,6 +57,7 @@ export const TourProvider = ({ children }) => {
   return (
     <TourContext.Provider
       value={{
+        tourCat,
         showTour,
         setShowTour,
         ref1,

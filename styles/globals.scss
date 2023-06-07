@@ -61,12 +61,12 @@ body::-webkit-scrollbar {
 }
 
 .ant-modal {
-  width: 850px !important;
+  width: 900px !important;
 }
 
 .ant-modal-mask {
   background-color: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(15px);
 
 }
 
@@ -88,6 +88,7 @@ body::-webkit-scrollbar {
   color: white !important;
   font-size: 25px !important;
   font-weight: 500 !important;
+  padding-left: 10px;
 }
 
 .ant-modal-close {

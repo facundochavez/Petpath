@@ -6,8 +6,9 @@ import { useSwiperContext } from '../../pages/context/swiper.context';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useModalsContext } from 'pages/context/modals.context';
 
-const PathCard = ({ breed, index, onCancel, width, lineDirection }) => {
+const PathCard = ({ breed, index, width, lineDirection }) => {
 
   ////COMPONENT
   return (
@@ -18,7 +19,7 @@ const PathCard = ({ breed, index, onCancel, width, lineDirection }) => {
       {breed.boxType === 'empty_box' ? null : breed.boxType === 'question_box' ? (
         <QuestionBox />
       ) : (
-        <PhotoBox breed={breed} index={index} onCancel={onCancel} />
+        <PhotoBox breed={breed} index={index} />
       )}
       <div className={styles.path_card__line} directiondata={lineDirection} />
       {breed.fav && (
@@ -32,6 +33,7 @@ const PathCard = ({ breed, index, onCancel, width, lineDirection }) => {
 
 const PhotoBox = ({ breed, index, onCancel }) => {
   const { swiper } = useSwiperContext();
+  const { setPathModalOpen} = useModalsContext();
 
   ////COMPONENT
   return (
@@ -39,7 +41,7 @@ const PhotoBox = ({ breed, index, onCancel }) => {
       className={styles.photo_box}
       onClick={() => {
         swiper.slideTo(index);
-        onCancel();
+        setPathModalOpen(false);
       }}>
       {breed.images && (
         <Image key={index} src={breed.images[0].url} alt='breed_image' fill placeholder='empty' />

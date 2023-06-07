@@ -12,7 +12,6 @@ THE_CAT_API_ENDPOINT = 'https://api.thecatapi.com/v1'
 HEADERS = {'x-api-key': 'live_lnQuYxTbHPNxcVNbaQhbjqnJyLDBNVaCR5VnexkoAKePK2hEdqju23593jVaMMpB'}
 
 def get_breed(request):
-    print ('--> REQUEST RECEIVED')
     global all_breeds
     global available_breeds
     global sended_breeds
@@ -75,7 +74,6 @@ def get_breed(request):
                 score += level_score
             return score
         breed = max(match_breeds, key=scoring)
-        print ('--> MAX-SCORED BREED FINDED')
 
     # UPDATING SENDED AND AVAILABLE BREEDS
     sended_breeds.append(breed)
@@ -84,7 +82,6 @@ def get_breed(request):
     # FETCHING IMAGES
     imagesResponse = requests.get(f'{THE_CAT_API_ENDPOINT}/images/search?limit=10&breed_ids={breed["id"]}', headers=HEADERS)
     imagesData = imagesResponse.json()
-    print ('--> IMAGES FETCHED')
 
     # BUILDING BREED TO RETURN
     new_breed = {

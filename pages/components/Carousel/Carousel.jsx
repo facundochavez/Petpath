@@ -6,11 +6,15 @@ import { useTourContext } from 'pages/context/tour.context';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
 import BreedCard from 'components/BreedCard/BreedCard';
+import { useGlobalContext } from 'pages/context/global.context';
 
 const Carousel = () => {
-  const { exploredBreeds } = useExploredBreedsContext();
-  const { showTour } = useTourContext();
-  const { setSwiper, activeSwiperIndex, setActiveSwiperIndex } = useSwiperContext();
+  const { globalContext } = useGlobalContext();
+  const { exploredCats, showMoveButtons } = useExploredBreedsContext();
+  const { showTour, tourCat } = useTourContext();
+  const { setSwiper, setActiveSwiperIndex } = useSwiperContext();
+
+  const exploredBreeds = globalContext === 'tour' ? [tourCat] : exploredCats;
 
   ////COMPONENT
   return (
@@ -30,7 +34,7 @@ const Carousel = () => {
         spaceBetween={0}
         navigation={false}
         speed={500}
-        allowSlidePrev={exploredBreeds[activeSwiperIndex].name}>
+        allowSlidePrev={showMoveButtons}>
         {exploredBreeds.map((item, index) => {
           return (
             <SwiperSlide key={index}>
