@@ -1,7 +1,8 @@
 import styles from "./[FTName].module.scss";
 
 const [FTName] = () => {
-  ////COMPONENT
+  
+  //// COMPONENT
   return (
     <div className={styles.[FTName | snakecase]}>
       

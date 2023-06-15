@@ -5,23 +5,20 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 import { useTourContext } from 'pages/context/tour.context';
 
 const Tour = () => {
-  const { setExploredCats } = useExploredBreedsContext();
-  const { showTour, setShowTour, steps } = useTourContext();
+  const { tourActive, setTourActive, steps } = useTourContext();
   const { setGlobalContext } = useGlobalContext();
 
   ////COMPONENT
   return (
     <AntTour
-      open={showTour}
+      open={tourActive}
       onClose={() => {
-        setShowTour(false);
-        setExploredCats([]);
-        setGlobalContext('start');
+        setTourActive(false);
+        setGlobalContext('exploring');
       }}
       steps={steps}
       onFinish={() => {
-        setExploredCats([]);
-        setGlobalContext('start');
+        setGlobalContext('exploring');
       }}
     />
   );

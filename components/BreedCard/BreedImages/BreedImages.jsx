@@ -2,10 +2,12 @@ import styles from './BreedImages.module.scss';
 /* import Image from 'next/image'; */
 import { Image } from 'antd';
 import { Skeleton } from 'antd';
+import { useGlobalContext } from 'pages/context/global.context';
 import { useTourContext } from 'pages/context/tour.context';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 const BreedImages = ({ images }) => {
+  const { globalContext } = useGlobalContext();
   const { ref1 } = useTourContext();
   const cardRef = useRef();
 
@@ -46,7 +48,7 @@ const BreedImages = ({ images }) => {
 
   ////COMPONENT
   return (
-    <div ref={ref1}>
+    <div ref={globalContext === 'tour' ? ref1 : null}>
       <div className={styles.breed_images} ref={cardRef}>
         <Image.PreviewGroup preview={true}>
           <div className={styles.breed_images__first_image}>

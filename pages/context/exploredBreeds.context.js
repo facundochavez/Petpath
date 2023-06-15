@@ -12,7 +12,6 @@ export const ExploredBreedsProvider = ({ children }) => {
 
   //// ADD NEW BREED
   async function addNewBreed({ selected_index, selected_level, selected_action }) {
-    console.log(selected_level);
     setShowMoveButtons(false);
 
     // HANDLE REQUEST ARROW IF CARD IS DEFINED
@@ -52,8 +51,8 @@ export const ExploredBreedsProvider = ({ children }) => {
 
   function handleRequestArrow(selected_index, selected_level, selected_action) {
     const newExploredBreeds = [...exploredCats];
-    newExploredBreeds[selected_index].selectedLevel = selected_level;
-    newExploredBreeds[selected_index].selectedAction = selected_action;
+    newExploredBreeds[selected_index].selected_level = selected_level;
+    newExploredBreeds[selected_index].selected_action = selected_action;
     setExploredCats(newExploredBreeds);
   }
 

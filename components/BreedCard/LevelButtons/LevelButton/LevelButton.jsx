@@ -9,8 +9,10 @@ import { message } from 'antd';
 import { motion } from 'framer-motion';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useTourContext } from 'pages/context/tour.context';
+import { useGlobalContext } from 'pages/context/global.context';
 
 const LevelButton = ({ levelIndex, level, levelInfo, cardIndex }) => {
+  const { globalContext } = useGlobalContext();
   const { ref3 } = useTourContext();
   const { addNewBreed } = useExploredBreedsContext();
   const actions = [
@@ -44,6 +46,7 @@ const LevelButton = ({ levelIndex, level, levelInfo, cardIndex }) => {
       }
     });
   }
+  
   const [showActions, setShowActions] = useState(false);
   const ref = useRef(null);
   useOnClickOutside(ref, () => setShowActions(false));
@@ -59,7 +62,7 @@ const LevelButton = ({ levelIndex, level, levelInfo, cardIndex }) => {
         <div
           className={styles.level_button}
           onClick={() => setShowActions(!showActions)}
-          ref={levelIndex === 2 ? ref3 : null}>
+          ref={levelIndex === 2 && globalContext === 'tour' ? ref3 : null}>
           <div className={styles.level_button__level_bar}>
             <motion.div
               initial={{ width: 0 }}

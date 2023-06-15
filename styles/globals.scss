@@ -60,10 +60,6 @@ body::-webkit-scrollbar {
   padding: 0 3%;
 }
 
-.ant-modal {
-  width: 900px !important;
-}
-
 .ant-modal-mask {
   background-color: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(15px);
@@ -77,10 +73,10 @@ body::-webkit-scrollbar {
 
 .ant-modal-content {
   background-color: var(--color-background) !important;
-  height: 95vh !important;
+  max-height: 95vh !important;
   display: flex !important;
   flex-direction: column !important;
-  padding: 20px !important;
+  padding: 20px 15px !important;
 }
 
 .ant-modal-title {
@@ -104,4 +100,53 @@ body::-webkit-scrollbar {
   display: flex !important;
   justify-content: center !important;
   max-height: 100% !important;
+  overflow: scroll;
+  mask-image: linear-gradient(to bottom, transparent 0, black 4%, black 96%, transparent 100%);
+}
+
+.ant-modal-body::-webkit-scrollbar {
+  width: 10px !important;
+  height: 0 !important;
+
+  &-thumb {
+    background-color: var(--color-gray-hover);
+    border-radius: 5px;
+
+    &:hover {
+      background-color: var(--color-gray-active);
+    }
+  }
+
+  &-button {
+    height: 15px;
+  }
+
+}
+
+.ant-dropdown {
+  z-index: 500 !important;
+}
+
+.ant-dropdown-menu {
+  min-width: 200px;
+  padding: 8px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 5px !important;
+  font-size: 15px !important;
+}
+
+.ant-tabs-tab {
+  padding-top: 0 !important;
+  color: white;
+  font-size: 20px !important;
+}
+
+.ant-tabs-nav {
+  margin: 0 !important;
+}
+
+.ant-tabs-nav::before {
+  border-bottom: none !important;
 }

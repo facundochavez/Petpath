@@ -1,16 +1,24 @@
 import { createContext, useContext, useState } from 'react';
+import { useExploredBreedsContext } from './exploredBreeds.context';
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  const [globalContext, setGlobalContext] = useState('start');
+  const { addNewBreed } = useExploredBreedsContext();
+  const [globalContext, setGlobalContext] = useState('exploring');
+
+  function startExploring() {
+    addNewBreed({});
+    setGlobalContext('exploring');
+  }
 
   //// COMPONENT
   return (
     <GlobalContext.Provider
       value={{
         globalContext,
-        setGlobalContext
+        setGlobalContext,
+        startExploring
       }}>
       {children}
     </GlobalContext.Provider>

@@ -37,7 +37,7 @@ const PathModal = () => {
     const handleResize = () => {
       if (ref.current) {
         const available_width = ref.current.offsetWidth;
-        const newCardsWidth = window.innerWidth < 540 ? 100 : 165;
+        const newCardsWidth = window.innerWidth < 570 ? 100 : 165;
         setCardsWidth(newCardsWidth);
         const newColumns = Math.max(1, Math.floor(available_width / newCardsWidth));
         setColumns(newColumns);
@@ -55,21 +55,22 @@ const PathModal = () => {
   ////COMPONENT
   return (
     <Modal
-      title={`My cat-path: ${exploredCats.length}/${pathCards.length}`}
+      title={`My cat-path: ${exploredCats.length}/${allCatsLength}`}
       centered
       open={pathModalOpen}
       onCancel={() => setPathModalOpen(false)}
       closeIcon={<CloseButton />}
       footer={null}
-      destroyOnClose={true}>
-      <div ref={ref} className={styles.modal_body}>
+      destroyOnClose={true}
+      width={880}>
+      <div ref={ref} className={styles.full_width_container}>
         <motion.div
           transition={{
             staggerChildren: 0.03
           }}
           initial='hidden'
           animate='show'
-          className={styles.modal_body__path_cards_container}
+          className={styles.full_width_container__path_cards_container}
           style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
           {pathCards.map((breed, index) => {
             const inOddRow = Math.ceil((index + 1) / columns) % 2 !== 0;

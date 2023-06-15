@@ -1,33 +1,11 @@
-.modal_body {
+.full_width_container {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 10px 0;
-    height: calc(100% - 60px);
-    overflow: auto;
-    mask-image: linear-gradient(to bottom, transparent 0, black 30px, black calc(100% - 30px), transparent 100%);
-
-    &::-webkit-scrollbar {
-        width: 10px !important;
-        height: 0 !important;
-
-        &-thumb {
-            background-color: var(--color-gray-hover);
-            border-radius: 5px;
-
-            &:hover {
-                background-color: var(--color-gray-active);
-            }
-        }
-
-        &-button {
-            height: 15px;
-        }
-
-    }
+    padding: 8px 0;
 
     &__path_cards_container {
         display: grid;
-        gap: 0;
+
     }
 }

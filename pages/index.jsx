@@ -10,10 +10,12 @@ import Carousel from './components/Carousel/Carousel';
 import Tour from './components/Tour/Tour';
 import PathModal from './components/PathModal/PathModal';
 import { useGlobalContext } from './context/global.context';
+import LoginModal from './components/LoginModal/LoginModal';
 
 export default function Home() {
-  const { globalContext } = useGlobalContext();
   const { allCatsLength, setAllCatsLength } = useExploredBreedsContext();
+  const { exploredCats } = useExploredBreedsContext();
+  const { globalContext } = useGlobalContext();
 
   // RESET BACKEND
   useEffect(() => {
@@ -37,19 +39,18 @@ export default function Home() {
       </Head>
       <Header />
       <main className={styles.main}>
-        {
-          (globalContext === 'start' ? (
-            <StartOptions />
-          ) : (
-            <>
-              <Navigator />
-              <Carousel />
-            </>
-          ))
-        }
+        {exploredCats.length === 0 && globalContext !== 'tour' ? (
+          <StartOptions />
+        ) : (
+          <>
+            <Navigator />
+            <Carousel />
+          </>
+        )}
       </main>
       <Tour />
       <PathModal />
+      <LoginModal />
     </>
   );
 }

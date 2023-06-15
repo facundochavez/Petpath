@@ -1,16 +1,22 @@
 {
     "tourCat": {
-        "id": "bsho",
-        "name": "British Shorthair",
+        "id": "bslo",
+        "name": "British Longhair",
         "images": [
-            {"url": "/images/tour-cat-1.jpg"},
-            {"url": "/images/tour-cat-2.jpg"},
-            {"url": "/images/tour-cat-3.jpg"}
+            {
+                "url": "/images/tour-cat-1.jpg"
+            },
+            {
+                "url": "/images/tour-cat-2.jpg"
+            },
+            {
+                "url": "/images/tour-cat-3.jpg"
+            }
         ],
-        "description": "The British Shorthair is a very pleasant cat to have as a companion, ans is easy going and placid. The British is a fiercely loyal, loving cat and will attach herself to every one of her family members. While loving to play, she doesn't need hourly attention. If she is in the mood to play, she will find someone and bring a toy to that person. The British also plays well by herself, and thus is a good companion for single people.        ",
+        "description": "The British Longhair is a very laid-back relaxed cat, often perceived to be very independent although they will enjoy the company of an equally relaxed and likeminded cat. They are an affectionate breed, but very much on their own terms and tend to prefer to choose to come and sit with their owners rather than being picked up.",
         "levels": {
             "affection_level": {
-                "points": 4,
+                "points": 5,
                 "plus_ability": true,
                 "equal_ability": true,
                 "less_ability": true
@@ -22,13 +28,13 @@
                 "less_ability": true
             },
             "energy_level": {
-                "points": 2,
+                "points": 4,
                 "plus_ability": true,
                 "equal_ability": true,
                 "less_ability": true
             },
             "intelligence": {
-                "points": 3,
+                "points": 5,
                 "plus_ability": true,
                 "equal_ability": true,
                 "less_ability": true
@@ -48,16 +54,16 @@
         },
         "extra_levels": {
             "stranger_friendly": {
-                "points": 2
-            },
-            "child_friendly": {
                 "points": 4
             },
+            "child_friendly": {
+                "points": 3
+            },
             "dog_friendly": {
-                "points": 5
+                "points": 2
             },
             "grooming": {
-                "points": 2
+                "points": 5
             },
             "health_issues": {
                 "points": 2
@@ -71,9 +77,15 @@
         "id": "ebur",
         "name": "European Burmese",
         "images": [
-            {"url": "/images/tour-cat-1.jpg"},
-            {"url": "/images/tour-cat-2.jpg"},
-            {"url": "/images/tour-cat-3.jpg"}
+            {
+                "url": "/images/tour-cat-1.jpg"
+            },
+            {
+                "url": "/images/tour-cat-2.jpg"
+            },
+            {
+                "url": "/images/tour-cat-3.jpg"
+            }
         ],
         "description": "The European Burmese is a very affectionate, intelligent, and loyal cat. They thrive on companionship and will want to be with you, participating in everything you do. While they might pick a favorite family member, chances are that they will interact with everyone in the home, as well as any visitors that come to call. They are inquisitive and playful, even as adults.        ",
         "levels": {

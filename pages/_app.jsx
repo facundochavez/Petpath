@@ -5,26 +5,29 @@ import { TourProvider } from './context/tour.context';
 import { SwiperProvider } from './context/swiper.context';
 import { ModalsProvider } from './context/modals.context';
 import { GlobalProvider } from './context/global.context';
+import { AuthProvider } from './context/auth.context';
 
 export default function App({ Component, pageProps }) {
   return (
-    <GlobalProvider>
-      <ModalsProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#00BC6B'
+        }
+      }}>
+      <AuthProvider>
         <SwiperProvider>
           <ExploredBreedsProvider>
-            <TourProvider>
-              <ConfigProvider
-                theme={{
-                  token: {
-                    colorPrimary: '#00BC6B'
-                  }
-                }}>
-                <Component {...pageProps} />
-              </ConfigProvider>
-            </TourProvider>
+            <GlobalProvider>
+              <ModalsProvider>
+                <TourProvider>
+                  <Component {...pageProps} />
+                </TourProvider>
+              </ModalsProvider>
+            </GlobalProvider>
           </ExploredBreedsProvider>
         </SwiperProvider>
-      </ModalsProvider>
-    </GlobalProvider>
+      </AuthProvider>
+    </ConfigProvider>
   );
 }

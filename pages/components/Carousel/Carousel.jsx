@@ -7,6 +7,7 @@ import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
 import BreedCard from 'components/BreedCard/BreedCard';
 import { useGlobalContext } from 'pages/context/global.context';
+import { useEffect, useState } from 'react';
 
 const Carousel = () => {
   const { globalContext } = useGlobalContext();

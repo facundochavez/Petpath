@@ -3,13 +3,9 @@ import Image from 'next/image';
 import { Skeleton } from 'antd';
 import { HeartFilled, QuestionOutlined } from '@ant-design/icons';
 import { useSwiperContext } from '../../pages/context/swiper.context';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useModalsContext } from 'pages/context/modals.context';
 
 const PathCard = ({ breed, index, width, lineDirection }) => {
-
   ////COMPONENT
   return (
     <div
@@ -24,7 +20,10 @@ const PathCard = ({ breed, index, width, lineDirection }) => {
       <div className={styles.path_card__line} directiondata={lineDirection} />
       {breed.fav && (
         <>
-          <HeartFilled className={styles.path_card__hearth} style={{fontSize: width === 100 ? '18px': '22px'}}/>
+          <HeartFilled
+            className={styles.path_card__hearth}
+            style={{ fontSize: width === 100 ? '18px' : '22px' }}
+          />
         </>
       )}
     </div>
@@ -33,18 +32,24 @@ const PathCard = ({ breed, index, width, lineDirection }) => {
 
 const PhotoBox = ({ breed, index, onCancel }) => {
   const { swiper } = useSwiperContext();
-  const { setPathModalOpen} = useModalsContext();
+  const { setPathModalOpen } = useModalsContext();
 
   ////COMPONENT
   return (
     <div
       className={styles.photo_box}
       onClick={() => {
-        swiper.slideTo(index);
         setPathModalOpen(false);
+        swiper.slideTo(index);
       }}>
       {breed.images && (
-        <Image key={index} src={breed.images[0].url} alt='breed_image' fill placeholder='empty' />
+        <Image
+          key={index}
+          src={breed.images[0] ? breed.images[0].url : 'images/icon-for-images.svg'}
+          alt='breed_image'
+          fill
+          placeholder='empty'
+        />
       )}
       <Skeleton.Image active />
     </div>

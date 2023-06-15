@@ -87,7 +87,13 @@ def get_breed(request):
     new_breed = {
         'id': breed['id'],
         'name': breed['name'],
-        'images': imagesData,
+        'images': [
+        {
+            "id": image["id"],
+            "url": image["url"],
+            "height": image["height"],
+            "width": image["width"]
+        } for image in imagesData],
         'description': breed['description'],
         'fav': False,
         'selected_level': None,

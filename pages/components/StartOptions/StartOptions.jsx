@@ -1,13 +1,11 @@
 import styles from './StartOptions.module.scss';
 import Button from 'components/Button/Button';
 import { motion } from 'framer-motion';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useGlobalContext } from 'pages/context/global.context';
 import { useTourContext } from 'pages/context/tour.context';
 
 const StartOptions = () => {
-  const { setGlobalContext } = useGlobalContext();
-  const { addNewBreed } = useExploredBreedsContext();
+  const { startExploring } = useGlobalContext();
   const { startTour } = useTourContext();
 
   const animationProps = {
@@ -27,21 +25,11 @@ const StartOptions = () => {
           {...animationProps}
           transition={{ delay: 0.05 }}>
           {/* TOUR BUTTON */}
-          <Button
-            type='secondary'
-            onClick={() => {
-              setGlobalContext('tour');
-              startTour();
-            }}>
+          <Button type='secondary' onClick={startTour}>
             STAR TOUR
           </Button>
           {/* START BUTTON */}
-          <Button
-            type='primary'
-            onClick={() => {
-              addNewBreed({});
-              setGlobalContext('exploring');
-            }}>
+          <Button type='primary' onClick={startExploring}>
             LET'S EXPLORE!
           </Button>
         </motion.div>
