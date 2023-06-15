@@ -55,7 +55,7 @@ const PathModal = () => {
   ////COMPONENT
   return (
     <Modal
-      title={`My path (${exploredCats.length}/${pathCards.length})`}
+      title={`My cat-path: ${exploredCats.length}/${pathCards.length}`}
       centered
       open={pathModalOpen}
       onCancel={() => setPathModalOpen(false)}
