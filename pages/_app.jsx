@@ -6,6 +6,7 @@ import { SwiperProvider } from './context/swiper.context';
 import { ModalsProvider } from './context/modals.context';
 import { GlobalProvider } from './context/global.context';
 import { AuthProvider } from './context/auth.context';
+import { BackendProvider } from './context/backend.context';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -16,17 +17,19 @@ export default function App({ Component, pageProps }) {
         }
       }}>
       <AuthProvider>
-        <SwiperProvider>
-          <ExploredBreedsProvider>
-            <GlobalProvider>
-              <ModalsProvider>
-                <TourProvider>
-                  <Component {...pageProps} />
-                </TourProvider>
-              </ModalsProvider>
-            </GlobalProvider>
-          </ExploredBreedsProvider>
-        </SwiperProvider>
+        <BackendProvider>
+          <SwiperProvider>
+            <ExploredBreedsProvider>
+              <GlobalProvider>
+                <ModalsProvider>
+                  <TourProvider>
+                    <Component {...pageProps} />
+                  </TourProvider>
+                </ModalsProvider>
+              </GlobalProvider>
+            </ExploredBreedsProvider>
+          </SwiperProvider>
+        </BackendProvider>
       </AuthProvider>
     </ConfigProvider>
   );

@@ -5,6 +5,7 @@ export const SwiperContext = createContext();
 export const SwiperProvider = ({ children }) => {
   const [swiper, setSwiper] = useState(null);
   const [activeSwiperIndex, setActiveSwiperIndex] = useState(0);
+  const [slideToLast, setSlideToLast] = useState(false);
 
   //// COMPONENT
   return (
@@ -14,8 +15,9 @@ export const SwiperProvider = ({ children }) => {
         setSwiper,
         activeSwiperIndex,
         setActiveSwiperIndex,
-      }}
-    >
+        slideToLast,
+        setSlideToLast
+      }}>
       {children}
     </SwiperContext.Provider>
   );

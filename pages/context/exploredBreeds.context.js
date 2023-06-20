@@ -1,17 +1,27 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import loadingBreed from '../../data/loading-breed.data.json';
 import { useSwiperContext } from './swiper.context';
+import { useBackendContext } from './backend.context';
+import { useAuthContext } from './auth.context';
 
 export const ExploredBreedsContext = createContext();
 
 export const ExploredBreedsProvider = ({ children }) => {
+  const { fetchNewBreed, updateDataBaseBreeds, resetBackend } = useBackendContext();
+  const { currentUser } = useAuthContext();
+  const { setActiveSwiperIndex } = useSwiperContext();
+  const [showMoveButtons, setShowMoveButtons] = useState(true);
   const [exploredCats, setExploredCats] = useState([]);
-  const [allCatsLength, setAllCatsLength] = useState(0);
-  const [showMoveButtons, setShowMoveButtons] = useState(false);
-  const { swiper } = useSwiperContext();
+
+  useEffect(() => {
+    const handleUpdateDataBase = async () => {
+      showMoveButtons && currentUser && (await updateDataBaseBreeds(currentUser.uid, exploredCats));
+    };
+    exploredCats.length !== 0 && handleUpdateDataBase();
+  }, [exploredCats]);
 
   //// ADD NEW BREED
-  async function addNewBreed({ selected_index, selected_level, selected_action }) {
+  const addNewBreed = async ({ selected_index, selected_level, selected_action }) => {
     setShowMoveButtons(false);
 
     // HANDLE REQUEST ARROW IF CARD IS DEFINED
@@ -29,26 +39,14 @@ export const ExploredBreedsProvider = ({ children }) => {
     // PUTTING LOADING CARD
     setExploredCats((prevExploredBreeds) => [...prevExploredBreeds, loadingBreed]);
 
-    // SWIPE TO NEXT CARD IF ISN'T THE FIRST ONE
-    {
-      exploredCats.length !== 0 &&
-        setTimeout(() => {
-          swiper.slideNext();
-        }, 150);
-    }
-
     // GETING NEW BREED
-    const response = await fetch(
-      `http://localhost:8000/get_breed/?selected_index=${selected_index}&selected_level=${selected_level}&selected_action=${selected_action}`
-    );
-    const newBreed = await response.json();
+    const newBreed = await fetchNewBreed(selected_index, selected_level, selected_action);
     setExploredCats((prevExploredBreeds) => [...prevExploredBreeds.slice(0, -1), newBreed]);
 
     setShowMoveButtons(true);
-  }
+  };
 
   //// HANDLE SELECTED LEVEL AND ACTION (FOR REQUEST ARROW)
-
   function handleRequestArrow(selected_index, selected_level, selected_action) {
     const newExploredBreeds = [...exploredCats];
     newExploredBreeds[selected_index].selected_level = selected_level;
@@ -57,15 +55,18 @@ export const ExploredBreedsProvider = ({ children }) => {
   }
 
   //// HANDLE FAVOURITE
-  const [tap, setTap] = useState(false);
   function handleFav(index) {
-    setTap(true);
     const newExploredBreeds = [...exploredCats];
     newExploredBreeds[index].fav = !newExploredBreeds[index].fav;
     setExploredCats(newExploredBreeds);
-    setTimeout(() => {
-      setTap(false);
-    }, 300);
+  }
+
+  //// RESTART PATH
+  async function restartPath() {
+    setActiveSwiperIndex(0);
+    setExploredCats([]);
+    await resetBackend();
+    addNewBreed({});
   }
 
   //// COMPONENT
@@ -76,10 +77,9 @@ export const ExploredBreedsProvider = ({ children }) => {
         setExploredCats,
         showMoveButtons,
         addNewBreed,
-        tap,
         handleFav,
-        allCatsLength,
-        setAllCatsLength
+        setShowMoveButtons,
+        restartPath
       }}>
       {children}
     </ExploredBreedsContext.Provider>

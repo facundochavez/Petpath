@@ -21,6 +21,6 @@
     },
     "shedding_level": {
         "title": "Shedding level",
-        "description": "Indicates the amount of shedding the breed experiences. High means lots of shedding, low means minimal shedding."
+        "descripti,on": "Indicates the amount of shedding the breed experiences. High means lots of shedding, low means minimal shedding."
     }
 }

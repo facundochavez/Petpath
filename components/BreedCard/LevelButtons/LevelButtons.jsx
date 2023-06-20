@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useTourContext } from 'pages/context/tour.context';
 import { useGlobalContext } from 'pages/context/global.context';
 
+const LEVELS = ['affection_level','adaptability','energy_level','intelligence','vocalisation','social_needs']
+
 const LevelButtons = ({ levels, selectedLevel, isActive, cardIndex }) => {
   const { globalContext } = useGlobalContext();
   const { ref2 } = useTourContext();
@@ -26,7 +28,7 @@ const LevelButtons = ({ levels, selectedLevel, isActive, cardIndex }) => {
           }}
         />
       )}
-      {Object.keys(levels).map((level, index) => {
+      {LEVELS.map((level, index) => {
         return (
           <LevelButton
             key={index}

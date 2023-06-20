@@ -2,35 +2,41 @@ import NavButton from 'components/NavButton/NavButton';
 import styles from './Header.module.scss';
 import Image from 'next/image';
 import { useTourContext } from 'pages/context/tour.context';
-import { Modal } from 'antd';
-import { useState } from 'react';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
-import PathModal from '../PathModal/PathModal';
 import { useModalsContext } from 'pages/context/modals.context';
-import { Dropdown, Space } from 'antd';
+import { Dropdown } from 'antd';
 import { useGlobalContext } from 'pages/context/global.context';
 import { AnimatePresence } from 'framer-motion';
 import { useAuthContext } from 'pages/context/auth.context';
 import { LogoutOutlined, RedoOutlined, StepForwardOutlined, UserOutlined } from '@ant-design/icons';
+import { useSwiperContext } from 'pages/context/swiper.context';
 
 const Header = () => {
   const { ref4 } = useTourContext();
-  const { setPathModalOpen, setLoginModalOpen } = useModalsContext();
+  const {
+    setPathModalOpen,
+    setLoginModalOpen,
+    setConfirmRestartModalOpen,
+    setConfirmLogoutModalOpen
+  } = useModalsContext();
   const { globalContext, setGlobalContext } = useGlobalContext();
-  const { dispatch } = useAuthContext();
   const { currentUser } = useAuthContext();
   const { startTour } = useTourContext();
-  const { exploredCats } = useExploredBreedsContext();
+  const { exploredCats, showMoveButtons } = useExploredBreedsContext();
 
   const items = [
-    !currentUser && {
-      label: 'Login / Sign up',
-      icon: <UserOutlined />,
-      key: '0',
-      onClick: () => setLoginModalOpen(true),
-      visible: false
-    },
+    !currentUser
+      ? {
+          label: 'Login / Sign up',
+          icon: <UserOutlined />,
+          key: '0',
+          onClick: () => setLoginModalOpen(true)
+        }
+      : {
+          label: `${currentUser.email}`,
+          type: 'text',
+          block: 'true'
+        },
     {
       label: 'Start tour',
       icon: <StepForwardOutlined />,
@@ -38,13 +44,15 @@ const Header = () => {
       onClick: () => {
         setGlobalContext('tour');
         startTour();
-      }
+      },
+      disabled: !showMoveButtons
     },
     {
       label: 'Restart my path',
       icon: <RedoOutlined />,
       key: '2',
-      disabled: exploredCats.length === 0
+      disabled: exploredCats.length === 0,
+      onClick: () => setConfirmRestartModalOpen(true)
     },
     {
       type: 'divider'
@@ -55,9 +63,7 @@ const Header = () => {
       key: '3',
       disabled: !currentUser,
       danger: true,
-      onClick: () => {
-        dispatch({ type: 'LOGOUT' });
-      }
+      onClick: () => setConfirmLogoutModalOpen(true)
     }
   ];
 
@@ -75,16 +81,16 @@ const Header = () => {
                 </NavButton>
               )}
             </AnimatePresence>
-            <Dropdown
-              menu={{
-                items
-              }}
-              placement='bottomRight'
-              trigger={['click']}>
-              <NavButton>
+            <NavButton>
+              <Dropdown
+                menu={{
+                  items
+                }}
+                placement='bottomRight'
+                trigger='click'>
                 <Image src={'icons/burger-icon.svg'} width={50} height={50} alt='Burger icon' />
-              </NavButton>
-            </Dropdown>
+              </Dropdown>
+            </NavButton>
           </nav>
         </div>
       </div>

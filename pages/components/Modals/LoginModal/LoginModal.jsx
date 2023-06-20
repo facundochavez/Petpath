@@ -1,12 +1,9 @@
 import { useModalsContext } from 'pages/context/modals.context';
-import { Button, ConfigProvider, theme } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import styles from './LoginModal.module.scss';
-import { Modal, Tabs, Input, Form } from 'antd';
+import { Modal, Tabs } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase';
 import LoginForm from 'components/Forms/LoginForm/LoginForm';
 import SignUpForm from 'components/Forms/SignUpForm/SignUpForm';
 

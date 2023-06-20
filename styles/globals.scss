@@ -7,8 +7,8 @@
   --filter-active: brightness(0) saturate(100%) invert(42%) sepia(71%) saturate(6941%) hue-rotate(148deg) brightness(99%) contrast(103%);
   --filter-white: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7494%) hue-rotate(215deg) brightness(101%) contrast(102%);
   --color-background: #2B2B2B;
-  --color-gray-hover: #414141;
-  --color-gray-active: #555555;
+  --color-gray-hover: rgba(255, 255, 255, 0.1);
+  --color-gray-active: rgba(255, 255, 255, 0.2);
   --filter-background: brightness(0) saturate(100%) invert(8%) sepia(80%) saturate(8%) hue-rotate(22deg) brightness(100%) contrast(82%);
 }
 
@@ -60,10 +60,32 @@ body::-webkit-scrollbar {
   padding: 0 3%;
 }
 
-.ant-modal-mask {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(15px);
+.ant-tour-title {
+  font-size: 19px !important;
+}
 
+.ant-tour-description {
+  font-size: 16px !important;
+  padding-bottom: 15px !important;
+}
+
+.ant-tour-footer {
+  font-size: 16px !important;
+}
+
+.ant-tour-footer button {
+  padding: 5px !important;
+  width: 90px !important;
+  height: 35px !important;
+}
+
+.ant-tour-footer button span {
+  font-size: 16px !important;
+}
+
+.ant-modal-mask {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(10px) saturate(1.2);
 }
 
 .ant-modal-wrap::-webkit-scrollbar {
@@ -72,7 +94,8 @@ body::-webkit-scrollbar {
 }
 
 .ant-modal-content {
-  background-color: var(--color-background) !important;
+  background-color: rgba(26, 26, 26, 0.80) !important;
+  backdrop-filter: blur(15px);
   max-height: 95vh !important;
   display: flex !important;
   flex-direction: column !important;
@@ -80,12 +103,16 @@ body::-webkit-scrollbar {
 }
 
 .ant-modal-title {
-  background-color: var(--color-background) !important;
   color: white !important;
   font-size: 25px !important;
   font-weight: 500 !important;
   padding-left: 10px;
 }
+
+.ant-modal-header {
+  background-color: transparent !important;
+}
+
 
 .ant-modal-close {
   width: unset !important;
@@ -100,7 +127,7 @@ body::-webkit-scrollbar {
   display: flex !important;
   justify-content: center !important;
   max-height: 100% !important;
-  overflow: scroll;
+  overflow: auto;
   mask-image: linear-gradient(to bottom, transparent 0, black 4%, black 96%, transparent 100%);
 }
 

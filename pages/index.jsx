@@ -8,27 +8,40 @@ import { useExploredBreedsContext } from './context/exploredBreeds.context';
 import Navigator from './components/Navigator/Navigator';
 import Carousel from './components/Carousel/Carousel';
 import Tour from './components/Tour/Tour';
-import PathModal from './components/PathModal/PathModal';
+import PathModal from './components/Modals/PathModal/PathModal';
 import { useGlobalContext } from './context/global.context';
-import LoginModal from './components/LoginModal/LoginModal';
+import LoginModal from './components/Modals/LoginModal/LoginModal';
+import { useBackendContext } from './context/backend.context';
+import { useAuthContext } from './context/auth.context';
+import { useSwiperContext } from './context/swiper.context';
+import {
+  ConfirmResetModal,
+  ConfirmLogoutModal
+} from './components/Modals/ConfirmModals/ConfirmModals';
 
 export default function Home() {
-  const { allCatsLength, setAllCatsLength } = useExploredBreedsContext();
-  const { exploredCats } = useExploredBreedsContext();
+  const { setExploredCats, exploredCats, setShowMoveButtons } = useExploredBreedsContext();
   const { globalContext } = useGlobalContext();
+  const { currentUser } = useAuthContext();
+  const { getDataBaseBreeds, getExploredCats, resetBackend } = useBackendContext();
+  const { setActiveSwiperIndex } = useSwiperContext();
 
   // RESET BACKEND
   useEffect(() => {
-    async function firstFetch() {
-      const response = await fetch(`http://localhost:8000/get_breed/?reset=${true}`);
-      const data = await response.text();
-      const length = parseInt(data);
-      {
-        allCatsLength === 0 && setAllCatsLength(length);
+    const handleExploredCats = async () => {
+      if (currentUser) {
+        setShowMoveButtons(false);
+        await getDataBaseBreeds(currentUser.uid);
+        setActiveSwiperIndex(0);
+        setExploredCats(getExploredCats);
+        setShowMoveButtons(true);
+      } else {
+        setExploredCats([]);
+        resetBackend();
       }
-    }
-    firstFetch();
-  }, []);
+    };
+    handleExploredCats();
+  }, [currentUser, getExploredCats.length]);
 
   //// COMPONENT
   return (
@@ -51,6 +64,8 @@ export default function Home() {
       <Tour />
       <PathModal />
       <LoginModal />
+      <ConfirmResetModal />
+      <ConfirmLogoutModal />
     </>
   );
 }

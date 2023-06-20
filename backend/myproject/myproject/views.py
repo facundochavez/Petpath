@@ -18,6 +18,8 @@ def get_breed(request):
 
     # GETTING ARGUMENTS
     reset = request.GET.get('reset')
+    get_length = request.GET.get('get_length')
+    update_breeds = request.GET.get('update_breeds')
     selected_index = request.GET.get('selected_index')
     selected_level = request.GET.get('selected_level')    
     selected_action = request.GET.get('selected_action')
@@ -31,10 +33,25 @@ def get_breed(request):
 
     # RESET FUNCTION
     if reset == 'true':
-        available_breeds.clear()
+        available_breeds = []
         available_breeds = all_breeds.copy()
         sended_breeds = []
+        return HttpResponse()
+
+    # SEND ALL BREEDS LENGTH
+    if get_length == 'true':
         return HttpResponse(len(all_breeds))
+    
+    # UPDATING AVAILABLE BREEDS WHEN LOGIN
+    if update_breeds:
+        update_breeds_list = update_breeds.split(',')
+        sended_breeds = []
+        for id in update_breeds_list:
+            addBreed = next((breed for breed in all_breeds if breed['id'] == id), None)
+            sended_breeds.append(addBreed)
+        available_breeds = [breed for breed in all_breeds if breed not in sended_breeds]
+        print (sended_breeds)
+        return HttpResponse()
 
     # LOOKING FOR RANDOM BREED WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL) 
     if selected_index == 'undefined':
@@ -116,4 +133,5 @@ def get_breed(request):
         }
 
     return JsonResponse(new_breed)
+
 

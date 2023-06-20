@@ -2,11 +2,15 @@ import styles from './LoginForm.module.scss';
 import { Button, ConfigProvider, theme } from 'antd';
 import { Input, Form } from 'antd';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { message } from 'antd';
-import { auth } from '../../../firebase';
+import { auth, db } from '../../../firebase';
 import { useModalsContext } from 'pages/context/modals.context';
 import { useAuthContext } from 'pages/context/auth.context';
+import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { getDoc, doc } from 'firebase/firestore';
+import { useSwiperContext } from 'pages/context/swiper.context';
+import { useBackendContext } from 'pages/context/backend.context';
 
 const LoginForm = () => {
   const [form] = Form.useForm();
@@ -14,15 +18,17 @@ const LoginForm = () => {
   const { setLoginModalOpen } = useModalsContext();
   const [loading, setLoading] = useState(false);
   const [validateEmailTrigger, setValidateEmailTrigger] = useState('onBlur');
+  const { setActiveSwiperIndex } = useSwiperContext();
 
   //// ON FINISH AND ON FINISH FAILED
   const onFinish = (values) => {
-    console.log(values);
     setLoading(true);
-
     signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
+
+        // FETCHING EXPLORED CATS
+        setActiveSwiperIndex(0);
         dispatch({ type: 'LOGIN', payload: user });
         successAntMessage();
         setLoading(false);
@@ -31,14 +37,15 @@ const LoginForm = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
+        const errorMessage = error.message;
         console.log(errorCode);
+        console.log(errorMessage);
         if (errorCode === 'auth/user-not-found') {
           errorAntMessage('User not found.');
         } else if (errorCode === 'auth/wrong-password') {
           errorAntMessage('Wrong password.');
         } else {
           errorAntMessage(`Oops! We're experiencing some issues. Please try again later.`);
-          setLoginModalOpen(false);
         }
         setLoading(false);
       });

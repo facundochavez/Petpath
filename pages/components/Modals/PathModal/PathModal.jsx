@@ -1,5 +1,4 @@
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
 import styles from './PathModal.module.scss';
 import { Modal } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';
@@ -7,18 +6,27 @@ import PathCard from 'components/PathCard/PathCard';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useModalsContext } from 'pages/context/modals.context';
+import { useBackendContext } from 'pages/context/backend.context';
 
 const PathModal = () => {
   const { pathModalOpen, setPathModalOpen } = useModalsContext();
-  const { exploredCats, allCatsLength } = useExploredBreedsContext();
+  const { exploredCats } = useExploredBreedsContext();
+  const { allCatsLength } = useBackendContext();
   const ref = useRef();
   const [columns, setColumns] = useState(1);
   const rows = Math.ceil(allCatsLength / columns);
   const [cardsWidth, setCardsWidth] = useState(165);
+
+  const questionBoxLength = Math.max(allCatsLength - exploredCats.length, 0);
+  const questionBoxes = questionBoxLength > 0 ? Array(questionBoxLength).fill({ boxType: 'question_box' }) : [];
+  
+  const emptyBoxLength = Math.max(columns * rows - allCatsLength, 0);
+  const emptyBoxes = emptyBoxLength > 0 ? Array(emptyBoxLength).fill({ boxType: 'empty_box' }) : [];
+  
   const pathCards = [
     ...exploredCats,
-    ...Array(allCatsLength - exploredCats.length).fill({ boxType: 'question_box' }),
-    ...Array(columns * rows - allCatsLength).fill({ boxType: 'empty_box' })
+    ...questionBoxes,
+    ...emptyBoxes
   ];
 
   const cardAnimation = {
@@ -66,7 +74,7 @@ const PathModal = () => {
       <div ref={ref} className={styles.full_width_container}>
         <motion.div
           transition={{
-            staggerChildren: 0.03
+            staggerChildren: 0.035
           }}
           initial='hidden'
           animate='show'

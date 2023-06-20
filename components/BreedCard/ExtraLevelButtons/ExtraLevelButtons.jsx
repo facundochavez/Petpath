@@ -1,6 +1,7 @@
 import styles from './ExtraLevelButtons.module.scss';
 import ExtraLevelButton from './ExtraLevelButton/ExtraLevelButton';
 
+const EXTRA_LEVELS = ['stranger_friendly','child_friendly','dog_friendly','grooming','health_issues','shedding_level']
 
 const ExtraLevelButtons = ({extraLevels}) => {
   ////COMPONENT
@@ -8,7 +9,7 @@ const ExtraLevelButtons = ({extraLevels}) => {
     <div
       className={styles.extra_level_buttons}
     >
-      {Object.keys(extraLevels).map((extraLevel, index) => {
+      {EXTRA_LEVELS.map((extraLevel, index) => {
         return (
           <ExtraLevelButton
             key={index}

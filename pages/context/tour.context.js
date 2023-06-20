@@ -3,13 +3,15 @@ import { useRef } from 'react';
 import { useExploredBreedsContext } from './exploredBreeds.context';
 import tourBreeds from '../../data/tour-breeds.data.json';
 import { useGlobalContext } from './global.context';
+import { useSwiperContext } from './swiper.context';
 const { tourCat } = tourBreeds;
 
 export const TourContext = createContext();
 
 export const TourProvider = ({ children }) => {
   const { setGlobalContext } = useGlobalContext();
-  const [tourActive, setTourActive] = useState(false);
+  const [tourIsActive, setTourIsActive] = useState(false);
+  const { setActiveSwiperIndex } = useSwiperContext();
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -28,7 +30,7 @@ export const TourProvider = ({ children }) => {
     },
     {
       title: 'Make a request!',
-      description: `By selecting any button, you can ask for more, equal or less of that level. We'll give you a new breed that meets that requirement, trying to keep the other levels close enough.`,
+      description: `By selecting any button, you can ask for more, equal or less of that level. We'll give you a new breed that meets your requirement, trying to keep the other levels close enough.`,
       target: () => ref3.current
     },
     {
@@ -50,9 +52,10 @@ export const TourProvider = ({ children }) => {
   ];
 
   function startTour() {
+    setActiveSwiperIndex(0);
     setGlobalContext('tour');
     setTimeout(() => {
-      setTourActive(true);
+      setTourIsActive(true);
     }, 500);
   }
 
@@ -61,8 +64,8 @@ export const TourProvider = ({ children }) => {
     <TourContext.Provider
       value={{
         tourCat,
-        tourActive,
-        setTourActive,
+        tourIsActive,
+        setTourIsActive,
         ref1,
         ref2,
         ref3,

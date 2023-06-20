@@ -7,25 +7,34 @@ import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
 import BreedCard from 'components/BreedCard/BreedCard';
 import { useGlobalContext } from 'pages/context/global.context';
-import { useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 const Carousel = () => {
+  const swiperRef = useRef(null);
   const { globalContext } = useGlobalContext();
   const { exploredCats, showMoveButtons } = useExploredBreedsContext();
-  const { showTour, tourCat } = useTourContext();
-  const { setSwiper, setActiveSwiperIndex } = useSwiperContext();
-
+  const { tourIsActive, tourCat } = useTourContext();
+  const { swiper, setSwiper, setActiveSwiperIndex, slideToLast, setSlideToLast } =
+    useSwiperContext();
   const exploredBreeds = globalContext === 'tour' ? [tourCat] : exploredCats;
+
+  useEffect(() => {
+    if (exploredBreeds.length > 1 && swiper && swiper.params) {
+      setTimeout(() => {
+        swiper.slideTo(exploredBreeds.length - 1);
+      }, 150);
+    }
+  }, [swiper, exploredBreeds[exploredBreeds.length - 1], exploredBreeds.length]);
+
 
   ////COMPONENT
   return (
-    <section className={styles.carousel} style={{ pointerEvents: showTour ? 'none' : 'unset' }}>
+    <section className={styles.carousel} style={{ pointerEvents: tourIsActive ? 'none' : 'unset' }}>
       <Swiper
+        ref={swiperRef}
         touchStartPreventDefault={false}
-        onSwiper={(s) => {
-          setSwiper(s);
-        }}
         onSlideChange={(s) => setActiveSwiperIndex(s.activeIndex)}
+        onSwiper={(s) => setSwiper(s)}
         style={{
           width: '100%',
           maxWidth: '400px',
@@ -33,7 +42,6 @@ const Carousel = () => {
         }}
         slidesPerView={1}
         spaceBetween={0}
-        navigation={false}
         speed={500}
         allowSlidePrev={showMoveButtons}>
         {exploredBreeds.map((item, index) => {

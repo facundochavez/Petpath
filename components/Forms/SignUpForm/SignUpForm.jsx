@@ -9,12 +9,14 @@ import { useModalsContext } from 'pages/context/modals.context';
 import { useAuthContext } from 'pages/context/auth.context';
 import { setDoc, doc } from 'firebase/firestore';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useBackendContext } from 'pages/context/backend.context';
 
 const SignUpForm = () => {
   const [form] = Form.useForm();
   const { exploredCats } = useExploredBreedsContext();
   const { dispatch } = useAuthContext();
   const { setLoginModalOpen } = useModalsContext();
+  const { updateDataBaseBreeds } = useBackendContext();
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [validateEmailTrigger, setValidateEmailTrigger] = useState('onBlur');
@@ -28,9 +30,7 @@ const SignUpForm = () => {
     createUserWithEmailAndPassword(auth, values.email, values.password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-        await setDoc(doc(db, 'exploredCats', user.uid), {
-          ...exploredCats
-        });
+        updateDataBaseBreeds(user.uid, exploredCats);
         dispatch({ type: 'LOGIN', payload: user });
         successAntMessage();
         setLoading(false);
@@ -39,6 +39,9 @@ const SignUpForm = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
         if (errorCode === 'auth/email-already-in-use') {
           errorAntMessage('The E-mail is already in use!');
         } else if (errorCode === 'auth/weak-password') {

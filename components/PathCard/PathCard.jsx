@@ -4,6 +4,7 @@ import { Skeleton } from 'antd';
 import { HeartFilled, QuestionOutlined } from '@ant-design/icons';
 import { useSwiperContext } from '../../pages/context/swiper.context';
 import { useModalsContext } from 'pages/context/modals.context';
+import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 
 const PathCard = ({ breed, index, width, lineDirection }) => {
   ////COMPONENT
@@ -30,17 +31,20 @@ const PathCard = ({ breed, index, width, lineDirection }) => {
   );
 };
 
-const PhotoBox = ({ breed, index, onCancel }) => {
+const PhotoBox = ({ breed, index }) => {
   const { swiper } = useSwiperContext();
   const { setPathModalOpen } = useModalsContext();
+  const { showMoveButtons } = useExploredBreedsContext();
 
   ////COMPONENT
   return (
     <div
       className={styles.photo_box}
       onClick={() => {
-        setPathModalOpen(false);
-        swiper.slideTo(index);
+        if (showMoveButtons) {
+          setPathModalOpen(false);
+          swiper.slideTo(index);
+        }
       }}>
       {breed.images && (
         <Image

@@ -5,21 +5,27 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 import { useTourContext } from 'pages/context/tour.context';
 
 const Tour = () => {
-  const { tourActive, setTourActive, steps } = useTourContext();
+  const { tourIsActive, setTourIsActive, steps } = useTourContext();
   const { setGlobalContext } = useGlobalContext();
 
   ////COMPONENT
   return (
     <AntTour
-      open={tourActive}
+      open={tourIsActive}
       onClose={() => {
-        setTourActive(false);
+        setTourIsActive(false);
         setGlobalContext('exploring');
       }}
       steps={steps}
       onFinish={() => {
         setGlobalContext('exploring');
       }}
+      indicatorsRender={(current, total) => (
+        <span>
+          {current + 1} / {total}
+        </span>
+      )}
+      
     />
   );
 };
