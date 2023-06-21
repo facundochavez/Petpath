@@ -47,4 +47,28 @@ const LoginModal = () => {
   );
 };
 
+const ResetPasswordModal = () => {
+  const { resetPasswordModalOpen, setResetPasswordModalOpen } = useModalsContext();
+
+  ////COMPONENT
+  return (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm
+      }}>
+      <Modal
+        destroyOnClose
+        width={500}
+        title='Reset password:'
+        centered
+        open={resetPasswordModalOpen}
+        onCancel={() => setResetPasswordModalOpen(false)}
+        closeIcon={<CloseButton />}
+        footer={null}>
+        <span>Please enter your E-mail to rese your password</span>
+      </Modal>
+    </ConfigProvider>
+  );
+};
+
 export default LoginModal;

@@ -47,8 +47,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Paw Explorer</title>
-        <link rel='icon' href='/images/paw-explorer-symbol.svg' type='image/svg+xml' />
+        <title>Petpath</title>
+        <link rel='icon' href='/images/petpath-symbol.svg' type='image/svg+xml' />
       </Head>
       <Header />
       <main className={styles.main}>

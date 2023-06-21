@@ -25,18 +25,12 @@ const Header = () => {
   const { exploredCats, showMoveButtons } = useExploredBreedsContext();
 
   const items = [
-    !currentUser
-      ? {
-          label: 'Login / Sign up',
-          icon: <UserOutlined />,
-          key: '0',
-          onClick: () => setLoginModalOpen(true)
-        }
-      : {
-          label: `${currentUser.email}`,
-          type: 'text',
-          block: 'true'
-        },
+    !currentUser && {
+      label: 'Login / Sign up',
+      icon: <UserOutlined />,
+      key: '0',
+      onClick: () => setLoginModalOpen(true)
+    },
     {
       label: 'Start tour',
       icon: <StepForwardOutlined />,
@@ -72,7 +66,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.header__max_width_container}>
         <div className={styles.header__max_width_container__content}>
-          <Image src={'images/paw-explorer-logo.svg'} width={145} height={60} alt='PawMatch logo' />
+          <Image src={'images/petpath-logo.svg'} width={165} height={65} alt='PawMatch logo' />
           <nav ref={ref4}>
             <AnimatePresence>
               {(exploredCats.length !== 0 || globalContext === 'tour') && (

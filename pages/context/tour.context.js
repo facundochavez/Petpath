@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 import { useRef } from 'react';
-import { useExploredBreedsContext } from './exploredBreeds.context';
 import tourBreeds from '../../data/tour-breeds.data.json';
 import { useGlobalContext } from './global.context';
 import { useSwiperContext } from './swiper.context';
@@ -18,7 +17,7 @@ export const TourProvider = ({ children }) => {
   const ref4 = useRef(null);
   const steps = [
     {
-      title: 'Welcome to Paw Explorer!',
+      title: 'Welcome to Petpath!',
       description: `At first we'll give you a random breed...`,
       placement: 'top',
       target: () => ref1.current

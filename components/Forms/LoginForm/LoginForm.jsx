@@ -126,6 +126,8 @@ const LoginForm = () => {
           <Input.Password placeholder='Enter your password' size='large' />
         </Form.Item>
 
+        <span className={styles.login_form__forgot_password}>Forgot password?</span>
+
         <Button type='primary' htmlType='submit' size='large' loading={loading}>
           Log in
         </Button>

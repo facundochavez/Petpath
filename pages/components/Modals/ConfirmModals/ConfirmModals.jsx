@@ -69,7 +69,7 @@ const ConfirmLogoutModal = () => {
         onCancel={() => setConfirmLogoutModalOpen(false)}
         {...confirmModalStyle}>
         <div className={styles.confirm_modal}>
-          <span>Are you sure you want to logout?</span>
+          <span>Are you sure you want to log out?</span>
         </div>
       </Modal>
     </ConfigProvider>

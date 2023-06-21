@@ -132,6 +132,7 @@ def get_breed(request):
             'points': breed[extra_level],
         }
 
+    print(new_breed['name'])
     return JsonResponse(new_breed)
 
 
