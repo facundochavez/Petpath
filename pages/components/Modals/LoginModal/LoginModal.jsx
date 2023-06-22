@@ -6,9 +6,11 @@ import CloseButton from 'components/CloseButton/CloseButton';
 import { useState } from 'react';
 import LoginForm from 'components/Forms/LoginForm/LoginForm';
 import SignUpForm from 'components/Forms/SignUpForm/SignUpForm';
+import ResetPasswordForm from 'components/Forms/ResetPasswordForm/ResetPasswordForm';
 
 const LoginModal = () => {
-  const { loginModalOpen, setLoginModalOpen } = useModalsContext();
+  const { loginModalOpen, setLoginModalOpen, resetPasswordForm, setResetPasswordForm } =
+    useModalsContext();
   const [login, setLogin] = useState(true);
 
   ////COMPONENT
@@ -33,39 +35,27 @@ const LoginModal = () => {
               }
             ]}
             className={styles.tabs}
-            onChange={() => setLogin(!login)}
+            onChange={() => {
+              setLogin(!login);
+              setResetPasswordForm(false);
+            }}
           />
         }
         centered
         open={loginModalOpen}
-        onCancel={() => setLoginModalOpen(false)}
+        onCancel={() => {
+          setLoginModalOpen(false);
+          setResetPasswordForm(false);
+        }}
         closeIcon={<CloseButton />}
         footer={null}>
-        {login ? <LoginForm /> : <SignUpForm />}
-      </Modal>
-    </ConfigProvider>
-  );
-};
-
-const ResetPasswordModal = () => {
-  const { resetPasswordModalOpen, setResetPasswordModalOpen } = useModalsContext();
-
-  ////COMPONENT
-  return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm
-      }}>
-      <Modal
-        destroyOnClose
-        width={500}
-        title='Reset password:'
-        centered
-        open={resetPasswordModalOpen}
-        onCancel={() => setResetPasswordModalOpen(false)}
-        closeIcon={<CloseButton />}
-        footer={null}>
-        <span>Please enter your E-mail to rese your password</span>
+        {login && resetPasswordForm ? (
+          <ResetPasswordForm />
+        ) : login ? (
+          <LoginForm />
+        ) : (
+          <SignUpForm />
+        )}
       </Modal>
     </ConfigProvider>
   );

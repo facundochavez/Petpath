@@ -96,11 +96,11 @@
             pointer-events: auto;
 
             &:hover {
-                background-color: var(--color-gray-hover);
+                background-color: #414141;
             }
 
             &:active {
-                background-color: var(--color-gray-active);
+                background-color: #555555;
             }
         }
 

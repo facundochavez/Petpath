@@ -1,11 +1,9 @@
-import styles from './ConfirmModals.module.scss';
+import styles from './ConfirmRestartModal.module.scss';
 import { useModalsContext } from 'pages/context/modals.context';
 import { ConfigProvider, theme } from 'antd';
 import { Modal } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
-import { useAuthContext } from 'pages/context/auth.context';
 
 const confirmModalStyle = {
   centered: 'true',
@@ -45,35 +43,4 @@ const ConfirmRestartModal = () => {
   );
 };
 
-const ConfirmLogoutModal = () => {
-  const { confirmLogoutModalOpen, setConfirmLogoutModalOpen } = useModalsContext();
-  const { setExploredCats } = useExploredBreedsContext();
-  const { setActiveSwiperIndex } = useSwiperContext();
-  const { dispatch } = useAuthContext();
-
-  //// COMPONENT
-  return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm
-      }}>
-      <Modal
-        open={confirmLogoutModalOpen}
-        onOk={() => {
-          setConfirmLogoutModalOpen(false);
-          setActiveSwiperIndex(0);
-          dispatch({ type: 'LOGOUT' });
-          localStorage.clear();
-          setExploredCats([]);
-        }}
-        onCancel={() => setConfirmLogoutModalOpen(false)}
-        {...confirmModalStyle}>
-        <div className={styles.confirm_modal}>
-          <span>Are you sure you want to log out?</span>
-        </div>
-      </Modal>
-    </ConfigProvider>
-  );
-};
-
-export { ConfirmRestartModal as ConfirmResetModal, ConfirmLogoutModal };
+export default ConfirmRestartModal;

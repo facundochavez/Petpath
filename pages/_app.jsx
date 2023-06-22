@@ -16,21 +16,21 @@ export default function App({ Component, pageProps }) {
           colorPrimary: '#00BC6B'
         }
       }}>
-      <AuthProvider>
-        <BackendProvider>
-          <SwiperProvider>
-            <ExploredBreedsProvider>
-              <GlobalProvider>
+      <GlobalProvider>
+        <AuthProvider>
+          <BackendProvider>
+            <SwiperProvider>
+              <ExploredBreedsProvider>
                 <ModalsProvider>
                   <TourProvider>
                     <Component {...pageProps} />
                   </TourProvider>
                 </ModalsProvider>
-              </GlobalProvider>
-            </ExploredBreedsProvider>
-          </SwiperProvider>
-        </BackendProvider>
-      </AuthProvider>
+              </ExploredBreedsProvider>
+            </SwiperProvider>
+          </BackendProvider>
+        </AuthProvider>
+      </GlobalProvider>
     </ConfigProvider>
   );
 }

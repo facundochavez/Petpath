@@ -123,33 +123,6 @@ body::-webkit-scrollbar {
   background-color: transparent !important;
 }
 
-.ant-modal-body {
-  display: flex !important;
-  justify-content: center !important;
-  max-height: 100% !important;
-  overflow: auto;
-  mask-image: linear-gradient(to bottom, transparent 0, black 4%, black 96%, transparent 100%);
-}
-
-.ant-modal-body::-webkit-scrollbar {
-  width: 10px !important;
-  height: 0 !important;
-
-  &-thumb {
-    background-color: var(--color-gray-hover);
-    border-radius: 5px;
-
-    &:hover {
-      background-color: var(--color-gray-active);
-    }
-  }
-
-  &-button {
-    height: 15px;
-  }
-
-}
-
 .ant-dropdown {
   z-index: 500 !important;
 }
@@ -176,4 +149,15 @@ body::-webkit-scrollbar {
 
 .ant-tabs-nav::before {
   border-bottom: none !important;
+}
+
+.ant-spin-container::after {
+  background-color: transparent !important;
+}
+
+.ant-spin-text {
+  color: white !important;
+  text-shadow: none !important;
+  padding-top: 20px !important;
+  font-size: 16px !important;
 }

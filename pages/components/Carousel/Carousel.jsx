@@ -11,11 +11,10 @@ import { useRef, useEffect } from 'react';
 
 const Carousel = () => {
   const swiperRef = useRef(null);
-  const { globalContext } = useGlobalContext();
+  const { globalContext, showLoadingScreen, setShowLoadingScreen } = useGlobalContext();
   const { exploredCats, showMoveButtons } = useExploredBreedsContext();
   const { tourIsActive, tourCat } = useTourContext();
-  const { swiper, setSwiper, setActiveSwiperIndex, slideToLast, setSlideToLast } =
-    useSwiperContext();
+  const { swiper, setSwiper, setActiveSwiperIndex } = useSwiperContext();
   const exploredBreeds = globalContext === 'tour' ? [tourCat] : exploredCats;
 
   useEffect(() => {
@@ -24,8 +23,12 @@ const Carousel = () => {
         swiper.slideTo(exploredBreeds.length - 1);
       }, 150);
     }
+    if (showLoadingScreen === 'yourPath') {
+      setTimeout(() => {
+        setShowLoadingScreen('none');
+      }, 500);
+    }
   }, [swiper, exploredBreeds[exploredBreeds.length - 1], exploredBreeds.length]);
-
 
   ////COMPONENT
   return (

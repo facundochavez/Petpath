@@ -1,34 +1,27 @@
-import styles from './LoginForm.module.scss';
+import styles from './ResetPasswordForm.module.scss';
 import { Button, ConfigProvider, theme } from 'antd';
 import { Input, Form } from 'antd';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import { message } from 'antd';
 import { auth } from '../../../firebase';
 import { useModalsContext } from 'pages/context/modals.context';
-import { useAuthContext } from 'pages/context/auth.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
 
-const LoginForm = () => {
+const ResetPasswordForm = () => {
   const [form] = Form.useForm();
-  const { dispatch } = useAuthContext();
-  const { setLoginModalOpen, resetPasswordForm, setResetPasswordForm } = useModalsContext();
+  const { setLoginModalOpen, setResetPasswordForm } = useModalsContext();
   const [loading, setLoading] = useState(false);
   const [validateEmailTrigger, setValidateEmailTrigger] = useState('onBlur');
-  const { setActiveSwiperIndex } = useSwiperContext();
 
   //// ON FINISH AND ON FINISH FAILED
   const onFinish = (values) => {
     setLoading(true);
-    signInWithEmailAndPassword(auth, values.email, values.password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        setActiveSwiperIndex(0);
-        dispatch({ type: 'LOGIN', payload: user });
+    sendPasswordResetEmail(auth, values.email)
+      .then(() => {
         successAntMessage();
         setLoading(false);
         setLoginModalOpen(false);
-        form.resetFields();
+        setResetPasswordForm(false);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -36,9 +29,7 @@ const LoginForm = () => {
         console.log(errorCode);
         console.log(errorMessage);
         if (errorCode === 'auth/user-not-found') {
-          errorAntMessage('User not found.');
-        } else if (errorCode === 'auth/wrong-password') {
-          errorAntMessage('Wrong password.');
+          errorAntMessage(`User not found!`);
         } else {
           errorAntMessage(`Oops! We're experiencing some issues. Please try again later.`);
         }
@@ -54,7 +45,7 @@ const LoginForm = () => {
   function successAntMessage() {
     messageApi.open({
       type: 'success',
-      content: 'You are logged in!',
+      content: 'We send you an E-mail to reset your password!',
       style: {
         marginTop: 85
       }
@@ -81,8 +72,8 @@ const LoginForm = () => {
       </ConfigProvider>
       <Form
         form={form}
-        name='login'
-        className={styles.login_form}
+        name='reset-password'
+        className={styles.reset_password_form}
         layout='vertical'
         requiredMark='optional'
         onFinish={onFinish}
@@ -109,28 +100,16 @@ const LoginForm = () => {
           />
         </Form.Item>
 
-        <Form.Item
-          label='Password:'
-          name='password'
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password.'
-            }
-          ]}>
-          <Input.Password placeholder='Enter your password' size='large' />
-        </Form.Item>
-
-        <div className={styles.login_form__forgot_password}>
-          <span onClick={() => setResetPasswordForm(true)}>Forgot password?</span>
+        <div className={styles.reset_password_form__back_to_login}>
+          <span onClick={() => setResetPasswordForm(false)}>{'< Back to Login'}</span>
         </div>
 
         <Button type='primary' htmlType='submit' size='large' loading={loading}>
-          Log in
+          Reset password
         </Button>
       </Form>
     </>
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;

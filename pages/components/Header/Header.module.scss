@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    z-index: 5;
 
     &__max_width_container {
         width: 100%;

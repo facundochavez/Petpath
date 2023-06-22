@@ -4,7 +4,7 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 import MoveButton from 'components/MoveButton/MoveButton';
 import LoadingPaws from 'components/LoadingPaws/LoadingPaws';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useGlobalContext } from 'pages/context/global.context';
 import { useTourContext } from 'pages/context/tour.context';
 

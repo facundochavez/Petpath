@@ -97,7 +97,7 @@ def get_breed(request):
     available_breeds.remove(breed)
 
     # FETCHING IMAGES
-    imagesResponse = requests.get(f'{THE_CAT_API_ENDPOINT}/images/search?limit=10&breed_ids={breed["id"]}', headers=HEADERS)
+    imagesResponse = requests.get(f'{THE_CAT_API_ENDPOINT}/images/search?limit=5&breed_ids={breed["id"]}', headers=HEADERS)
     imagesData = imagesResponse.json()
 
     # BUILDING BREED TO RETURN
@@ -132,7 +132,6 @@ def get_breed(request):
             'points': breed[extra_level],
         }
 
-    print(new_breed['name'])
     return JsonResponse(new_breed)
 
 

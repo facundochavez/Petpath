@@ -3,6 +3,7 @@ import loadingBreed from '../../data/loading-breed.data.json';
 import { useSwiperContext } from './swiper.context';
 import { useBackendContext } from './backend.context';
 import { useAuthContext } from './auth.context';
+import { useGlobalContext } from './global.context';
 
 export const ExploredBreedsContext = createContext();
 
@@ -10,6 +11,7 @@ export const ExploredBreedsProvider = ({ children }) => {
   const { fetchNewBreed, updateDataBaseBreeds, resetBackend } = useBackendContext();
   const { currentUser } = useAuthContext();
   const { setActiveSwiperIndex } = useSwiperContext();
+  const { setShowLoadingScreen } = useGlobalContext();
   const [showMoveButtons, setShowMoveButtons] = useState(true);
   const [exploredCats, setExploredCats] = useState([]);
 
@@ -22,6 +24,7 @@ export const ExploredBreedsProvider = ({ children }) => {
 
   //// ADD NEW BREED
   const addNewBreed = async ({ selected_index, selected_level, selected_action }) => {
+    exploredCats.length === 0 && setShowLoadingScreen('randomBreed');
     setShowMoveButtons(false);
 
     // HANDLE REQUEST ARROW IF CARD IS DEFINED
@@ -43,6 +46,7 @@ export const ExploredBreedsProvider = ({ children }) => {
     const newBreed = await fetchNewBreed(selected_index, selected_level, selected_action);
     setExploredCats((prevExploredBreeds) => [...prevExploredBreeds.slice(0, -1), newBreed]);
 
+    setShowLoadingScreen('none');
     setShowMoveButtons(true);
   };
 
@@ -63,6 +67,7 @@ export const ExploredBreedsProvider = ({ children }) => {
 
   //// RESTART PATH
   async function restartPath() {
+    setShowLoadingScreen('randomBreed');
     setActiveSwiperIndex(0);
     setExploredCats([]);
     await resetBackend();

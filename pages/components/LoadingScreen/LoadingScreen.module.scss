@@ -1,0 +1,15 @@
+.loading_screen {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: calc(1.2*100vh);
+    background-color: var(--color-background);
+    z-index: 2;
+    padding-top: 25vh;
+
+    &__box {
+        width: 200px;
+        height: 200px;
+    }
+}

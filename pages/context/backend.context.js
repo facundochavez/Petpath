@@ -48,12 +48,12 @@ export const BackendProvider = ({ children }) => {
     if (exploredCatsforBackend.length === 0) {
       await resetBackend();
     } else {
-      const updateBreedsIds = [];
+      const updateCatsIds = [];
       exploredCatsforBackend.map((breed) => {
-        updateBreedsIds.push(breed.id);
+        updateCatsIds.push(breed.id);
       });
-      const queryUpdateBreeds = updateBreedsIds.join(',');
-      await fetch(`http://localhost:8000/get_breed/?update_breeds=${queryUpdateBreeds}`);
+      const queryUpdateCats = updateCatsIds.join(',');
+      await fetch(`http://localhost:8000/get_breed/?update_breeds=${queryUpdateCats}`);
     }
   };
 

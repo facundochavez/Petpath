@@ -13,16 +13,12 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 
 const Header = () => {
   const { ref4 } = useTourContext();
-  const {
-    setPathModalOpen,
-    setLoginModalOpen,
-    setConfirmRestartModalOpen,
-    setConfirmLogoutModalOpen
-  } = useModalsContext();
+  const { setPathModalOpen, setLoginModalOpen, setConfirmRestartModalOpen } = useModalsContext();
   const { globalContext, setGlobalContext } = useGlobalContext();
-  const { currentUser } = useAuthContext();
+  const { currentUser, dispatch } = useAuthContext();
   const { startTour } = useTourContext();
-  const { exploredCats, showMoveButtons } = useExploredBreedsContext();
+  const { exploredCats, showMoveButtons, setExploredCats } = useExploredBreedsContext();
+  const { setActiveSwiperIndex } = useSwiperContext();
 
   const items = [
     !currentUser && {
@@ -57,7 +53,12 @@ const Header = () => {
       key: '3',
       disabled: !currentUser,
       danger: true,
-      onClick: () => setConfirmLogoutModalOpen(true)
+      onClick: () => {
+        setActiveSwiperIndex(0);
+        dispatch({ type: 'LOGOUT' });
+        localStorage.clear();
+        setExploredCats([]);
+      }
     }
   ];
 

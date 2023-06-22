@@ -7,7 +7,7 @@ export const ModalsProvider = ({ children }) => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [confirmRestartModalOpen, setConfirmRestartModalOpen] = useState(false);
   const [confirmLogoutModalOpen, setConfirmLogoutModalOpen] = useState(false);
-  const [resetPasswordModalOpen, setResetPasswordModalOpen] = useState(false);
+  const [resetPasswordForm, setResetPasswordForm] = useState(false);
 
   //// COMPONENT
   return (
@@ -21,8 +21,8 @@ export const ModalsProvider = ({ children }) => {
         setConfirmRestartModalOpen,
         confirmLogoutModalOpen,
         setConfirmLogoutModalOpen,
-        resetPasswordModalOpen,
-        setResetPasswordModalOpen
+        resetPasswordForm,
+        setResetPasswordForm
       }}>
       {children}
     </ModalsContext.Provider>

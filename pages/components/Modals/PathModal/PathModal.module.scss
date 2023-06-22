@@ -3,6 +3,28 @@
     justify-content: center;
     width: 100%;
     padding: 8px 0;
+    max-height: calc(95vh - 85.5px);
+    overflow: auto;
+    mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 25px), transparent 100%);
+
+    &::-webkit-scrollbar {
+        width: 10px !important;
+        height: 0 !important;
+
+        &-thumb {
+            background-color: var(--color-gray-hover);
+            border-radius: 5px;
+
+            &:hover {
+                background-color: var(--color-gray-active);
+            }
+        }
+
+        &-button {
+            height: 15px;
+        }
+
+    }
 
     &__path_cards_container {
         display: grid;

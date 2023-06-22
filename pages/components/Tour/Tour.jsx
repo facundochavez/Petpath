@@ -6,13 +6,15 @@ import { useTourContext } from 'pages/context/tour.context';
 
 const Tour = () => {
   const { tourIsActive, setTourIsActive, steps } = useTourContext();
-  const { setGlobalContext } = useGlobalContext();
+  const { setGlobalContext, setShowLoadingScreen } = useGlobalContext();
+  const { exploredCats } = useExploredBreedsContext();
 
   ////COMPONENT
   return (
     <AntTour
       open={tourIsActive}
       onClose={() => {
+        exploredCats.length !== 0 && setShowLoadingScreen('yourPath');
         setTourIsActive(false);
         setGlobalContext('exploring');
       }}
@@ -25,7 +27,6 @@ const Tour = () => {
           {current + 1} / {total}
         </span>
       )}
-      
     />
   );
 };

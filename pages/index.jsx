@@ -1,5 +1,5 @@
-import Header from 'pages/components/Header/Header';
 import styles from 'styles/home.module.scss';
+import Header from 'pages/components/Header/Header';
 import Head from 'next/head';
 import 'swiper/css';
 import { useEffect } from 'react';
@@ -14,14 +14,12 @@ import LoginModal from './components/Modals/LoginModal/LoginModal';
 import { useBackendContext } from './context/backend.context';
 import { useAuthContext } from './context/auth.context';
 import { useSwiperContext } from './context/swiper.context';
-import {
-  ConfirmResetModal,
-  ConfirmLogoutModal
-} from './components/Modals/ConfirmModals/ConfirmModals';
+import ConfirmRestartModal from './components/Modals/ConfirmRestartModal/ConfirmRestartModal';
+import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 
 export default function Home() {
   const { setExploredCats, exploredCats, setShowMoveButtons } = useExploredBreedsContext();
-  const { globalContext } = useGlobalContext();
+  const { globalContext, setShowLoadingScreen } = useGlobalContext();
   const { currentUser } = useAuthContext();
   const { getDataBaseBreeds, getExploredCats, resetBackend } = useBackendContext();
   const { setActiveSwiperIndex } = useSwiperContext();
@@ -30,6 +28,7 @@ export default function Home() {
   useEffect(() => {
     const handleExploredCats = async () => {
       if (currentUser) {
+        setShowLoadingScreen('yourPath')
         setShowMoveButtons(false);
         await getDataBaseBreeds(currentUser.uid);
         setActiveSwiperIndex(0);
@@ -51,6 +50,7 @@ export default function Home() {
         <link rel='icon' href='/images/petpath-symbol.svg' type='image/svg+xml' />
       </Head>
       <Header />
+      <LoadingScreen />
       <main className={styles.main}>
         {exploredCats.length === 0 && globalContext !== 'tour' ? (
           <StartOptions />
@@ -64,8 +64,7 @@ export default function Home() {
       <Tour />
       <PathModal />
       <LoginModal />
-      <ConfirmResetModal />
-      <ConfirmLogoutModal />
+      <ConfirmRestartModal />
     </>
   );
 }
