@@ -3,5 +3,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('get_breed/', views.get_breed, name='get_breed'),
+    path('get_cat/', views.get_cat, name='get_cat'),
 ]

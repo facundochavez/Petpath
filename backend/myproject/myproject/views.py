@@ -1,117 +1,140 @@
 import random
 import requests
-from django.http import JsonResponse
-from django.http import HttpResponse
+from django.http import JsonResponse, HttpResponse
+import json
 
-all_breeds = []
-available_breeds = []
-sended_breeds = []
-LEVELS = ['affection_level','adaptability','energy_level','intelligence','vocalisation','social_needs']
-EXTRA_LEVELS = ['stranger_friendly','child_friendly','dog_friendly','grooming','health_issues','shedding_level']
+cats_file_path = 'static/cats-missed-images.json'
+with open(cats_file_path) as cats_file:
+    cats_missed_images = json.load(cats_file)
+
+dogs_file_path = 'static/dogs-levels.json'
+with open(dogs_file_path) as dogs_file:
+    dogs_levels = json.load(dogs_file)
+
+
+all_cats = []
+available_cats = []
+sended_cats = []
+LEVELS = ['affection_level', 'adaptability', 'energy_level',
+            'intelligence', 'vocalisation', 'social_needs']
+EXTRA_LEVELS = ['stranger_friendly', 'child_friendly',
+                'dog_friendly', 'grooming', 'health_issues', 'shedding_level']
 THE_CAT_API_ENDPOINT = 'https://api.thecatapi.com/v1'
-HEADERS = {'x-api-key': 'live_lnQuYxTbHPNxcVNbaQhbjqnJyLDBNVaCR5VnexkoAKePK2hEdqju23593jVaMMpB'}
+HEADERS = {
+    'x-api-key': 'live_lnQuYxTbHPNxcVNbaQhbjqnJyLDBNVaCR5VnexkoAKePK2hEdqju23593jVaMMpB'}
 
-def get_breed(request):
-    global all_breeds
-    global available_breeds
-    global sended_breeds
+
+def get_cat(request):
+    global all_cats
+    global available_cats
+    global sended_cats
 
     # GETTING ARGUMENTS
     reset = request.GET.get('reset')
     get_length = request.GET.get('get_length')
-    update_breeds = request.GET.get('update_breeds')
+    update_cats = request.GET.get('update_cats')
     selected_index = request.GET.get('selected_index')
-    selected_level = request.GET.get('selected_level')    
+    selected_level = request.GET.get('selected_level')
     selected_action = request.GET.get('selected_action')
 
-    # FETCHING ALL BREEDS AT FIRST TIME
-    if len(all_breeds) == 0:
-        response = requests.get(f'{THE_CAT_API_ENDPOINT}/breeds', headers=HEADERS)
+    # FETCHING ALL CATS AT FIRST TIME
+    if len(all_cats) == 0:
+        response = requests.get(
+            f'{THE_CAT_API_ENDPOINT}/breeds', headers=HEADERS)
         data = response.json()
-        all_breeds = data
-        available_breeds = all_breeds.copy()
+        all_cats = data
+        available_cats = all_cats.copy()
 
     # RESET FUNCTION
     if reset == 'true':
-        available_breeds = []
-        available_breeds = all_breeds.copy()
-        sended_breeds = []
+        available_cats = []
+        available_cats = all_cats.copy()
+        sended_cats = []
         return HttpResponse()
 
-    # SEND ALL BREEDS LENGTH
+    # SEND ALL CATS LENGTH
     if get_length == 'true':
-        return HttpResponse(len(all_breeds))
-    
-    # UPDATING AVAILABLE BREEDS WHEN LOGIN
-    if update_breeds:
-        update_breeds_list = update_breeds.split(',')
-        sended_breeds = []
-        for id in update_breeds_list:
-            addBreed = next((breed for breed in all_breeds if breed['id'] == id), None)
-            sended_breeds.append(addBreed)
-        available_breeds = [breed for breed in all_breeds if breed not in sended_breeds]
-        print (sended_breeds)
+        return HttpResponse(len(all_cats))
+
+    # UPDATING AVAILABLE CATS WHEN LOGIN
+    if update_cats:
+        update_cats_list = update_cats.split(',')
+        sended_cats = []
+        for id in update_cats_list:
+            add_cat = next((cat for cat in all_cats if cat['id'] == id), None)
+            sended_cats.append(add_cat)
+        available_cats = [cat for cat in all_cats if cat not in sended_cats]
         return HttpResponse()
 
-    # LOOKING FOR RANDOM BREED WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL) 
+    # LOOKING FOR RANDOM CAT WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL)
     if selected_index == 'undefined':
-        def low_scoring(breed):
+        def low_scoring(cat):
             score = 0
-            for level in LEVELS: 
-                score += breed.get(level)
+            for level in LEVELS:
+                score += cat.get(level)
             return score
-        sorted_breeds = sorted(all_breeds, key=low_scoring)
-        lowest_scores = sorted_breeds[:15]
+        sorted_cats = sorted(all_cats, key=low_scoring)
+        lowest_scores = sorted_cats[:15]
         randomIndex = random.randint(0, len(lowest_scores) - 1)
-        breed = lowest_scores[randomIndex]
+        cat = lowest_scores[randomIndex]
 
-    # LOOKING FOR MAX-SCORED BREED IF SELECTED INDEX IS DEFINED
+    # LOOKING FOR MAX-SCORED CAT IF SELECTED INDEX IS DEFINED
     else:
         selected_index = int(selected_index)
         selected_level = LEVELS[int(selected_level) - 1]
 
-        # UPDATING SENDED_BREEDS IF THE ORIGIN BREED IS NOT THE LAST SENDED 
-        if selected_index + 1 < len(sended_breeds) :
-            sended_breeds = sended_breeds[:selected_index + 1]
-            available_breeds = [breed for breed in all_breeds if breed not in sended_breeds]
+        # UPDATING SENDED_CATS IF THE ORIGIN CAT IS NOT THE LAST SENDED
+        if selected_index + 1 < len(sended_cats):
+            sended_cats = sended_cats[:selected_index + 1]
+            available_cats = [
+                cat for cat in all_cats if cat not in sended_cats]
 
-        # GETTING BREEDS THAT MEET THE REQUERIMENT
-        if selected_action == '=': 
-            match_breeds = [breed for breed in available_breeds if breed.get(selected_level) == sended_breeds[selected_index].get(selected_level)]
+        # GETTING CATS THAT MEET THE REQUERIMENT
+        if selected_action == '=':
+            match_cats = [cat for cat in available_cats if cat.get(
+                selected_level) == sended_cats[selected_index].get(selected_level)]
         elif selected_action == '-':
-            match_breeds = [breed for breed in available_breeds if breed.get(selected_level) < sended_breeds[selected_index].get(selected_level)]
+            match_cats = [cat for cat in available_cats if cat.get(
+                selected_level) < sended_cats[selected_index].get(selected_level)]
         else:
-            match_breeds = [breed for breed in available_breeds if breed.get(selected_level) > sended_breeds[selected_index].get(selected_level)]
+            match_cats = [cat for cat in available_cats if cat.get(
+                selected_level) > sended_cats[selected_index].get(selected_level)]
 
-        # GETTING MAX-SCORED BREED
-        def scoring(breed):
+        # GETTING MAX-SCORED CAT
+        def scoring(cat):
             score = 0
             for level in LEVELS:
-                level_score = 5 - abs(sended_breeds[selected_index].get(level) - breed.get(level))
+                level_score = 5 - \
+                    abs(sended_cats[selected_index].get(
+                        level) - cat.get(level))
                 score += level_score
             return score
-        breed = max(match_breeds, key=scoring)
+        cat = max(match_cats, key=scoring)
 
-    # UPDATING SENDED AND AVAILABLE BREEDS
-    sended_breeds.append(breed)
-    available_breeds.remove(breed)
+    # UPDATING SENDED AND AVAILABLE CATS
+    sended_cats.append(cat)
+    available_cats.remove(cat)
 
     # FETCHING IMAGES
-    imagesResponse = requests.get(f'{THE_CAT_API_ENDPOINT}/images/search?limit=5&breed_ids={breed["id"]}', headers=HEADERS)
-    imagesData = imagesResponse.json()
+    images_response = requests.get(
+        f'{THE_CAT_API_ENDPOINT}/images/search?limit=5&breed_ids={cat["id"]}', headers=HEADERS)
+    images_data = images_response.json()
 
-    # BUILDING BREED TO RETURN
-    new_breed = {
-        'id': breed['id'],
-        'name': breed['name'],
+    # ADDING MISSED IMAGES IF CAT IS IN 'CATS_MISSED_IMAGES'
+    for missed_cat in cats_missed_images:
+        if missed_cat['id'] == cat['id']:
+            images_data.extend(missed_cat['images'])
+
+    # BUILDING CATS TO RETURN
+    new_cat = {
+        'id': cat['id'],
+        'name': cat['name'],
         'images': [
-        {
-            "id": image["id"],
-            "url": image["url"],
-            "height": image["height"],
-            "width": image["width"]
-        } for image in imagesData],
-        'description': breed['description'],
+            {
+                'id': image['id'],
+                'url': image['url']
+            } for image in images_data],
+        'description': cat['description'],
         'fav': False,
         'selected_level': None,
         'selected_action': None,
@@ -119,19 +142,17 @@ def get_breed(request):
         'extra_levels': {}
     }
 
-    # ADDING LEVELS AND ACTION ABILITIES TO BREED
+    # ADDING LEVELS AND ACTION ABILITIES TO CATS
     for level in LEVELS:
-        new_breed['levels'][level] = {
-            'points': breed[level],
-            'plus_ability': any(available_breed.get(level) > breed.get(level) for available_breed in available_breeds),
-            'equal_ability': any(available_breed.get(level) == breed.get(level) for available_breed in available_breeds),
-            'less_ability': any(available_breed.get(level) < breed.get(level) for available_breed in available_breeds),
+        new_cat['levels'][level] = {
+            'points': cat[level],
+            'plus_ability': any(available_cat.get(level) > cat.get(level) for available_cat in available_cats),
+            'equal_ability': any(available_cat.get(level) == cat.get(level) for available_cat in available_cats),
+            'less_ability': any(available_cat.get(level) < cat.get(level) for available_cat in available_cats),
         }
     for extra_level in EXTRA_LEVELS:
-        new_breed['extra_levels'][extra_level] = {
-            'points': breed[extra_level],
+        new_cat['extra_levels'][extra_level] = {
+            'points': cat[extra_level],
         }
 
-    return JsonResponse(new_breed)
-
-
+    return JsonResponse(new_cat)
