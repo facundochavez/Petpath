@@ -11,22 +11,32 @@ const StartOptions = () => {
   const { startTour } = useTourContext();
   const { setActiveSwiperIndex } = useSwiperContext();
 
-  const animationProps = {
-    initial: { opacity: 0, y: 100 },
-    animate: { opacity: 1, y: 0 }
+  const objectAnimation = {
+    hidden: { opacity: 0, y: 100 },
+    show: { opacity: 1, y: 0 }
   };
 
   //// COMPONENT
   return (
     <div className={styles.start_options}>
-      <div className={styles.start_options__max_width_container}>
-        <motion.h2 className={styles.start_options__max_width_container__title} {...animationProps}>
+      <motion.div
+        className={styles.start_options__max_width_container}
+        transition={{
+          staggerChildren: 0.05
+        }}
+        initial='hidden'
+        animate='show'>
+        <motion.h2
+          className={styles.start_options__max_width_container__title}
+          variants={objectAnimation}>
           <span>Discover and learn</span> about the cutest cats in the world 🐱
         </motion.h2>
+
+       
+
         <motion.div
           className={styles.start_options__max_width_container__buttons}
-          {...animationProps}
-          transition={{ delay: 0.05 }}>
+          variants={objectAnimation}>
           {/* TOUR BUTTON */}
           <Button type='secondary' onClick={startTour}>
             STAR TOUR
@@ -41,7 +51,14 @@ const StartOptions = () => {
             LET'S EXPLORE!
           </Button>
         </motion.div>
-      </div>
+
+        <motion.h3
+          className={styles.start_options__max_width_container__promise}
+          variants={objectAnimation}>
+          ... dogs will come soon 🐶
+        </motion.h3>
+
+      </motion.div>
     </div>
   );
 };

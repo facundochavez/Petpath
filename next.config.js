@@ -3,9 +3,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn2.thecatapi.com'],
+    domains: ['cdn2.thecatapi.com', 'imgfon.ru']
   }
-}
+};
 
-module.exports = nextConfig
-
+module.exports = nextConfig;

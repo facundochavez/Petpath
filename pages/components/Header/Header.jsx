@@ -67,7 +67,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.header__max_width_container}>
         <div className={styles.header__max_width_container__content}>
-          <Image src={'images/petpath-logo.svg'} width={165} height={65} alt='PawMatch logo' />
+          <Image src={'images/petpath-logo.svg'} width={150} height={60} alt='PawMatch logo' />
           <nav ref={ref4}>
             <AnimatePresence>
               {(exploredCats.length !== 0 || globalContext === 'tour') && (
