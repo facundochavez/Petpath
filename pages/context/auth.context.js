@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 export const AuthContext = createContext(INITIAL_STATE);
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
   useEffect(() => {
@@ -38,3 +38,5 @@ export const useAuthContext = () => {
   }
   return context;
 };
+
+export default AuthProvider;

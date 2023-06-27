@@ -16,8 +16,8 @@
             left: 9px;
             display: flex;
             flex-direction: column;
-            align-items: start;
-            justify-content: end;
+            align-items: flex-start;
+            justify-content: flex-end;
 
             &__up_line {
                 width: 25px;

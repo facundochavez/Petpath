@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 export const GlobalContext = createContext();
 
-export const GlobalProvider = ({ children }) => {
+const GlobalProvider = ({ children }) => {
   const [globalContext, setGlobalContext] = useState('exploring');
   const [showLoadingScreen, setShowLoadingScreen] = useState('none');
 
@@ -27,3 +27,5 @@ export const useGlobalContext = () => {
   }
   return context;
 };
+
+export default GlobalProvider;

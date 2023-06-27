@@ -7,7 +7,7 @@ import { useGlobalContext } from './global.context';
 
 export const ExploredBreedsContext = createContext();
 
-export const ExploredBreedsProvider = ({ children }) => {
+const ExploredBreedsProvider = ({ children }) => {
   const { fetchNewBreed, updateDataBaseBreeds, resetBackend } = useBackendContext();
   const { currentUser } = useAuthContext();
   const { setActiveSwiperIndex } = useSwiperContext();
@@ -99,3 +99,5 @@ export const useExploredBreedsContext = () => {
   }
   return context;
 };
+
+export default ExploredBreedsProvider;

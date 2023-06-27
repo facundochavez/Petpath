@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 export const SwiperContext = createContext();
 
-export const SwiperProvider = ({ children }) => {
+const SwiperProvider = ({ children }) => {
   const [swiper, setSwiper] = useState(null);
   const [activeSwiperIndex, setActiveSwiperIndex] = useState(0);
   const [slideToLast, setSlideToLast] = useState(false);
@@ -30,3 +30,5 @@ export const useSwiperContext = () => {
   }
   return context;
 };
+
+export default SwiperProvider;

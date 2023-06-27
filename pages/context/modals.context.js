@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 export const ModalsContext = createContext();
 
-export const ModalsProvider = ({ children }) => {
+const ModalsProvider = ({ children }) => {
   const [pathModalOpen, setPathModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [confirmRestartModalOpen, setConfirmRestartModalOpen] = useState(false);
@@ -36,3 +36,5 @@ export const useModalsContext = () => {
   }
   return context;
 };
+
+export default ModalsProvider;

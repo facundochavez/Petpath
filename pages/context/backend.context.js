@@ -5,7 +5,7 @@ import { useAuthContext } from './auth.context';
 
 export const BackendContext = createContext();
 
-export const BackendProvider = ({ children }) => {
+const BackendProvider = ({ children }) => {
   const { currentUser } = useAuthContext();
   const [allCatsLength, setAllCatsLength] = useState(0);
   const [getExploredCats, setGetExploredCats] = useState(() => {
@@ -118,3 +118,5 @@ export const useBackendContext = () => {
   }
   return context;
 };
+
+export default BackendProvider;

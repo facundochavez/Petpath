@@ -7,7 +7,7 @@ const { tourCat } = tourBreeds;
 
 export const TourContext = createContext();
 
-export const TourProvider = ({ children }) => {
+const TourProvider = ({ children }) => {
   const { setGlobalContext } = useGlobalContext();
   const [tourIsActive, setTourIsActive] = useState(false);
   const { setActiveSwiperIndex } = useSwiperContext();
@@ -84,3 +84,5 @@ export const useTourContext = () => {
   }
   return context;
 };
+
+export default TourProvider;
