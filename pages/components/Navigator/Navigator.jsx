@@ -31,7 +31,7 @@ const Navigator = () => {
         <div
           className={styles.navigator__title_container}
           onClick={() => handleFav(activeSwiperIndex)}>
-          {exploredBreeds[activeSwiperIndex].name !== undefined && (
+          {exploredBreeds[activeSwiperIndex]?.name && (
             <h2>{exploredBreeds[activeSwiperIndex].name}</h2>
           )}
           {!exploredBreeds[activeSwiperIndex].fav ? (
