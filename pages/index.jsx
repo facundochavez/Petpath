@@ -24,7 +24,6 @@ export default function Home() {
   const { getDataBaseBreeds, getExploredCats, resetBackend } = useBackendContext();
   const { setActiveSwiperIndex } = useSwiperContext();
 
-  // RESET BACKEND
   useEffect(() => {
     const handleExploredCats = async () => {
       if (currentUser) {

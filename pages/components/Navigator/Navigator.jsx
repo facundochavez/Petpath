@@ -34,7 +34,7 @@ const Navigator = () => {
           {exploredBreeds[activeSwiperIndex]?.name && (
             <h2>{exploredBreeds[activeSwiperIndex].name}</h2>
           )}
-          {!exploredBreeds[activeSwiperIndex].fav ? (
+          {!exploredBreeds[activeSwiperIndex]?.fav ? (
             <motion.div key='unfav' className={styles.navigator__title_container__fav_button}>
               <HeartOutlined />
             </motion.div>
