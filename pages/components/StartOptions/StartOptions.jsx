@@ -48,7 +48,7 @@ const StartOptions = () => {
               setActiveSwiperIndex(0);
               addNewBreed({});
             }}>
-            LET'S EXPLORE!
+            LET&apos;S EXPLORE!
           </Button>
         </motion.div>
 
