@@ -29,7 +29,8 @@ const Carousel = () => {
         setShowLoadingScreen('none');
       }, 500);
     }
-  }, [swiper, lastExploredBreed, exploredBreeds.length, setShowLoadingScreen, showLoadingScreen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [swiper, lastExploredBreed, exploredBreeds.length]);
 
   ////COMPONENT
   return (
