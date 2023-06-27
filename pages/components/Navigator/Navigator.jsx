@@ -31,8 +31,9 @@ const Navigator = () => {
         <div
           className={styles.navigator__title_container}
           onClick={() => handleFav(activeSwiperIndex)}>
-          <h2>{exploredBreeds[activeSwiperIndex].name}</h2>
-
+          {exploredBreeds[activeSwiperIndex].name !== undefined && (
+            <h2>{exploredBreeds[activeSwiperIndex].name}</h2>
+          )}
           {!exploredBreeds[activeSwiperIndex].fav ? (
             <motion.div key='unfav' className={styles.navigator__title_container__fav_button}>
               <HeartOutlined />
@@ -45,7 +46,7 @@ const Navigator = () => {
               animate={{ scale: 1 }}
               transition={{
                 type: 'spring',
-                damping: 12 ,
+                damping: 12,
                 stiffness: 1500
               }}>
               <HeartFilled style={{ color: 'var(--color-primary)' }} />
