@@ -20,6 +20,7 @@ export const BackendProvider = ({ children }) => {
   useEffect(() => {
     const handleAllCatsLength = async () => setAllCatsLength(await getAllCatsLength());
     allCatsLength === 0 && handleAllCatsLength();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
