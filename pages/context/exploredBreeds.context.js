@@ -20,6 +20,7 @@ export const ExploredBreedsProvider = ({ children }) => {
       showMoveButtons && currentUser && (await updateDataBaseBreeds(currentUser.uid, exploredCats));
     };
     exploredCats.length !== 0 && handleUpdateDataBase();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exploredCats]);
 
   //// ADD NEW BREED

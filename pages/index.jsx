@@ -40,6 +40,7 @@ export default function Home() {
       }
     };
     handleExploredCats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser, getExploredCats.length]);
 
   //// COMPONENT

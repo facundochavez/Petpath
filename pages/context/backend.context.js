@@ -29,6 +29,7 @@ export const BackendProvider = ({ children }) => {
     } else {
       setGetExploredCats([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   //// BACKEND
