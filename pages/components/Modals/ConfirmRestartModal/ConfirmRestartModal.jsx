@@ -36,7 +36,7 @@ const ConfirmRestartModal = () => {
         {...confirmModalStyle}>
         <div className={styles.confirm_modal}>
           <span>Are you sure you want to restart?</span>
-          <p>You will lose the path you've made so far.</p>
+          <p>You will lose the path you&apos;ve made so far.</p>
         </div>
       </Modal>
     </ConfigProvider>

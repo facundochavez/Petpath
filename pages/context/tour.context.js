@@ -37,12 +37,12 @@ export const TourProvider = ({ children }) => {
       description: (
         <div>
           <p>
-            Here you can view the path you've made so far. Additionally, you can sign up or log in
+            Here you can view the path you&apos;ve made so far. Additionally, you can sign up or log in
             to save your path and favorite breeds.
           </p>
           <p>
             <br />
-            <b>And thats all! Let's explore some breeds!</b>
+            <b>And thats all! Let&apos;s explore some breeds!</b>
           </p>
         </div>
       ),

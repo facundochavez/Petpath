@@ -16,6 +16,7 @@ const Carousel = () => {
   const { tourIsActive, tourCat } = useTourContext();
   const { swiper, setSwiper, setActiveSwiperIndex } = useSwiperContext();
   const exploredBreeds = globalContext === 'tour' ? [tourCat] : exploredCats;
+  const lastExploredBreed = exploredBreeds[exploredBreeds.length - 1];
 
   useEffect(() => {
     if (exploredBreeds.length > 1 && swiper && swiper.params) {
@@ -28,7 +29,7 @@ const Carousel = () => {
         setShowLoadingScreen('none');
       }, 500);
     }
-  }, [swiper, exploredBreeds[exploredBreeds.length - 1], exploredBreeds.length]);
+  }, [swiper, lastExploredBreed, exploredBreeds.length, setShowLoadingScreen, showLoadingScreen]);
 
   ////COMPONENT
   return (
