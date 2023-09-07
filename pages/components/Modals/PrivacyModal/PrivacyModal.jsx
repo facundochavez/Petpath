@@ -26,7 +26,7 @@ const PrivacyModal = () => {
           <h3>Welcome to Petpath! </h3>
           <p>
             Your privacy is important to us. This Privacy Policy explains how we collect, use, and
-            safeguard your personal information when you use Petpath's website and services.
+            safeguard your personal information when you use Petpath&apos;s website and services.
           </p>
           <h3>Information We Collect </h3>
           <p>
