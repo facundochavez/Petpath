@@ -1,5 +1,5 @@
 import styles from './SignUpForm.module.scss';
-import { Button, ConfigProvider, theme } from 'antd';
+import { Button, Checkbox, ConfigProvider, theme } from 'antd';
 import { Input, Form } from 'antd';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const [form] = Form.useForm();
   const { exploredCats } = useExploredBreedsContext();
   const { dispatch } = useAuthContext();
-  const { setLoginModalOpen } = useModalsContext();
+  const { setLoginModalOpen, setTermsModalOpen, setIsSigningUp } = useModalsContext();
   const { updateDataBaseBreeds } = useBackendContext();
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -175,7 +175,31 @@ const SignUpForm = () => {
             onBlur={() => setValidateConfirmPasswordTrigger('onChange')}
           />
         </Form.Item>
-
+        <Form.Item
+          name='agreement'
+          valuePropName='checked'
+          rules={[
+            {
+              validator: (_, value) =>
+                value
+                  ? Promise.resolve()
+                  : Promise.reject(new Error('You have to agree with our Terms and Conditions.'))
+            }
+          ]}>
+          <Checkbox size='large'>
+            I agree with the{' '}
+            <span
+              className={styles.terms_and_conditions}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsSigningUp(true);
+                setLoginModalOpen(false);
+                setTermsModalOpen(true);
+              }}>
+              Terms and Conditions.
+            </span>
+          </Checkbox>
+        </Form.Item>
         <Button type='primary' htmlType='submit' size='large' loading={loading}>
           Sign up
         </Button>

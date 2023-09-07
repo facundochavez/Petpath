@@ -9,9 +9,14 @@ import SignUpForm from 'components/Forms/SignUpForm/SignUpForm';
 import ResetPasswordForm from 'components/Forms/ResetPasswordForm/ResetPasswordForm';
 
 const LoginModal = () => {
-  const { loginModalOpen, setLoginModalOpen, resetPasswordForm, setResetPasswordForm } =
-    useModalsContext();
-  const [login, setLogin] = useState(true);
+  const {
+    activeKey,
+    setActiveKey,
+    loginModalOpen,
+    setLoginModalOpen,
+    resetPasswordForm,
+    setResetPasswordForm
+  } = useModalsContext();
 
   ////COMPONENT
   return (
@@ -23,21 +28,23 @@ const LoginModal = () => {
         width={500}
         title={
           <Tabs
-            defaultActiveKey='1'
+            activeKey={activeKey}
             items={[
               {
                 key: '1',
-                label: `Login`
+                label: `Login`,
+                children: resetPasswordForm ? <ResetPasswordForm /> : <LoginForm />
               },
               {
                 key: '2',
-                label: `Sign up`
+                label: `Sign up`,
+                children: <SignUpForm />
               }
             ]}
             className={styles.tabs}
             onChange={() => {
-              setLogin(!login);
               setResetPasswordForm(false);
+              setActiveKey(activeKey === '1' ? '2' : '1');
             }}
           />
         }
@@ -48,15 +55,8 @@ const LoginModal = () => {
           setResetPasswordForm(false);
         }}
         closeIcon={<CloseButton />}
-        footer={null}>
-        {login && resetPasswordForm ? (
-          <ResetPasswordForm />
-        ) : login ? (
-          <LoginForm />
-        ) : (
-          <SignUpForm />
-        )}
-      </Modal>
+        footer={null}
+      />
     </ConfigProvider>
   );
 };

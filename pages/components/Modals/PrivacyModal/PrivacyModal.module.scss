@@ -1,0 +1,43 @@
+.privacy_modal {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: 80vh;
+    overflow: auto;
+    gap: 10px;
+
+    h3 {
+        color: var(--color-primary);
+    }
+
+    p {
+        a {
+            color: var(--color-primary);
+
+            &:hover {
+                text-decoration: underline;
+                color: var(--color-hover);
+            }
+
+            &:active {
+                color: var(--color-active);
+            }
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px !important;
+        height: 0 !important;
+
+        &-thumb {
+            background-color: var(--color-gray-hover);
+            border-radius: 5px;
+
+            &:hover {
+                background-color: var(--color-gray-active);
+            }
+        }
+
+
+    }
+}

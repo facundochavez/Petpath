@@ -8,12 +8,18 @@ import { Dropdown } from 'antd';
 import { useGlobalContext } from 'pages/context/global.context';
 import { AnimatePresence } from 'framer-motion';
 import { useAuthContext } from 'pages/context/auth.context';
-import { LogoutOutlined, RedoOutlined, StepForwardOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  HeartOutlined,
+  LogoutOutlined,
+  RedoOutlined,
+  StepForwardOutlined,
+  UserOutlined
+} from '@ant-design/icons';
 import { useSwiperContext } from 'pages/context/swiper.context';
 
 const Header = () => {
   const { ref4 } = useTourContext();
-  const { setPathModalOpen, setLoginModalOpen, setConfirmRestartModalOpen } = useModalsContext();
+  const { setPathModalOpen, setLoginModalOpen, setConfirmRestartModalOpen, setDonateModalOpen } = useModalsContext();
   const { globalContext, setGlobalContext } = useGlobalContext();
   const { currentUser, dispatch } = useAuthContext();
   const { startTour } = useTourContext();
@@ -45,12 +51,18 @@ const Header = () => {
       onClick: () => setConfirmRestartModalOpen(true)
     },
     {
+      label: 'Love the app? Donate!',
+      icon: <HeartOutlined />,
+      key: '3',
+      onClick: () => setDonateModalOpen(true)
+    },
+    {
       type: 'divider'
     },
     {
       label: 'Logout',
       icon: <LogoutOutlined />,
-      key: '3',
+      key: '4',
       disabled: !currentUser,
       danger: true,
       onClick: () => {

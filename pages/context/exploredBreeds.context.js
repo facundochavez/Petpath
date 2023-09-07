@@ -25,6 +25,10 @@ const ExploredBreedsProvider = ({ children }) => {
 
   //// ADD NEW BREED
   const addNewBreed = async ({ selected_index, selected_level, selected_action }) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     exploredCats.length === 0 && setShowLoadingScreen('randomBreed');
     setShowMoveButtons(false);
 

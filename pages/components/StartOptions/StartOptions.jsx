@@ -1,8 +1,10 @@
 import styles from './StartOptions.module.scss';
 import Button from 'components/Button/Button';
+import DogsPromise from 'components/DogsPromise/DogsPromise';
 import { motion } from 'framer-motion';
 import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
 import { useGlobalContext } from 'pages/context/global.context';
+import { useModalsContext } from 'pages/context/modals.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
 import { useTourContext } from 'pages/context/tour.context';
 
@@ -32,8 +34,6 @@ const StartOptions = () => {
           <span>Discover and learn</span> about the cutest cats in the world 🐱
         </motion.h2>
 
-       
-
         <motion.div
           className={styles.start_options__max_width_container__buttons}
           variants={objectAnimation}>
@@ -52,12 +52,10 @@ const StartOptions = () => {
           </Button>
         </motion.div>
 
-        <motion.h3
-          className={styles.start_options__max_width_container__promise}
+        <motion.div
           variants={objectAnimation}>
-          ... dogs will come soon 🐶
-        </motion.h3>
-
+          <DogsPromise />
+        </motion.div>
       </motion.div>
     </div>
   );

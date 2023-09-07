@@ -1,10 +1,11 @@
 .start_options {
     width: 100%;
-    height: 100vh;
+    min-height: calc(100vh - 45px);
     display: flex;
     align-items: center;
     max-width: 500px;
     margin-top: -85px;
+    padding-top: 85px;
 
     &__max_width_container {
         width: 100%;
@@ -27,13 +28,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-        }
-
-        &__promise {
-            font-weight: 500;
-            font-size: 20px;
-            text-align: end;
-            margin-top: 8%;
+            margin-bottom: 8%;
         }
     }
 }

@@ -24,7 +24,7 @@ const TourProvider = ({ children }) => {
     },
     {
       title: 'Breed levels',
-      description: `These are the breed levels. Here you can learn a lot about the animal behavior and its traits.`,
+      description: `These are the breed levels. They will teach you about the animal's behavior and its traits.`,
       target: () => ref2.current
     },
     {
@@ -37,8 +37,7 @@ const TourProvider = ({ children }) => {
       description: (
         <div>
           <p>
-            Here you can view the path you&apos;ve made so far. Additionally, you can sign up or log in
-            to save your path and favorite breeds.
+            Here, you can see the progress you&apos;ve made so far. Furthermore, you have the option to sign up or log in to save your path and bookmark your favorite breeds.
           </p>
           <p>
             <br />

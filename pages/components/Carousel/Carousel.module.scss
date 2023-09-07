@@ -3,4 +3,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &__dogs_promise {
+      padding-top: 20px;
+      width: 332px;
+    }
   }

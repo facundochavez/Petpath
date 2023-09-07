@@ -5,9 +5,14 @@ export const ModalsContext = createContext();
 const ModalsProvider = ({ children }) => {
   const [pathModalOpen, setPathModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [activeKey, setActiveKey] = useState('1');
+  const [isSigningUp, setIsSigningUp] = useState(false);
   const [confirmRestartModalOpen, setConfirmRestartModalOpen] = useState(false);
   const [confirmLogoutModalOpen, setConfirmLogoutModalOpen] = useState(false);
   const [resetPasswordForm, setResetPasswordForm] = useState(false);
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+  const [termsModalOpen, setTermsModalOpen] = useState(false);
+  const [donateModalOpen, setDonateModalOpen] = useState(false);
 
   //// COMPONENT
   return (
@@ -22,7 +27,17 @@ const ModalsProvider = ({ children }) => {
         confirmLogoutModalOpen,
         setConfirmLogoutModalOpen,
         resetPasswordForm,
-        setResetPasswordForm
+        setResetPasswordForm,
+        activeKey,
+        setActiveKey,
+        privacyModalOpen,
+        setPrivacyModalOpen,
+        isSigningUp,
+        setIsSigningUp,
+        termsModalOpen,
+        setTermsModalOpen,
+        donateModalOpen,
+        setDonateModalOpen
       }}>
       {children}
     </ModalsContext.Provider>

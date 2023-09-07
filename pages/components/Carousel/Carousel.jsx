@@ -8,6 +8,8 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 import BreedCard from 'components/BreedCard/BreedCard';
 import { useGlobalContext } from 'pages/context/global.context';
 import { useRef, useEffect } from 'react';
+import DogsPromise from 'components/DogsPromise/DogsPromise';
+import { useAuthContext } from 'pages/context/auth.context';
 
 const Carousel = () => {
   const swiperRef = useRef(null);
@@ -17,6 +19,7 @@ const Carousel = () => {
   const { swiper, setSwiper, setActiveSwiperIndex } = useSwiperContext();
   const exploredBreeds = globalContext === 'tour' ? [tourCat] : exploredCats;
   const lastExploredBreed = exploredBreeds[exploredBreeds.length - 1];
+  const { currentUser } = useAuthContext();
 
   useEffect(() => {
     if (exploredBreeds.length > 1 && swiper && swiper.params) {
@@ -67,6 +70,11 @@ const Carousel = () => {
           );
         })}
       </Swiper>
+      {!currentUser && (
+        <div className={styles.carousel__dogs_promise}>
+          <DogsPromise />
+        </div>
+      )}
     </section>
   );
 };

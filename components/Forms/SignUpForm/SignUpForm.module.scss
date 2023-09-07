@@ -8,3 +8,17 @@
         font-size: 16px !important;
     }
 }
+
+.terms_and_conditions {
+    text-decoration: underline;
+    color: var(--color-primary);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-hover);
+    }
+
+    &:active {
+        color: var(--color-active);
+    }
+}

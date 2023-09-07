@@ -16,6 +16,10 @@ import { useAuthContext } from './context/auth.context';
 import { useSwiperContext } from './context/swiper.context';
 import ConfirmRestartModal from './components/Modals/ConfirmRestartModal/ConfirmRestartModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
+import Footer from './components/Footer/Footer';
+import PrivacyModal from './components/Modals/PrivacyModal/PrivacyModal';
+import TermsModal from './components/Modals/TermsModal/TermsModal';
+import DonateModal from './components/Modals/DonateModal/DonateModal';
 
 export default function Home() {
   const { setExploredCats, exploredCats, setShowMoveButtons } = useExploredBreedsContext();
@@ -61,10 +65,14 @@ export default function Home() {
           </>
         )}
       </main>
+      <Footer />
       <Tour />
       <PathModal />
       <LoginModal />
       <ConfirmRestartModal />
+      <PrivacyModal />
+      <TermsModal />
+      <DonateModal />
     </>
   );
 }

@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { message } from 'antd';
 import { auth } from '../../../firebase';
+
 import { useModalsContext } from 'pages/context/modals.context';
 import { useAuthContext } from 'pages/context/auth.context';
 import { useSwiperContext } from 'pages/context/swiper.context';
@@ -12,7 +13,7 @@ import { useSwiperContext } from 'pages/context/swiper.context';
 const LoginForm = () => {
   const [form] = Form.useForm();
   const { dispatch } = useAuthContext();
-  const { setLoginModalOpen, resetPasswordForm, setResetPasswordForm } = useModalsContext();
+  const { setLoginModalOpen, setResetPasswordForm } = useModalsContext();
   const [loading, setLoading] = useState(false);
   const [validateEmailTrigger, setValidateEmailTrigger] = useState('onBlur');
   const { setActiveSwiperIndex } = useSwiperContext();
