@@ -1,3 +1,5 @@
+@import '../assets/fonts/fonts.scss';
+
 :root {
   --color-primary: #00BC6B;
   --color-hover: #10d378;
@@ -16,7 +18,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Noto Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: NotoSans;
 }
 
 body::-webkit-scrollbar {
