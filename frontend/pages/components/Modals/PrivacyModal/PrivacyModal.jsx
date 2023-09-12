@@ -1,5 +1,5 @@
 import styles from './PrivacyModal.module.scss';
-import { useModalsContext } from 'pages/context/modals.context';
+import { useModalsContext } from 'context/modals.context';
 import { ConfigProvider, theme } from 'antd';
 import { Modal, Tabs } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';

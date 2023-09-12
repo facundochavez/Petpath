@@ -6,7 +6,7 @@ import { Skeleton } from 'antd';
 import LevelButtons from './LevelButtons/LevelButtons';
 import ExtraLevelButtons from './ExtraLevelButtons/ExtraLevelButtons';
 import BreedDescription from './BreedDescription/BreedDescription';
-import { useTourContext } from 'pages/context/tour.context';
+import { useTourContext } from 'context/tour.context';
 
 const BreedCard = ({ isFirst, isLast, isActive, isPrev, breed, cardIndex }) => {
 

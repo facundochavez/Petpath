@@ -2,14 +2,14 @@ import styles from './Carousel.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 SwiperCore.use([Navigation]);
-import { useTourContext } from 'pages/context/tour.context';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
+import { useTourContext } from 'context/tour.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useSwiperContext } from 'context/swiper.context';
 import BreedCard from 'components/BreedCard/BreedCard';
-import { useGlobalContext } from 'pages/context/global.context';
+import { useGlobalContext } from 'context/global.context';
 import { useRef, useEffect } from 'react';
 import DogsPromise from 'components/DogsPromise/DogsPromise';
-import { useAuthContext } from 'pages/context/auth.context';
+import { useAuthContext } from 'context/auth.context';
 
 const Carousel = () => {
   const swiperRef = useRef(null);

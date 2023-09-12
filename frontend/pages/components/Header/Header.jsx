@@ -1,13 +1,13 @@
 import NavButton from 'components/NavButton/NavButton';
 import styles from './Header.module.scss';
 import Image from 'next/image';
-import { useTourContext } from 'pages/context/tour.context';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useModalsContext } from 'pages/context/modals.context';
+import { useTourContext } from 'context/tour.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useModalsContext } from 'context/modals.context';
 import { Dropdown } from 'antd';
-import { useGlobalContext } from 'pages/context/global.context';
+import { useGlobalContext } from 'context/global.context';
 import { AnimatePresence } from 'framer-motion';
-import { useAuthContext } from 'pages/context/auth.context';
+import { useAuthContext } from 'context/auth.context';
 import {
   HeartOutlined,
   LogoutOutlined,
@@ -15,7 +15,7 @@ import {
   StepForwardOutlined,
   UserOutlined
 } from '@ant-design/icons';
-import { useSwiperContext } from 'pages/context/swiper.context';
+import { useSwiperContext } from 'context/swiper.context';
 
 const Header = () => {
   const { ref4 } = useTourContext();

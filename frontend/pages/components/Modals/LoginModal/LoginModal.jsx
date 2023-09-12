@@ -1,4 +1,4 @@
-import { useModalsContext } from 'pages/context/modals.context';
+import { useModalsContext } from 'context/modals.context';
 import { ConfigProvider, theme } from 'antd';
 import styles from './LoginModal.module.scss';
 import { Modal, Tabs } from 'antd';

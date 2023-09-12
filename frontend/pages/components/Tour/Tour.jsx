@@ -1,7 +1,7 @@
 import { Tour as AntTour } from 'antd';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useGlobalContext } from 'pages/context/global.context';
-import { useTourContext } from 'pages/context/tour.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useGlobalContext } from 'context/global.context';
+import { useTourContext } from 'context/tour.context';
 
 const Tour = () => {
   const { tourIsActive, setTourIsActive, steps } = useTourContext();

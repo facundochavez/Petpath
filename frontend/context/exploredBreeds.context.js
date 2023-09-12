@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import loadingBreed from '../../data/loading-breed.data.json';
+import loadingBreed from '../data/loading-breed.data.json';
 import { useSwiperContext } from './swiper.context';
 import { useBackendContext } from './backend.context';
 import { useAuthContext } from './auth.context';

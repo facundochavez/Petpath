@@ -1,12 +1,12 @@
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
 import styles from './PathModal.module.scss';
 import { Modal } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';
 import PathCard from 'components/PathCard/PathCard';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useModalsContext } from 'pages/context/modals.context';
-import { useBackendContext } from 'pages/context/backend.context';
+import { useModalsContext } from 'context/modals.context';
+import { useBackendContext } from 'context/backend.context';
 
 const PathModal = () => {
   const { pathModalOpen, setPathModalOpen } = useModalsContext();

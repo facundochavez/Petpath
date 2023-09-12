@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { useRef } from 'react';
-import tourBreeds from '../../data/tour-breeds.data.json';
+import tourBreeds from '../data/tour-breeds.data.json';
 import { useGlobalContext } from './global.context';
 import { useSwiperContext } from './swiper.context';
 const { tourCat } = tourBreeds;

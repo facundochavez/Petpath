@@ -2,8 +2,8 @@ import styles from './BreedImages.module.scss';
 /* import Image from 'next/image'; */
 import { Image } from 'antd';
 import { Skeleton } from 'antd';
-import { useGlobalContext } from 'pages/context/global.context';
-import { useTourContext } from 'pages/context/tour.context';
+import { useGlobalContext } from 'context/global.context';
+import { useTourContext } from 'context/tour.context';
 import { useRef, useEffect } from 'react';
 
 const BreedImages = ({ images }) => {

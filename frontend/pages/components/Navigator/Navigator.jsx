@@ -1,12 +1,12 @@
 import styles from './Navigator.module.scss';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useSwiperContext } from 'context/swiper.context';
 import MoveButton from 'components/MoveButton/MoveButton';
 import LoadingPaws from 'components/LoadingPaws/LoadingPaws';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
-import { useGlobalContext } from 'pages/context/global.context';
-import { useTourContext } from 'pages/context/tour.context';
+import { useGlobalContext } from 'context/global.context';
+import { useTourContext } from 'context/tour.context';
 
 const Navigator = () => {
   const { globalContext } = useGlobalContext();

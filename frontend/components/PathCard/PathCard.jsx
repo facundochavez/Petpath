@@ -2,9 +2,9 @@ import styles from './PathCard.module.scss';
 import Image from 'next/image';
 import { Skeleton } from 'antd';
 import { HeartFilled, QuestionOutlined } from '@ant-design/icons';
-import { useSwiperContext } from '../../pages/context/swiper.context';
-import { useModalsContext } from 'pages/context/modals.context';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useSwiperContext } from '../../context/swiper.context';
+import { useModalsContext } from 'context/modals.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
 
 const PathCard = ({ breed, index, width, lineDirection }) => {
   ////COMPONENT

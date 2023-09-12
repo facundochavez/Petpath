@@ -7,9 +7,9 @@ import { useOnClickOutside } from 'usehooks-ts';
 import levelsDescriptions from '../../../../data/levels-descriptions.data';
 import { message } from 'antd';
 import { motion } from 'framer-motion';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useTourContext } from 'pages/context/tour.context';
-import { useGlobalContext } from 'pages/context/global.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useTourContext } from 'context/tour.context';
+import { useGlobalContext } from 'context/global.context';
 
 const LevelButton = ({ levelIndex, level, levelInfo, cardIndex }) => {
   const { globalContext } = useGlobalContext();

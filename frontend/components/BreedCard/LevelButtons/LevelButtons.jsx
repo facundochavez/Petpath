@@ -1,8 +1,8 @@
 import styles from './LevelButtons.module.scss';
 import LevelButton from './LevelButton/LevelButton';
 import { motion } from 'framer-motion';
-import { useTourContext } from 'pages/context/tour.context';
-import { useGlobalContext } from 'pages/context/global.context';
+import { useTourContext } from 'context/tour.context';
+import { useGlobalContext } from 'context/global.context';
 
 const LEVELS = ['affection_level','adaptability','energy_level','intelligence','vocalisation','social_needs']
 

@@ -1,4 +1,4 @@
-import { useModalsContext } from 'pages/context/modals.context';
+import { useModalsContext } from 'context/modals.context';
 import styles from './Footer.module.scss';
 
 const Footer = () => {

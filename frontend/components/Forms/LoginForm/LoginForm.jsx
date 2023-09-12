@@ -6,9 +6,9 @@ import { useState } from 'react';
 import { message } from 'antd';
 import { auth } from '../../../firebase';
 
-import { useModalsContext } from 'pages/context/modals.context';
-import { useAuthContext } from 'pages/context/auth.context';
-import { useSwiperContext } from 'pages/context/swiper.context';
+import { useModalsContext } from 'context/modals.context';
+import { useAuthContext } from 'context/auth.context';
+import { useSwiperContext } from 'context/swiper.context';
 
 const LoginForm = () => {
   const [form] = Form.useForm();

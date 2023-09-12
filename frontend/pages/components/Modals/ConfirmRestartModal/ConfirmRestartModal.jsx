@@ -1,9 +1,9 @@
 import styles from './ConfirmRestartModal.module.scss';
-import { useModalsContext } from 'pages/context/modals.context';
+import { useModalsContext } from 'context/modals.context';
 import { ConfigProvider, theme } from 'antd';
 import { Modal } from 'antd';
 import CloseButton from 'components/CloseButton/CloseButton';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
 
 const confirmModalStyle = {
   centered: 'true',

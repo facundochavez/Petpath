@@ -1,4 +1,4 @@
-import { useGlobalContext } from 'pages/context/global.context';
+import { useGlobalContext } from 'context/global.context';
 import styles from './LoadingScreen.module.scss';
 import { Spin } from 'antd';
 import { AnimatePresence, motion } from 'framer-motion';

@@ -5,10 +5,10 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { message } from 'antd';
 import { auth } from '../../../firebase';
-import { useModalsContext } from 'pages/context/modals.context';
-import { useAuthContext } from 'pages/context/auth.context';
-import { useExploredBreedsContext } from 'pages/context/exploredBreeds.context';
-import { useBackendContext } from 'pages/context/backend.context';
+import { useModalsContext } from 'context/modals.context';
+import { useAuthContext } from 'context/auth.context';
+import { useExploredBreedsContext } from 'context/exploredBreeds.context';
+import { useBackendContext } from 'context/backend.context';
 
 const SignUpForm = () => {
   const [form] = Form.useForm();

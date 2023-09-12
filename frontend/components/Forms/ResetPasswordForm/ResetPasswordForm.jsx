@@ -5,7 +5,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import { message } from 'antd';
 import { auth } from '../../../firebase';
-import { useModalsContext } from 'pages/context/modals.context';
+import { useModalsContext } from 'context/modals.context';
 
 const ResetPasswordForm = () => {
   const [form] = Form.useForm();
