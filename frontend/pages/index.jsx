@@ -29,7 +29,7 @@ export default function Home() {
   const { setActiveSwiperIndex } = useSwiperContext();
 
   useEffect(() => {
-    const handleExploredCats = async () => {
+    const handleExploredCats = async () => { 
       if (currentUser) {
         setShowLoadingScreen('yourPath')
         setShowMoveButtons(false);
