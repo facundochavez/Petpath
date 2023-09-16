@@ -1,3 +1,13 @@
+import os
+
+# Obtiene el puerto de la variable de entorno PORT o utiliza 10000 si no está definido
+port = int(os.environ.get('PORT', 10000))
+
+ALLOWED_HOSTS = ['*']  # Esto permite conexiones desde cualquier host en Render, pero asegúrate de ajustarlo en producción
+
+# Configura el puerto de escucha
+WEB_SERVICE_PORT = port
+
 """
 Django settings for myproject project.
 
@@ -25,7 +35,7 @@ SECRET_KEY = 'django-insecure-!^$0ugh*7v7d@o)kgvk=hgow&+1_@4k%!!3cbnvj-ip**rs!or
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+""" ALLOWED_HOSTS = [] """
 
 
 # Application definition
