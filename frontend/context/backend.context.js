@@ -36,11 +36,11 @@ const BackendProvider = ({ children }) => {
   //// BACKEND
 
   const resetBackend = async () => {
-    await fetch(`http://localhost:8000/get_cat/?reset=${true}`);
+    await fetch(`https://petpath-backend.onrender.com/get_cat/?reset=${true}`);
   };
 
   const getAllCatsLength = async () => {
-    const response = await fetch(`http://localhost:8000/get_cat/?get_length=${true}`);
+    const response = await fetch(`https://petpath-backend.onrender.com/get_cat/?get_length=${true}`);
     const data = await response.text();
     const length = parseInt(data);
     return length;
@@ -55,14 +55,14 @@ const BackendProvider = ({ children }) => {
         updateCatsIds.push(breed.id);
       });
       const queryUpdateCats = updateCatsIds.join(',');
-      await fetch(`http://localhost:8000/get_cat/?update_cats=${queryUpdateCats}`);
+      await fetch(`https://petpath-backend.onrender.com/get_cat/?update_cats=${queryUpdateCats}`);
     }
   };
 
   const fetchNewBreed = async (selected_index, selected_level, selected_action) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/get_cat/?selected_index=${selected_index}&selected_level=${selected_level}&selected_action=${selected_action}`
+        `https://petpath-backend.onrender.com/get_cat/?selected_index=${selected_index}&selected_level=${selected_level}&selected_action=${selected_action}`
       );
       const newBreed = await response.json();
       return newBreed;
