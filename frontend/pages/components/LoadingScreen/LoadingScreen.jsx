@@ -22,7 +22,7 @@ const LoadingScreen = () => {
             <Spin
               tip={
                 showLoadingScreen === 'randomBreed'
-                  ? 'Loading random breed...'
+                  ? 'Loading random breed... \nOur servers are in Beta, so the first call may take up to 15 seconds.'
                   : 'Loading your path...'
               }
               size='large'>
