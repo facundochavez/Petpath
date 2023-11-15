@@ -32,7 +32,7 @@ const Footer = () => {
           © 2023 Petpath - All rights reserved
           <br />
           Developed by {' '}
-          <a href='https://www.linkedin.com/in/facundo-chavez-a46b55b5/' target='_blank'>Facundo Chavez</a>
+          <a href='https://facundochavez.vercel.app/' target='_blank'>Facundo Chavez</a>
         </h2>
       </div>
     </div>
