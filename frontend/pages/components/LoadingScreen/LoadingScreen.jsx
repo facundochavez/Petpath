@@ -34,13 +34,17 @@ const LoadingScreen = () => {
             >
               <div className={styles.loading_screen__box} />
             </Spin>
-            <p>
-              Our servers are in Beta, so first call may take up to 15
-              seconds. In the meantime, you can watch the tour:
-            </p>
-            <Button type="secondary" onClick={startTour}>
-              START TOUR
-            </Button>
+            {showLoadingScreen === "randomBreed" && (
+              <>
+                <p>
+                  Our servers are in Beta, so first call may take up to 15
+                  seconds. In the meantime, you can watch the tour:
+                </p>
+                <Button type="secondary" onClick={startTour}>
+                  START TOUR
+                </Button>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}

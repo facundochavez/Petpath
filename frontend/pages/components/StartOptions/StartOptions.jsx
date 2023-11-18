@@ -3,8 +3,6 @@ import Button from 'components/Button/Button';
 import DogsPromise from 'components/DogsPromise/DogsPromise';
 import { motion } from 'framer-motion';
 import { useExploredBreedsContext } from 'context/exploredBreeds.context';
-import { useGlobalContext } from 'context/global.context';
-import { useModalsContext } from 'context/modals.context';
 import { useSwiperContext } from 'context/swiper.context';
 import { useTourContext } from 'context/tour.context';
 
