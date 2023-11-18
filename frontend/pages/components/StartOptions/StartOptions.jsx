@@ -39,7 +39,7 @@ const StartOptions = () => {
           variants={objectAnimation}>
           {/* TOUR BUTTON */}
           <Button type='secondary' onClick={startTour}>
-            STAR TOUR
+            START TOUR
           </Button>
           {/* START BUTTON */}
           <Button
