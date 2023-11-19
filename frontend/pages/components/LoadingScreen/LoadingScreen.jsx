@@ -38,11 +38,8 @@ const LoadingScreen = () => {
               <>
                 <p>
                   Our servers are in Beta, so first call may take up to 15
-                  seconds. In the meantime, you can watch the tour:
+                  seconds.
                 </p>
-                <Button type="secondary" onClick={startTour}>
-                  START TOUR
-                </Button>
               </>
             )}
           </motion.div>
