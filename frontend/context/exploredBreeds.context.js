@@ -52,7 +52,9 @@ export default function ExploredBreedsProvider ({ children }) {
     setExploredCats((prevExploredBreeds) => [...prevExploredBreeds.slice(0, -1), newBreed]);
 
     setShowLoadingScreen('none');
-    setShowMoveButtons(true);
+    setTimeout(() => {
+      setShowMoveButtons(true);
+    }, 1000);
   };
 
   //// HANDLE SELECTED LEVEL AND ACTION (FOR REQUEST ARROW)
