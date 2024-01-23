@@ -34,9 +34,9 @@ Stay tuned for future updates as Petpath is set to integrate dogs into its wonde
 
 The project is organized into two main folders:
 
-· backend: Implements Django and Python with a traditional Django project structure.
+· backend(deprecated): Implements Django and Python with a traditional Django project structure.
 
-· frontend (deprecated): Utilizes a custom NextJS architecture with key folders for pages, components, public, styles, data, context, and assets.
+· frontend: Utilizes a custom NextJS architecture with key folders for pages, components, public, styles, data, context, and assets.
 
 ## 🛠️ How to Run
 
