@@ -52,6 +52,8 @@ export default function Home() {
       <Head>
         <title>Petpath</title>
         <link rel='icon' href='/images/petpath-symbol.svg' type='image/svg+xml' />
+        <meta httpEquiv="Content-Language" content="en" />
+        <meta name="google" content="notranslate" />
       </Head>
       <Header />
       <LoadingScreen />

@@ -34,14 +34,6 @@ const LoadingScreen = () => {
             >
               <div className={styles.loading_screen__box} />
             </Spin>
-            {showLoadingScreen === "randomBreed" && (
-              <>
-                <p>
-                  Our servers are in Beta, so first call may take up to 15
-                  seconds.
-                </p>
-              </>
-            )}
           </motion.div>
         </motion.div>
       )}

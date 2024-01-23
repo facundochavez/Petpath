@@ -28,10 +28,13 @@ const BreedDescription = ({ isActive, description }) => {
           </div>
         </>
       ) : (
-        <>
-          <InfoCircleOutlined style={{ marginRight: '4px' }} />
+        <p>
+          <strong>
+            <InfoCircleOutlined style={{ marginRight: '4px' }} />
+            Fun fact:{' '}
+          </strong>
           {description}
-        </>
+        </p>
       )}
     </div>
   );

@@ -1,12 +1,9 @@
 import styles from './BreedCard.module.scss';
 import BreedImages from './BreedImages/BreedImages';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Skeleton } from 'antd';
 import LevelButtons from './LevelButtons/LevelButtons';
 import ExtraLevelButtons from './ExtraLevelButtons/ExtraLevelButtons';
 import BreedDescription from './BreedDescription/BreedDescription';
-import { useTourContext } from 'context/tour.context';
 
 const BreedCard = ({ isFirst, isLast, isActive, isPrev, breed, cardIndex }) => {
 

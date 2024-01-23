@@ -14,20 +14,21 @@ with open(dogs_file_path) as dogs_file:
 
 all_cats = []
 available_cats = []
-sended_cats = []
+sent_cats = []
 LEVELS = ['affection_level', 'adaptability', 'energy_level',
             'intelligence', 'vocalisation', 'social_needs']
 EXTRA_LEVELS = ['stranger_friendly', 'child_friendly',
                 'dog_friendly', 'grooming', 'health_issues', 'shedding_level']
 THE_CAT_API_ENDPOINT = 'https://api.thecatapi.com/v1'
 HEADERS = {
-    'x-api-key': 'live_lnQuYxTbHPNxcVNbaQhbjqnJyLDBNVaCR5VnexkoAKePK2hEdqju23593jVaMMpB'}
+    'x-api-key': 'process.env.THE_CAT_API_KEY',
+    }
 
 
 def get_cat(request):
     global all_cats
     global available_cats
-    global sended_cats
+    global sent_cats
 
     # GETTING ARGUMENTS
     reset = request.GET.get('reset')
@@ -49,7 +50,7 @@ def get_cat(request):
     if reset == 'true':
         available_cats = []
         available_cats = all_cats.copy()
-        sended_cats = []
+        sent_cats = []
         return HttpResponse()
 
     # SEND ALL CATS LENGTH
@@ -59,11 +60,11 @@ def get_cat(request):
     # UPDATING AVAILABLE CATS WHEN LOGIN
     if update_cats:
         update_cats_list = update_cats.split(',')
-        sended_cats = []
+        sent_cats = []
         for id in update_cats_list:
             add_cat = next((cat for cat in all_cats if cat['id'] == id), None)
-            sended_cats.append(add_cat)
-        available_cats = [cat for cat in all_cats if cat not in sended_cats]
+            sent_cats.append(add_cat)
+        available_cats = [cat for cat in all_cats if cat not in sent_cats]
         return HttpResponse()
 
     # LOOKING FOR RANDOM CAT WITH A LOW SCORE IF SELECTED INDEX IS UNDEFINED (FIRST CALL)
@@ -83,36 +84,36 @@ def get_cat(request):
         selected_index = int(selected_index)
         selected_level = LEVELS[int(selected_level) - 1]
 
-        # UPDATING SENDED_CATS IF THE ORIGIN CAT IS NOT THE LAST SENDED
-        if selected_index + 1 < len(sended_cats):
-            sended_cats = sended_cats[:selected_index + 1]
+        # UPDATING sent_cats IF THE ORIGIN CAT IS NOT THE LAST SENDED
+        if selected_index + 1 < len(sent_cats):
+            sent_cats = sent_cats[:selected_index + 1]
             available_cats = [
-                cat for cat in all_cats if cat not in sended_cats]
+                cat for cat in all_cats if cat not in sent_cats]
 
         # GETTING CATS THAT MEET THE REQUERIMENT
         if selected_action == '=':
             match_cats = [cat for cat in available_cats if cat.get(
-                selected_level) == sended_cats[selected_index].get(selected_level)]
+                selected_level) == sent_cats[selected_index].get(selected_level)]
         elif selected_action == '-':
             match_cats = [cat for cat in available_cats if cat.get(
-                selected_level) < sended_cats[selected_index].get(selected_level)]
+                selected_level) < sent_cats[selected_index].get(selected_level)]
         else:
             match_cats = [cat for cat in available_cats if cat.get(
-                selected_level) > sended_cats[selected_index].get(selected_level)]
+                selected_level) > sent_cats[selected_index].get(selected_level)]
 
         # GETTING MAX-SCORED CAT
         def scoring(cat):
             score = 0
             for level in LEVELS:
                 level_score = 5 - \
-                    abs(sended_cats[selected_index].get(
+                    abs(sent_cats[selected_index].get(
                         level) - cat.get(level))
                 score += level_score
             return score
         cat = max(match_cats, key=scoring)
 
     # UPDATING SENDED AND AVAILABLE CATS
-    sended_cats.append(cat)
+    sent_cats.append(cat)
     available_cats.remove(cat)
 
     # FETCHING IMAGES

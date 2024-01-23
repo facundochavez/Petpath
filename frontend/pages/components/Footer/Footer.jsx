@@ -11,14 +11,14 @@ const Footer = () => {
         <h3>
           Powered by:
           <br />
+          <a href='https://nextjs.org/' target='_blank'>
+            Next.js
+          </a>
+          ,{' '}
           <a href='https://thecatapi.com/' target='_blank'>
             The Cap API
           </a>
           ,{' '}
-          <a href='https://chat.openai.com/' target='_blank'>
-            {' '}
-            Chat GPT
-          </a>{' '}
           and{' '}
           <a href='https://ant.design/' target='_blank'>
             Ant Design
@@ -29,10 +29,10 @@ const Footer = () => {
           <span onClick={() => setTermsModalOpen(true)}>Terms and Conditions</span>
         </h4>
         <h2>
-          © 2023 Petpath - All rights reserved
+          © 2024 Petpath - All rights reserved
           <br />
           Developed by {' '}
-          <a href='https://facundochavez.vercel.app/' target='_blank'>Facundo Chavez</a>
+          <a href='https://www.facundochavez.com/' target='_blank'>Facundo Chavez</a>
         </h2>
       </div>
     </div>

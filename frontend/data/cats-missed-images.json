@@ -1,0 +1,80 @@
+[
+    {
+        "id": "cspa",
+        "name": "California Spangled",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://vet-hospitals.ru/wp-content/uploads/2019/12/california-spangled-cat-5-768x512.jpg"
+            },
+            {
+                "id": 2,
+                "url": "https://edyal.ru/800/600/https/zanimalia.fr/wp-content/uploads/2020/05/California-Spangled-3-1920x2142.jpg"
+            },
+            {
+                "id": 3,
+                "url": "https://damion.club/uploads/posts/2022-11/1668587186_damion-club-p-bengalskaya-korotkosherstnaya-koshka-vkont-79.jpg"
+            }
+        ]
+    },
+    {
+        "id": "dons",
+        "name": "Donskoy",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://cat-world.com/wp-content/uploads/2019/04/don-sphynx-1.jpg"
+            }
+        ]
+    },
+    {
+        "id": "khao",
+        "name": "Khao Manee",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://petsfeed.co/wp-content/uploads/2021/11/Khao-Manee-1.jpg"
+            },
+            {
+                "id": 2,
+                "url": "https://krasivosti.pro/uploads/posts/2022-08/1660761130_61-krasivosti-pro-p-koti-s-raznimi-glazami-krasivo-foto-66.jpg"
+            }
+        ]
+    },
+    {
+        "id": "kuri",
+        "name": "Kurilian",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://www.womansworld.com/wp-content/uploads/2022/12/Kurilian-Bobtail-Nikolai-TsvetkovShutterstock.jpg"
+            },
+            {
+                "id": 2,
+                "url": "https://www.petdarling.com/wp-content/uploads/2015/03/Kurilian-bobtail.jpg"
+            },
+            {
+                "id": 3,
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/71/KURILIAN_BOBTAIL_Maschio_Veika_2011_%28cropped%29.JPG"
+            }
+        ]
+    },
+    {
+        "id": "mala",
+        "name": "Malayan",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://catastic.pet/wp-content/uploads/2019/01/photo-1518791841217-8f162f1e1131.jpg"
+            },
+            {
+                "id": 2,
+                "url": "https://mycatsitting.com/wp-content/uploads/2014/05/home_animals_photo16.jpg"
+            },
+            {
+                "id": 3,
+                "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cat_March_2010-1a.jpg"
+            }
+        ]
+    }
+]

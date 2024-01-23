@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['cdn2.thecatapi.com', 'imgfon.ru']
+    domains: ['cdn2.thecatapi.com', 'imgfon.ru', 'catastic.pet']
   },
   
 };
