@@ -70,7 +70,7 @@ export default function ExploredBreedsProvider({ children }) {
       ]);
       setShowLoadingScreen('none');
       setShowMoveButtons(true);
-    }, 750);
+    }, 1000);
   };
 
   //// HANDLE SELECTED LEVEL AND ACTION (FOR REQUEST ARROW)
