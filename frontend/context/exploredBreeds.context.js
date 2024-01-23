@@ -7,8 +7,9 @@ import { useGlobalContext } from './global.context';
 
 const ExploredBreedsContext = createContext();
 
-export default function ExploredBreedsProvider ({ children }) {
-  const { fetchNewBreed, updateDataBaseBreeds, resetBackend } = useBackendContext();
+export default function ExploredBreedsProvider({ children }) {
+  const { fetchNewBreed, updateDataBaseBreeds, resetBackend } =
+    useBackendContext();
   const { currentUser } = useAuthContext();
   const { setActiveSwiperIndex } = useSwiperContext();
   const { setShowLoadingScreen } = useGlobalContext();
@@ -17,17 +18,23 @@ export default function ExploredBreedsProvider ({ children }) {
 
   useEffect(() => {
     const handleUpdateDataBase = async () => {
-      showMoveButtons && currentUser && (await updateDataBaseBreeds(currentUser.uid, exploredCats));
+      showMoveButtons &&
+        currentUser &&
+        (await updateDataBaseBreeds(currentUser.uid, exploredCats));
     };
     exploredCats.length !== 0 && handleUpdateDataBase();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exploredCats]);
 
   //// ADD NEW BREED
-  const addNewBreed = async ({ selected_index, selected_level, selected_action }) => {
+  const addNewBreed = async ({
+    selected_index,
+    selected_level,
+    selected_action,
+  }) => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
     exploredCats.length === 0 && setShowLoadingScreen('randomBreed');
     setShowMoveButtons(false);
@@ -40,21 +47,30 @@ export default function ExploredBreedsProvider ({ children }) {
       // TAKING OF THE LAST CARDS IF SELECTED INDEX IS NOT LAST
       selected_index + 1 < exploredCats.length &&
         setExploredCats((prevExploredBreeds) => [
-          ...prevExploredBreeds.slice(0, selected_index + 1)
+          ...prevExploredBreeds.slice(0, selected_index + 1),
         ]);
     }
 
     // PUTTING LOADING CARD
-    setExploredCats((prevExploredBreeds) => [...prevExploredBreeds, loadingBreed]);
+    setExploredCats((prevExploredBreeds) => [
+      ...prevExploredBreeds,
+      loadingBreed,
+    ]);
 
-    // GETING NEW BREED
-    const newBreed = await fetchNewBreed(selected_index, selected_level, selected_action);
-    setExploredCats((prevExploredBreeds) => [...prevExploredBreeds.slice(0, -1), newBreed]);
-
-    setShowLoadingScreen('none');
-    setTimeout(() => {
+    // GETTING NEW BREED
+    setTimeout(async () => {
+      const newBreed = await fetchNewBreed(
+        selected_index,
+        selected_level,
+        selected_action
+      );
+      setExploredCats((prevExploredBreeds) => [
+        ...prevExploredBreeds.slice(0, -1),
+        newBreed,
+      ]);
+      setShowLoadingScreen('none');
       setShowMoveButtons(true);
-    }, 1000);
+    }, 750);
   };
 
   //// HANDLE SELECTED LEVEL AND ACTION (FOR REQUEST ARROW)
@@ -91,17 +107,20 @@ export default function ExploredBreedsProvider ({ children }) {
         addNewBreed,
         handleFav,
         setShowMoveButtons,
-        restartPath
-      }}>
+        restartPath,
+      }}
+    >
       {children}
     </ExploredBreedsContext.Provider>
   );
-};
+}
 
 export const useExploredBreedsContext = () => {
   const context = useContext(ExploredBreedsContext);
   if (context === undefined) {
-    throw new Error('ExploredBreedsContext must be used within a ExploredBreedsProvider');
+    throw new Error(
+      'ExploredBreedsContext must be used within a ExploredBreedsProvider'
+    );
   }
   return context;
 };
