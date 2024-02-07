@@ -7,7 +7,7 @@ https://github.com/facundochavez/Petpath/assets/101282065/0e69a97e-a927-404f-a48
 
 Stay tuned for future updates as Petpath is set to integrate dogs into its wonderful world of pets! 🐾🐕
 
-## 🚀 Technologies Used
+## 🚀 Used Technologies
 
 ## Frontend
 
