@@ -1,6 +1,6 @@
 ## [Petpath](https://petpath.vercel.app/) 🐾
 
-This is not just an app; it's a captivating journey through the enchanting world of cats. Whether you're a dedicated cat enthusiast or just someone who can't resist adorable cat pictures, Petpath offers an immersive experience that lets you explore different cat breeds through their unique characteristics. Embark on a delightful "path" of cats - will you be able to discover them all? 🐱✨
+Discover cat breeds by adjusting their features and following an interactive selection path. 🐱✨
 
 
 https://github.com/facundochavez/Petpath/assets/101282065/0e69a97e-a927-404f-a482-1aab06a7676d
