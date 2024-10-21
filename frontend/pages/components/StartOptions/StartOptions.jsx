@@ -13,7 +13,7 @@ const StartOptions = () => {
 
   const objectAnimation = {
     hidden: { opacity: 0, y: 100 },
-    show: { opacity: 1, y: 0 }
+    show: { opacity: 1, y: 0 },
   };
 
   //// COMPONENT
@@ -22,22 +22,25 @@ const StartOptions = () => {
       <motion.div
         className={styles.start_options__max_width_container}
         transition={{
-          staggerChildren: 0.05
+          staggerChildren: 0.05,
         }}
         initial='hidden'
-        animate='show'>
+        animate='show'
+      >
         <motion.h2
           className={styles.start_options__max_width_container__title}
-          variants={objectAnimation}>
+          variants={objectAnimation}
+        >
           <span>Discover and learn</span> about the cutest cats in the world 🐱
         </motion.h2>
 
         <motion.div
           className={styles.start_options__max_width_container__buttons}
-          variants={objectAnimation}>
+          variants={objectAnimation}
+        >
           {/* TOUR BUTTON */}
           <Button type='secondary' onClick={startTour}>
-            START TOUR
+            VIEW TOUR
           </Button>
           {/* START BUTTON */}
           <Button
@@ -45,13 +48,13 @@ const StartOptions = () => {
             onClick={() => {
               setActiveSwiperIndex(0);
               addNewBreed({});
-            }}>
-            LET&apos;S EXPLORE!
+            }}
+          >
+            START EXPLORING!
           </Button>
         </motion.div>
 
-        <motion.div
-          variants={objectAnimation}>
+        <motion.div variants={objectAnimation}>
           <DogsPromise />
         </motion.div>
       </motion.div>
