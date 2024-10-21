@@ -50,12 +50,12 @@ const Header = () => {
       disabled: exploredCats.length === 0,
       onClick: () => setConfirmRestartModalOpen(true)
     },
-    {
+/*     {
       label: 'Love the app? Donate!',
       icon: <HeartOutlined />,
       key: '3',
       onClick: () => setDonateModalOpen(true)
-    },
+    }, */
     {
       type: 'divider'
     },
