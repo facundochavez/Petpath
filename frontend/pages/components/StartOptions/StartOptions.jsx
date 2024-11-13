@@ -50,7 +50,7 @@ const StartOptions = () => {
               addNewBreed({});
             }}
           >
-            START EXPLORING!
+            START PATH!
           </Button>
         </motion.div>
 
