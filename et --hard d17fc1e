@@ -1,0 +1,73 @@
+* [33m6b645d0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Replace 'feature' by 'level' on backend
+* [33m15e4f63[m Change 'feature' for 'level' on some places on backend
+* [33m65ce374[m Petpath content
+* [33md17fc1e[m improve/Start path button
+* [33mc6c4677[m improve/remove donate
+*   [33ma6d7bc9[m Merge branch 'main' of https://github.com/facukun/paw-explorer
+[32m|[m[33m\[m  
+[32m|[m * [33m451084d[m Update README.md
+[32m|[m * [33m69e804c[m Update README.md
+[32m|[m * [33m14e0283[m Update README.md
+[32m|[m * [33m2b71805[m Create README.md
+* [33m|[m [33m5de9338[m improve/buttons CTAs
+[33m|[m[33m/[m  
+* [33m48bd20c[m v2.0.3
+* [33mdbab383[m v2.0.2
+* [33m33b7cbf[m v2.0.1
+* [33m64841d5[m v2.0.0
+* [33me4f3678[m v1.9.9.3
+* [33m47c0e6b[m v1.9.9.3
+* [33m9d8358c[m v1.9.9.2
+* [33m6118473[m v1.9.9.1
+* [33m15f78cd[m v1.9.9.0
+* [33m3c86823[m v1.9.9.4
+* [33md06d468[m v1.9.9.3
+* [33m440dc4c[m v1.9.9.2
+* [33m25142cf[m v1.9.9.1
+* [33md669e61[m v1.9.9
+* [33mcd6669c[m v1.9.8.9
+* [33mca25e03[m v1.9.8.8
+* [33m69db7b2[m v1.9.8.7
+* [33mfd5b4c4[m v1.9.8.6
+* [33mf85f9ae[m v1.9.8.5
+* [33mbada69f[m v1.9.8.4
+* [33m351c185[m v1.9.8.3
+* [33m2da2226[m v1.9.8.2
+* [33m9f54afd[m v1.9.8.1
+* [33m9527ca4[m v1.9.8
+* [33m65f692e[m v1.9.7
+* [33mc93701a[m v1.9.0.3
+* [33mb951e10[m v1.9.0.2
+* [33mf9f8c70[m v1.9.0.1
+* [33md7bda8b[m v1.9.0
+* [33m7b4bbc1[m v1.8.3.1
+* [33m9ec13ce[m v1.8.3
+* [33md1eae8e[m v1.8.2
+* [33m0dc0bb7[m v1.8.1
+* [33md4173f8[m v1.8.0
+* [33mc34774c[m v1.7.9
+* [33m4961c6c[m v1.7.7
+* [33mbe54c1f[m v1.7.8
+* [33mf044c1d[m v1.7.6
+* [33m2708f2b[m v1.7.5
+* [33m0c887b2[m v1.7.4
+* [33m81c05b6[m v1.7.3
+* [33m82ff568[m v1.7.3
+* [33m84f102d[m v1.7.2
+* [33md1aa103[m v1.7.1
+* [33m6113a50[m v1.7.0
+* [33me7acf91[m v1.6.3
+* [33mc44aff2[m v1.6.2
+* [33m3db0234[m v1.6.1
+* [33mb26413b[m v1.6.0
+* [33mf0b309e[m v1.5.2
+* [33m1e0db64[m v1.5.1
+* [33m5fa23f5[m v1.5.0
+* [33m85c98dd[m v1.4.0
+* [33m6aff47f[m v1.3.0
+* [33mb500de9[m v1.2.0
+* [33m98f0063[m v1.1.0
+* [33m738aa01[m v1.0.1
+* [33mc71502e[m Segundo commit
+* [33mb6f8be8[m First commit
+* [33mf1b4e6a[m Initial commit from Create Next App
